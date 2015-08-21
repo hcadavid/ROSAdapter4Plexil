@@ -1,0 +1,30 @@
+subscriber.o: subscriber.cc subscriber.hh
+sample_system.o: sample_system.cc subscriber.hh
+SampleAdapter.o: SampleAdapter.cc SampleAdapter.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/intfc/Command.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/intfc/CommandHandleVariable.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/CommandHandle.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/ExpressionImpl.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/Expression.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/Array.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/ValueType.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/utils/ParserException.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/ArrayFwd.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/plexil-config.h \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/ExpressionListener.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/NotifierImpl.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/intfc/State.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/Value.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/SimpleBooleanVariable.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/AssignableImpl.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/expr/Assignable.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/value/ArrayImpl.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/InterfaceAdapter.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/third-party/pugixml/src/pugixml.hpp \
+  /Users/hcadavid/apps/plexil-4.0.1/src/third-party/pugixml/src/pugiconfig.hpp \
+  subscriber.hh sample_system.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterConfiguration.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterFactory.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterExecInterface.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/utils/Debug.hh \
+  /Users/hcadavid/apps/plexil-4.0.1/src/intfc/StateCacheEntry.hh
