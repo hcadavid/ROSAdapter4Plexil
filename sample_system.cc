@@ -100,7 +100,7 @@ void move (const string& location, int x, int y)
 
 void hello ()
 {
-  cout << "Hello World 2" << endl;
+  cout << "Hello World" << endl;
 }
 
 int square (int x)

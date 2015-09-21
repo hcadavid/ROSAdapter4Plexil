@@ -11,6 +11,7 @@
       <in>subscriber.cc</in>
       <in>subscriber.hh</in>
     </df>
+    <itemPath>original.txt</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

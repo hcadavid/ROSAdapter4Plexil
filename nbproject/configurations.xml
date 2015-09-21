@@ -18,6 +18,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>original.txt</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
@@ -67,6 +68,8 @@
             <pElem>../sample-app</pElem>
           </incDir>
         </ccTool>
+      </item>
+      <item path="original.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
