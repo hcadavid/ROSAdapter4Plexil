@@ -187,6 +187,10 @@ bool SampleAdapter::initialize()
   setSubscriberBoolString (receive);
   setSubscriberBoolIntInt (receive);
   debugMsg("SampleAdapter", " initialized.");
+  
+  startThread();
+  
+  
   return true;
 }
 

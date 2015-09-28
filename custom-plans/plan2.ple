@@ -1,0 +1,9 @@
+Example:{
+
+    NodeOne:{
+        StartCondition Lookup(Speed)>100;
+
+    }
+
+
+}

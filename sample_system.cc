@@ -26,6 +26,8 @@
 
 #include <iostream>
 #include "subscriber.hh"
+#include <pthread.h>
+#include <unistd.h>
 
 using std::cout;
 using std::endl;
@@ -106,4 +108,31 @@ void hello ()
 int square (int x)
 {
   return (x * x);
+}
+
+
+void *print_message_function(void *ptr) {
+    cout << "CREATING POSIX THREAD.";  
+    for (int i=0;i<100;i++){
+        char *message;
+        message = (char *) ptr;
+        printf(">>>>>>>>>>>>++++>>>>>>>>>>>>>> %s \n", message);
+        sleep(1);
+        //if (i==3){               
+        setSpeed(i*10);
+        
+        //}
+    }
+    return EXIT_SUCCESS;
+}
+
+
+void startThread(){
+    const char *message1 = "Running a thread";
+    pthread_t thread1;
+    int iret1 = pthread_create(&thread1, NULL, print_message_function, (void*) message1);
+    if (iret1) {
+        fprintf(stderr, "Error - pthread_create() return code: %d\n", iret1);
+        exit(EXIT_FAILURE);
+    }    
 }

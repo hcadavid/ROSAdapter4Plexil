@@ -56,4 +56,6 @@ void hello ();
 // A command that is essentially a math function
 int square (int x);
 
+void startThread();
+
 #endif

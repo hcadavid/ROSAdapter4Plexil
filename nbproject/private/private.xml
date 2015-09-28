@@ -9,6 +9,22 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Robotics-Plexil"/>
+        <group name="Robotics-Plexil">
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/sample_system.cc</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/plans/plan1.plx</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/plans/plan1.pli</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/plans/command-assignment1.pli</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/plans/command-assignment1.plx</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/sample_system.hh</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/Makefile</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/PlexilECIRobotAdapter.cc</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/plan1.pli</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/SafeDrive.plx</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/SafeDrive.ple</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/PlexilECIRobotAdapter.hh</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/plan1.epx</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/plan1.plx</file>
+            <file>file:/Users/hcadavid/apps/plexil-4.0.1/examples/robotics-interfacing/custom-plans/schemas.xml</file>
+        </group>
     </open-files>
 </project-private>
