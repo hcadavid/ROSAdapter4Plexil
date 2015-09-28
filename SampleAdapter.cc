@@ -280,6 +280,7 @@ void SampleAdapter::lookupNow(State const &state, StateCacheEntry &entry)
 
 void SampleAdapter::subscribe(const State& state)
 {
+  cout << "**** SUBSCRIBING!!\n";
   debugMsg("SampleAdapter:subscribe", " processing state "
            << state.name());
   m_subscribedStates.insert(state);
@@ -306,10 +307,17 @@ void SampleAdapter::setThresholds (const State& state, int32_t hi, int32_t lo)
 void SampleAdapter::propagateValueChange (const State& state,
                                           const vector<Value>& vals) const
 {
-  if (!isStateSubscribed(state))
-    return; 
-  m_execInterface.handleValueChange(state, vals.front());
-  m_execInterface.notifyOfExternalEvent();
+    cout << "**** Propagating value changes\n";
+  if (!isStateSubscribed(state)){
+    cout << "**** Value changes propagation failed\n";
+      return; 
+  }
+  else{
+      cout << "**** Value changes propagation success\n";
+    m_execInterface.handleValueChange(state, vals.front());
+    m_execInterface.notifyOfExternalEvent();      
+  }
+    
 }
 
 
