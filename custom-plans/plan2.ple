@@ -1,11 +1,18 @@
 Command TakePicture;
+Command Move(Integer);
 
 Example:{
 
-    NodeOne:{
-        StartCondition Lookup(Speed)>100;
-        TakePicture();
-    }
+    
+        NodeOne:{
+            StartCondition Lookup(Temperature)>100;
+            TakePicture();
+        }
+        NodeTwo:{
+            StartCondition Lookup(Speed)>100;
+            Move(1);
+        }
+    
 
 
 }

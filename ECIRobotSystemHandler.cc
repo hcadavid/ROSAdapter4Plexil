@@ -13,6 +13,8 @@ using std::pair;
 //
 
 static int Speed = 4;
+static int Temperature = 0;
+static bool WheelStuck = false;
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -34,6 +36,8 @@ void set##name (const type & s) \
 }
 
 defAccessors(Speed, int)
+defAccessors(WheelStuck, bool)
+defAccessors(Temperature, int)
 
 
 // The overloaded state 'At' accessors are handled individually.  Note that 'At'
@@ -43,7 +47,7 @@ defAccessors(Speed, int)
 
 void move (int distance)
 {
-    cout << "moving " << distance << "\n";
+    cout << "******** moving " << distance << "\n";
   /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
     AtCoordinates.first = x;
     AtCoordinates.second = y;
@@ -73,14 +77,16 @@ void turnFrontGear(int angle){
 
 void *print_message_function(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
-    for (int i=0;i<100;i++){
+    for (int i=0;i<5;i++){
         char *message;
         message = (char *) ptr;
         printf(">>>>>>>>>>>>++++>>>>>>>>>>>>>> %s \n", message);
         sleep(1);
         //if (i==3){               
-        setSpeed(i*10);
-        
+        setSpeed(i*30);
+        //if (i==10){
+            setTemperature(i*50);
+        //}
         //}
     }
     return EXIT_SUCCESS;

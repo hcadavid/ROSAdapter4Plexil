@@ -54,6 +54,12 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   if (state_name == "Speed"){
     retval = getSpeed();
   }
+  if (state_name == "Temperature"){
+    retval = getTemperature();
+  }
+  else if (state_name == "WheelStuck"){
+      retval = getWheelStuck();
+  }
   else {
     cerr << error << "invalid state: " << state_name << endl;
     retval = Unknown;
@@ -191,35 +197,23 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   //int32_t i1 = 0, i2 = 0;
   
   double d = 0.0;
-
-  /*
-   
-   void move (int distance);
-
-void takePicture ();
-
-void plantSeed ();
-
-void turnFrontGear(int angle);
-   
-   */
-  
+    
   if (name == "Move") {
     args[0].getValue(d);
     move(d);
   }
-  if (name == "TurnFront") {
+  else if (name == "TurnFront") {
     args[0].getValue(d);
     turnFrontGear(d);
   }
   else if (name == "TakePicture") {    
     takePicture();
   }
-  else if (name == "plantSeed") {    
+  else if (name == "PlantSeed") {    
     plantSeed();
   }
   else 
-    cerr << error << "invalid command: " << name << endl;
+    cerr << error << "invalid command: [" << name << "]" << endl;
 
   // This sends a command handle back to the executive.
   m_execInterface.handleCommandAck(cmd, COMMAND_SENT_TO_SYSTEM);
@@ -269,11 +263,11 @@ void ECIRobotAdapter::propagateValueChange (const State& state,
 {
     cout << "**** Propagating value changes\n";
   if (!isStateSubscribed(state)){
-    cout << "**** Value changes propagation failed\n";
+    cout << "**** Value changes propagation failed:" << state << "\n";
       return; 
   }
   else{
-      cout << "**** Value changes propagation success\n";
+      cout << "**** Value changes propagation success:" << state << "\n";
     m_execInterface.handleValueChange(state, vals.front());
     m_execInterface.notifyOfExternalEvent();      
   }
