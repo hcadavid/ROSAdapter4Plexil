@@ -77,7 +77,9 @@ void turnFrontGear(int angle){
 
 void *print_message_function(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
-    for (int i=0;i<5;i++){
+    sleep(30);
+    setTemperature(1000);
+    /*for (int i=0;i<5;i++){
         char *message;
         message = (char *) ptr;
         printf(">>>>>>>>>>>>++++>>>>>>>>>>>>>> %s \n", message);
@@ -88,7 +90,7 @@ void *print_message_function(void *ptr) {
             setTemperature(i*50);
         //}
         //}
-    }
+    }*/
     return EXIT_SUCCESS;
 }
 
