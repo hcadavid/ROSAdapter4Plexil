@@ -6,8 +6,6 @@
       </df>
       <df name="plans">
       </df>
-      <in>SampleAdapter.cc</in>
-      <in>SampleAdapter.hh</in>
       <in>sample_system.cc</in>
       <in>sample_system.hh</in>
       <in>subscriber.cc</in>

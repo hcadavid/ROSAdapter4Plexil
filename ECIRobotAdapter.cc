@@ -1,30 +1,6 @@
-/* Copyright (c) 2006-2014, Universities Space Research Association (USRA).
-*  All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*     * Redistributions of source code must retain the above copyright
-*       notice, this list of conditions and the following disclaimer.
-*     * Redistributions in binary form must reproduce the above copyright
-*       notice, this list of conditions and the following disclaimer in the
-*       documentation and/or other materials provided with the distribution.
-*     * Neither the name of the Universities Space Research Association nor the
-*       names of its contributors may be used to endorse or promote products
-*       derived from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY USRA ``AS IS'' AND ANY EXPRESS OR IMPLIED
-* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL USRA BE LIABLE FOR ANY DIRECT, INDIRECT,
-* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-* OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-* TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-* USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
 
-#include "SampleAdapter.hh"
+
+#include "ECIRobotAdapter.hh"
 
 #include "subscriber.hh"
 #include "sample_system.hh"
@@ -49,14 +25,14 @@ using std::copy;
 ///////////////////////////// Conveniences //////////////////////////////////
 
 // A preamble for error messages.
-static string error = "Error in SampleAdapter: ";
+static string error = "Error in ECIRobotAdapter: ";
 
 // A prettier name for the "unknown" value.
 static Value Unknown;
 
 // A localized handle on the adapter, which allows a
 // decoupling between the sample system and adapter.
-static SampleAdapter * Adapter;
+static ECIRobotAdapter * Adapter;
 
 // An empty argument vector.
 static vector<Value> EmptyArgs;
@@ -68,7 +44,7 @@ static vector<Value> EmptyArgs;
 //
 static Value fetch (const string& state_name, const vector<Value>& args)
 {
-  debugMsg("SampleAdapter:fetch",
+  debugMsg("ECIRobotAdapter:fetch",
            "Fetch called on " << state_name << " with " << args.size() << " args");
   Value retval;
 
@@ -107,7 +83,7 @@ static Value fetch (const string& state_name, const vector<Value>& args)
     retval = Unknown;
   }
 
-  debugMsg("SampleAdapter:fetch", "Fetch returning " << retval);
+  debugMsg("ECIRobotAdapter:fetch", "Fetch returning " << retval);
   return retval;
 }
 
@@ -170,14 +146,14 @@ static void receive (const string& state_name, bool val, int arg1, int arg2)
 ///////////////////////////// Member functions //////////////////////////////////
 
 
-SampleAdapter::SampleAdapter(AdapterExecInterface& execInterface,
+ECIRobotAdapter::ECIRobotAdapter(AdapterExecInterface& execInterface,
                              const pugi::xml_node& configXml) :
     InterfaceAdapter(execInterface, configXml)
 {
-  debugMsg("SampleAdapter", " created.");
+  debugMsg("ECIRobotAdapter", " created.");
 }
 
-bool SampleAdapter::initialize()
+bool ECIRobotAdapter::initialize()
 {
   g_configuration->defaultRegisterAdapter(this);
   Adapter = this;
@@ -186,7 +162,7 @@ bool SampleAdapter::initialize()
   setSubscriberString (receive);
   setSubscriberBoolString (receive);
   setSubscriberBoolIntInt (receive);
-  debugMsg("SampleAdapter", " initialized.");
+  debugMsg("ECIRobotAdapter", " initialized.");
   
   startThread();
   
@@ -194,27 +170,27 @@ bool SampleAdapter::initialize()
   return true;
 }
 
-bool SampleAdapter::start()
+bool ECIRobotAdapter::start()
 {
-  debugMsg("SampleAdapter", " started.");
+  debugMsg("ECIRobotAdapter", " started.");
   return true;
 }
 
-bool SampleAdapter::stop()
+bool ECIRobotAdapter::stop()
 {
-  debugMsg("SampleAdapter", " stopped.");
+  debugMsg("ECIRobotAdapter", " stopped.");
   return true;
 }
 
-bool SampleAdapter::reset()
+bool ECIRobotAdapter::reset()
 {
-  debugMsg("SampleAdapter", " reset.");
+  debugMsg("ECIRobotAdapter", " reset.");
   return true;
 }
 
-bool SampleAdapter::shutdown()
+bool ECIRobotAdapter::shutdown()
 {
-  debugMsg("SampleAdapter", " shut down.");
+  debugMsg("ECIRobotAdapter", " shut down.");
   return true;
 }
 
@@ -222,10 +198,10 @@ bool SampleAdapter::shutdown()
 // Sends a command (as invoked in a Plexil command node) to the system and sends
 // the status, and return value if applicable, back to the executive.
 //
-void SampleAdapter::executeCommand(Command *cmd)
+void ECIRobotAdapter::executeCommand(Command *cmd)
 {
   const string &name = cmd->getName();
-  debugMsg("SampleAdapter", "Received executeCommand for " << name);  
+  debugMsg("ECIRobotAdapter", "Received executeCommand for " << name);  
 
   Value retval = Unknown;
   vector<Value> argv(10);
@@ -273,7 +249,7 @@ void SampleAdapter::executeCommand(Command *cmd)
   m_execInterface.notifyOfExternalEvent();
 }
 
-void SampleAdapter::lookupNow(State const &state, StateCacheEntry &entry)
+void ECIRobotAdapter::lookupNow(State const &state, StateCacheEntry &entry)
 {
   // This is the name of the state as given in the plan's LookupNow
   string const &name = state.name();
@@ -282,33 +258,33 @@ void SampleAdapter::lookupNow(State const &state, StateCacheEntry &entry)
 }
 
 
-void SampleAdapter::subscribe(const State& state)
+void ECIRobotAdapter::subscribe(const State& state)
 {
   cout << "**** SUBSCRIBING!!\n";
-  debugMsg("SampleAdapter:subscribe", " processing state "
+  debugMsg("ECIRobotAdapter:subscribe", " processing state "
            << state.name());
   m_subscribedStates.insert(state);
 }
 
 
-void SampleAdapter::unsubscribe (const State& state)
+void ECIRobotAdapter::unsubscribe (const State& state)
 {
-  debugMsg("SampleAdapter:subscribe", " from state "
+  debugMsg("ECIRobotAdapter:subscribe", " from state "
            << state.name());
   m_subscribedStates.erase(state);
 }
 
 // Does nothing.
-void SampleAdapter::setThresholds (const State& state, double hi, double lo)
+void ECIRobotAdapter::setThresholds (const State& state, double hi, double lo)
 {
 }
 
-void SampleAdapter::setThresholds (const State& state, int32_t hi, int32_t lo)
+void ECIRobotAdapter::setThresholds (const State& state, int32_t hi, int32_t lo)
 {
 }
 
 
-void SampleAdapter::propagateValueChange (const State& state,
+void ECIRobotAdapter::propagateValueChange (const State& state,
                                           const vector<Value>& vals) const
 {
     cout << "**** Propagating value changes\n";
@@ -325,14 +301,14 @@ void SampleAdapter::propagateValueChange (const State& state,
 }
 
 
-bool SampleAdapter::isStateSubscribed(const State& state) const
+bool ECIRobotAdapter::isStateSubscribed(const State& state) const
 {
   return m_subscribedStates.find(state) != m_subscribedStates.end();
 }
 
 // Necessary boilerplate
 extern "C" {
-  void initSampleAdapter() {
-    REGISTER_ADAPTER(SampleAdapter, "SampleAdapter");
+  void initECIRobotAdapter() {
+    REGISTER_ADAPTER(ECIRobotAdapter, "ECIRobotAdapter");
   }
 }

@@ -29,9 +29,9 @@ OSTYPE   ?= $(shell uname -s)
 MACHTYPE ?= $(shell uname -p)
 OS_ARCH = $(OSTYPE)-$(MACHTYPE)
 
-LIBRARY = SampleAdapter
-SRC = subscriber.cc sample_system.cc SampleAdapter.cc
-INC = subscriber.hh sample_system.hh SampleAdapter.hh
+LIBRARY = ECIRobotAdapter
+SRC = subscriber.cc sample_system.cc ECIRobotAdapter.cc
+INC = subscriber.hh sample_system.hh ECIRobotAdapter.hh
 
 INC_DIRS += $(PLEXIL_HOME)/src/third-party/pugixml/src $(PLEXIL_HOME)/src/utils \
  $(PLEXIL_HOME)/src/value $(PLEXIL_HOME)/src/expr $(PLEXIL_HOME)/src/intfc \

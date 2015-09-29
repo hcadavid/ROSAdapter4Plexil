@@ -1,6 +1,6 @@
 subscriber.o: subscriber.cc subscriber.hh
 sample_system.o: sample_system.cc subscriber.hh
-SampleAdapter.o: SampleAdapter.cc SampleAdapter.hh \
+ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/intfc/Command.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/intfc/CommandHandleVariable.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/value/CommandHandle.hh \

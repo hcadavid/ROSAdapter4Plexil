@@ -29,8 +29,8 @@
 // brief documentation of the inherited class members.  See the implementation
 // (.cc version) of this file for details on how this adapter works.
 
-#ifndef _H__SampleAdapter
-#define _H__SampleAdapter
+#ifndef _H__ECIRobotAdapter
+#define _H__ECIRobotAdapter
 
 #include "Command.hh"
 #include "InterfaceAdapter.hh"
@@ -38,10 +38,10 @@
 
 using namespace PLEXIL;
 
-class SampleAdapter : public InterfaceAdapter
+class ECIRobotAdapter : public InterfaceAdapter
 {
 public:
-  SampleAdapter (AdapterExecInterface&, const pugi::xml_node&);
+  ECIRobotAdapter (AdapterExecInterface&, const pugi::xml_node&);
 
   bool initialize();
   bool start();
