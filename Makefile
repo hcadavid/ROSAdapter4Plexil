@@ -30,8 +30,8 @@ MACHTYPE ?= $(shell uname -p)
 OS_ARCH = $(OSTYPE)-$(MACHTYPE)
 
 LIBRARY = ECIRobotAdapter
-SRC = subscriber.cc sample_system.cc ECIRobotAdapter.cc
-INC = subscriber.hh sample_system.hh ECIRobotAdapter.hh
+SRC = subscriber.cc ECIRobotSystemHandler.cc ECIRobotAdapter.cc
+INC = subscriber.hh ECIRobotSystemHandler.hh ECIRobotAdapter.hh
 
 INC_DIRS += $(PLEXIL_HOME)/src/third-party/pugixml/src $(PLEXIL_HOME)/src/utils \
  $(PLEXIL_HOME)/src/value $(PLEXIL_HOME)/src/expr $(PLEXIL_HOME)/src/intfc \

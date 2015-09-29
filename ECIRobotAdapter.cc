@@ -3,7 +3,7 @@
 #include "ECIRobotAdapter.hh"
 
 #include "subscriber.hh"
-#include "sample_system.hh"
+#include "ECIRobotSystemHandler.hh"
 
 #include "AdapterConfiguration.hh"
 #include "AdapterFactory.hh"

@@ -24,8 +24,8 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef _H_sample_system
-#define _H_sample_system
+#ifndef _H_ECIRobotSystemHandler
+#define _H_ECIRobotSystemHandler
 
 // This is a very simple abstraction of a real system that a Plexil plan might
 // operate on.  It contains mutable state variables of varying types, and

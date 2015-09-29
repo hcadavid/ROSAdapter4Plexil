@@ -1,5 +1,5 @@
 subscriber.o: subscriber.cc subscriber.hh
-sample_system.o: sample_system.cc subscriber.hh
+ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh
 ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/intfc/Command.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/intfc/CommandHandleVariable.hh \
@@ -22,7 +22,7 @@ ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/InterfaceAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/third-party/pugixml/src/pugixml.hpp \
   /Users/hcadavid/apps/plexil-4.0.1/src/third-party/pugixml/src/pugiconfig.hpp \
-  subscriber.hh sample_system.hh \
+  subscriber.hh ECIRobotSystemHandler.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterConfiguration.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterFactory.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterExecInterface.hh \

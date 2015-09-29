@@ -6,7 +6,6 @@
       </df>
       <df name="plans">
       </df>
-      <in>sample_system.cc</in>
       <in>sample_system.hh</in>
       <in>subscriber.cc</in>
       <in>subscriber.hh</in>
