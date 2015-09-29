@@ -27,34 +27,21 @@
 #ifndef _H_ECIRobotSystemHandler
 #define _H_ECIRobotSystemHandler
 
-// This is a very simple abstraction of a real system that a Plexil plan might
-// operate on.  It contains mutable state variables of varying types, and
-// several commands.
-
-float getSize ();
-void setSize (const float& s);
 
 int getSpeed ();
 void setSpeed (const int& s);
 
-std::string getColor ();
-void setColor (const std::string&);
 
-// The overloaded 'at' functions support three variants of a
-// parameterized state called 'At'.
-//
-std::string at ();
-bool at (const std::string& location);
-bool at (int x, int y);
+//commands
 
 // This command changes the 'at' state.
-void move (const std::string& location, int x, int y);
+void move (int distance);
 
-// A trivial, obligatory example.
-void hello ();  
+void takePicture ();
 
-// A command that is essentially a math function
-int square (int x);
+void plantSeed ();
+
+void turnFrontGear(int angle);
 
 void startThread();
 

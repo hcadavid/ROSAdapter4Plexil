@@ -1,8 +1,10 @@
+Command TakePicture;
+
 Example:{
 
     NodeOne:{
         StartCondition Lookup(Speed)>100;
-
+        TakePicture();
     }
 
 

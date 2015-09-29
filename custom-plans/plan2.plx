@@ -2,7 +2,12 @@
 <PlexilPlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:tr="extended-plexil-translator"
             FileName="plan2.ple">
-   <Node NodeType="NodeList" epx="Sequence" LineNo="4" ColNo="4">
+   <GlobalDeclarations LineNo="2" ColNo="0">
+      <CommandDeclaration LineNo="2" ColNo="0">
+         <Name>TakePicture</Name>
+      </CommandDeclaration>
+   </GlobalDeclarations>
+   <Node NodeType="NodeList" epx="Sequence" LineNo="6" ColNo="4">
       <NodeId>Example</NodeId>
       <InvariantCondition>
          <NOT>
@@ -24,7 +29,7 @@
       </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="Empty" LineNo="5" ColNo="8">
+            <Node NodeType="Command" LineNo="7" ColNo="8">
                <NodeId>NodeOne</NodeId>
                <StartCondition>
                   <GT>
@@ -36,6 +41,13 @@
                      <IntegerValue>100</IntegerValue>
                   </GT>
                </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>TakePicture</StringValue>
+                     </Name>
+                  </Command>
+               </NodeBody>
             </Node>
          </NodeList>
       </NodeBody>

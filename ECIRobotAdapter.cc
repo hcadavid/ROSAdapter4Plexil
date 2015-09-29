@@ -51,32 +51,8 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   // NOTE: A more streamlined approach to dispatching on state name
   // would be nice.
 
-  if (state_name == "Size") retval = getSize();
-  else if (state_name == "Speed") retval = getSpeed();
-  else if (state_name == "Color") retval = getColor();
-  else if (state_name == "at") {
-    switch (args.size()) {
-    case 0:
-      retval = at ();
-      break;
-    case 1: {
-      std::string s;
-      args[0].getValue(s);
-      retval = at (s); 
-      break;
-    }
-    case 2: {
-      int32_t arg0 = 0, arg1 = 0;
-      args[0].getValue(arg0);
-      args[1].getValue(arg1);
-      retval = at (arg0, arg1);
-      break;
-    }
-    default: {
-      cerr << error << "invalid lookup of 'at'" << endl;
-      retval = Unknown;
-    }
-    }
+  if (state_name == "Speed"){
+    retval = getSpeed();
   }
   else {
     cerr << error << "invalid state: " << state_name << endl;
@@ -211,32 +187,36 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   // NOTE: A more streamlined approach to dispatching on command type
   // would be nice.
   string s;
-  int32_t i1 = 0, i2 = 0;
+  
+  //int32_t i1 = 0, i2 = 0;
+  
   double d = 0.0;
 
-  if (name == "SetSize") {
+  /*
+   
+   void move (int distance);
+
+void takePicture ();
+
+void plantSeed ();
+
+void turnFrontGear(int angle);
+   
+   */
+  
+  if (name == "Move") {
     args[0].getValue(d);
-    setSize(d);
+    move(d);
   }
-  else if (name == "SetSpeed") {
-    args[0].getValue(i1);
-    setSpeed (i1);
+  if (name == "TurnFront") {
+    args[0].getValue(d);
+    turnFrontGear(d);
   }
-  else if (name == "SetColor") {
-    args[0].getValue(s);
-    setColor (s);
+  else if (name == "TakePicture") {    
+    takePicture();
   }
-  else if (name == "Move") {
-    args[0].getValue(s);
-    args[1].getValue(i1);
-    args[2].getValue(i2);
-    move (s, i1, i2);
-  }
-  else if (name == "Hello") 
-    hello ();
-  else if (name == "Square") {
-    args[0].getValue(i1);
-    retval = square (i1);
+  else if (name == "plantSeed") {    
+    plantSeed();
   }
   else 
     cerr << error << "invalid command: " << name << endl;

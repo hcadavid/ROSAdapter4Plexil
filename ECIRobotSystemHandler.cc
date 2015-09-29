@@ -11,11 +11,8 @@ using std::pair;
 
 // The system's state, as variables.
 //
-static float Size = 5.1;
+
 static int Speed = 4;
-static string Color = "Blue";
-static string AtLocation = "Home";
-static pair<int, int> AtCoordinates (0,0);
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -36,32 +33,18 @@ void set##name (const type & s) \
   } \
 }
 
-defAccessors(Size, float)
 defAccessors(Speed, int)
-defAccessors(Color, string)
+
 
 // The overloaded state 'At' accessors are handled individually.  Note that 'At'
 // is fundamentally different from the states above; without parameters it is a
 // data accessor, and otherwise it is a predicate.
 
-string at ()
-{
-  return AtLocation;
-}
 
-bool at (const string& location)
+void move (int distance)
 {
-  return (location == AtLocation);
-}
-
-bool at (int x, int y)
-{
-  return (x == AtCoordinates.first && y == AtCoordinates.second);
-}
-
-void move (const string& location, int x, int y)
-{
-  if (x != AtCoordinates.first || y != AtCoordinates.second) {
+    cout << "moving " << distance << "\n";
+  /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
     AtCoordinates.first = x;
     AtCoordinates.second = y;
     publish ("At", true, x, y);
@@ -69,21 +52,23 @@ void move (const string& location, int x, int y)
   if (location != AtLocation) {
     AtLocation = location;
     publish ("At", true, location);
-  }
+  }*/
 }
 
 
-// Some trivial commands
-
-void hello ()
-{
-  cout << "Hello World" << endl;
+void takePicture (){
+    cout << "*********** taking picture\n ";
 }
 
-int square (int x)
-{
-  return (x * x);
+void plantSeed (){
+    cout << "*********** planting seed\n ";
 }
+
+void turnFrontGear(int angle){
+    cout << "*********** turning fron gear\n " << angle << "degrees";
+}
+
+
 
 
 void *print_message_function(void *ptr) {
