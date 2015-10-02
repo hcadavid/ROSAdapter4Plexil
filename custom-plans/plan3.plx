@@ -12,249 +12,156 @@
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
-      <CommandDeclaration LineNo="4" ColNo="0">
-         <Name>pprint</Name>
-      </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="7" ColNo="4">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="6" ColNo="8">
       <NodeId>Example</NodeId>
       <VariableDeclarations>
-         <DeclareVariable LineNo="6" ColNo="4">
-            <Name>end</Name>
-            <Type>Boolean</Type>
+         <DeclareVariable LineNo="5" ColNo="8">
+            <Name>x</Name>
+            <Type>Integer</Type>
             <InitialValue>
-               <BooleanValue>false</BooleanValue>
+               <IntegerValue>0</IntegerValue>
             </InitialValue>
          </DeclareVariable>
       </VariableDeclarations>
       <InvariantCondition>
          <NOT>
-            <OR>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">Alert</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">Alert</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">NodeOne</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">NodeOne</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">NodeTwo</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">NodeTwo</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-            </OR>
+            <AND>
+               <EQInternal>
+                  <NodeOutcomeVariable>
+                     <NodeRef dir="child">Concurrence__0</NodeRef>
+                  </NodeOutcomeVariable>
+                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+               </EQInternal>
+               <EQInternal>
+                  <NodeStateVariable>
+                     <NodeRef dir="child">Concurrence__0</NodeRef>
+                  </NodeStateVariable>
+                  <NodeStateValue>FINISHED</NodeStateValue>
+               </EQInternal>
+            </AND>
          </NOT>
       </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="Command" LineNo="11" ColNo="12">
-               <NodeId>Alert</NodeId>
-               <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>Temperature</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>500</IntegerValue>
-                  </GT>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>pprint</StringValue>
-                     </Name>
-                     <Arguments LineNo="12" ColNo="20">
-                        <StringValue>!!!!!!OVERHEATING!!!!</StringValue>
-                     </Arguments>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="NodeList" epx="Sequence" LineNo="16" ColNo="12">
-               <NodeId>NodeOne</NodeId>
-               <StartCondition>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="sibling">Alert</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </StartCondition>
-               <InvariantCondition>
-                  <NOT>
-                     <OR>
-                        <AND>
-                           <EQInternal>
-                              <NodeOutcomeVariable>
-                                 <NodeRef dir="child">while__1</NodeRef>
-                              </NodeOutcomeVariable>
-                              <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                           </EQInternal>
-                           <EQInternal>
-                              <NodeStateVariable>
-                                 <NodeRef dir="child">while__1</NodeRef>
-                              </NodeStateVariable>
-                              <NodeStateValue>FINISHED</NodeStateValue>
-                           </EQInternal>
-                        </AND>
-                        <AND>
-                           <EQInternal>
-                              <NodeOutcomeVariable>
-                                 <NodeRef dir="child">ASSIGNMENT__4</NodeRef>
-                              </NodeOutcomeVariable>
-                              <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                           </EQInternal>
-                           <EQInternal>
-                              <NodeStateVariable>
-                                 <NodeRef dir="child">ASSIGNMENT__4</NodeRef>
-                              </NodeStateVariable>
-                              <NodeStateValue>FINISHED</NodeStateValue>
-                           </EQInternal>
-                        </AND>
-                     </OR>
-                  </NOT>
-               </InvariantCondition>
+            <Node NodeType="NodeList" epx="Concurrence" LineNo="8" ColNo="8">
+               <NodeId>Concurrence__0</NodeId>
                <NodeBody>
                   <NodeList>
-                     <Node NodeType="NodeList" epx="While" LineNo="16" ColNo="12">
-                        <NodeId>while__1</NodeId>
-                        <RepeatCondition>
-                           <EQInternal>
-                              <NodeOutcomeVariable>
-                                 <NodeRef dir="child">ep2cp_WhileTest</NodeRef>
-                              </NodeOutcomeVariable>
-                              <NodeOutcomeValue>SUCCESS</NodeOutcomeValue>
-                           </EQInternal>
-                        </RepeatCondition>
+                     <Node NodeType="NodeList" epx="Sequence" LineNo="10" ColNo="16">
+                        <NodeId>NodeTwo</NodeId>
+                        <StartCondition>
+                           <EQNumeric>
+                              <LookupOnChange>
+                                 <Name>
+                                    <StringValue>WheelStuck</StringValue>
+                                 </Name>
+                              </LookupOnChange>
+                              <IntegerValue>1</IntegerValue>
+                           </EQNumeric>
+                        </StartCondition>
+                        <InvariantCondition>
+                           <NOT>
+                              <AND>
+                                 <EQInternal>
+                                    <NodeOutcomeVariable>
+                                       <NodeRef dir="child">SynchronousCommand__1</NodeRef>
+                                    </NodeOutcomeVariable>
+                                    <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                 </EQInternal>
+                                 <EQInternal>
+                                    <NodeStateVariable>
+                                       <NodeRef dir="child">SynchronousCommand__1</NodeRef>
+                                    </NodeStateVariable>
+                                    <NodeStateValue>FINISHED</NodeStateValue>
+                                 </EQInternal>
+                              </AND>
+                           </NOT>
+                        </InvariantCondition>
                         <NodeBody>
                            <NodeList>
-                              <Node NodeType="Empty" epx="Condition">
-                                 <NodeId>ep2cp_WhileTest</NodeId>
-                                 <PostCondition>
-                                    <LT>
-                                       <LookupOnChange>
-                                          <Name>
-                                             <StringValue>Temperature</StringValue>
-                                          </Name>
-                                       </LookupOnChange>
-                                       <IntegerValue>100</IntegerValue>
-                                    </LT>
-                                 </PostCondition>
-                              </Node>
-                              <Node NodeType="Command" epx="Action" LineNo="16" ColNo="16">
-                                 <NodeId>COMMAND__3</NodeId>
-                                 <StartCondition>
-                                    <EQInternal>
-                                       <NodeOutcomeVariable>
-                                          <NodeRef dir="sibling">ep2cp_WhileTest</NodeRef>
-                                       </NodeOutcomeVariable>
-                                       <NodeOutcomeValue>SUCCESS</NodeOutcomeValue>
-                                    </EQInternal>
-                                 </StartCondition>
-                                 <SkipCondition>
-                                    <AND>
-                                       <EQInternal>
-                                          <NodeStateVariable>
-                                             <NodeRef dir="sibling">ep2cp_WhileTest</NodeRef>
-                                          </NodeStateVariable>
-                                          <NodeStateValue>FINISHED</NodeStateValue>
-                                       </EQInternal>
-                                       <EQInternal>
-                                          <NodeFailureVariable>
-                                             <NodeRef dir="sibling">ep2cp_WhileTest</NodeRef>
-                                          </NodeFailureVariable>
-                                          <NodeFailureValue>POST_CONDITION_FAILED</NodeFailureValue>
-                                       </EQInternal>
-                                    </AND>
-                                 </SkipCondition>
+                              <Node NodeType="NodeList" epx="SynchronousCommand" LineNo="11" ColNo="16">
+                                 <NodeId>SynchronousCommand__1</NodeId>
                                  <NodeBody>
-                                    <Command>
-                                       <Name>
-                                          <StringValue>TakePicture</StringValue>
-                                       </Name>
-                                    </Command>
+                                    <NodeList>
+                                       <Node NodeType="NodeList" epx="aux">
+                                          <NodeId>ep2cp_SynchronousCommandAux</NodeId>
+                                          <VariableDeclarations>
+                                             <DeclareVariable>
+                                                <Name>ep2cp_return</Name>
+                                                <Type>Integer</Type>
+                                             </DeclareVariable>
+                                          </VariableDeclarations>
+                                          <NodeBody>
+                                             <NodeList>
+                                                <Node NodeType="Command" epx="aux">
+                                                   <NodeId>ep2cp_SynchronousCommandCommand</NodeId>
+                                                   <EndCondition>
+                                                      <IsKnown>
+                                                         <IntegerVariable>ep2cp_return</IntegerVariable>
+                                                      </IsKnown>
+                                                   </EndCondition>
+                                                   <NodeBody>
+                                                      <Command>
+                                                         <IntegerVariable>ep2cp_return</IntegerVariable>
+                                                         <Name>
+                                                            <StringValue>Move</StringValue>
+                                                         </Name>
+                                                         <Arguments LineNo="11" ColNo="42">
+                                                            <IntegerValue>1</IntegerValue>
+                                                         </Arguments>
+                                                      </Command>
+                                                   </NodeBody>
+                                                </Node>
+                                                <Node NodeType="Assignment" epx="aux">
+                                                   <NodeId>ep2cp_SynchronousCommandAssignment</NodeId>
+                                                   <StartCondition>
+                                                      <EQInternal>
+                                                         <NodeStateVariable>
+                                                            <NodeRef dir="sibling">ep2cp_SynchronousCommandCommand</NodeRef>
+                                                         </NodeStateVariable>
+                                                         <NodeStateValue>FINISHED</NodeStateValue>
+                                                      </EQInternal>
+                                                   </StartCondition>
+                                                   <NodeBody>
+                                                      <Assignment>
+                                                         <IntegerVariable>x</IntegerVariable>
+                                                         <NumericRHS>
+                                                            <IntegerVariable>ep2cp_return</IntegerVariable>
+                                                         </NumericRHS>
+                                                      </Assignment>
+                                                   </NodeBody>
+                                                </Node>
+                                             </NodeList>
+                                          </NodeBody>
+                                       </Node>
+                                    </NodeList>
                                  </NodeBody>
                               </Node>
                            </NodeList>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="Assignment" LineNo="19" ColNo="12">
-                        <NodeId>ASSIGNMENT__4</NodeId>
+                     <Node NodeType="Command" LineNo="14" ColNo="16">
+                        <NodeId>NodeOne</NodeId>
                         <StartCondition>
-                           <EQInternal>
-                              <NodeStateVariable>
-                                 <NodeRef dir="sibling">while__1</NodeRef>
-                              </NodeStateVariable>
-                              <NodeStateValue>FINISHED</NodeStateValue>
-                           </EQInternal>
+                           <EQNumeric>
+                              <LookupOnChange>
+                                 <Name>
+                                    <StringValue>WheelStuck</StringValue>
+                                 </Name>
+                              </LookupOnChange>
+                              <IntegerValue>1</IntegerValue>
+                           </EQNumeric>
                         </StartCondition>
                         <NodeBody>
-                           <Assignment>
-                              <BooleanVariable>end</BooleanVariable>
-                              <BooleanRHS>
-                                 <BooleanValue>true</BooleanValue>
-                              </BooleanRHS>
-                           </Assignment>
+                           <Command>
+                              <Name>
+                                 <StringValue>TakePicture</StringValue>
+                              </Name>
+                           </Command>
                         </NodeBody>
                      </Node>
                   </NodeList>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="23" ColNo="12">
-               <NodeId>NodeTwo</NodeId>
-               <StartCondition>
-                  <AND>
-                     <EQInternal>
-                        <NodeStateVariable>
-                           <NodeRef dir="sibling">NodeOne</NodeRef>
-                        </NodeStateVariable>
-                        <NodeStateValue>FINISHED</NodeStateValue>
-                     </EQInternal>
-                     <EQBoolean>
-                        <BooleanVariable>end</BooleanVariable>
-                        <BooleanValue>true</BooleanValue>
-                     </EQBoolean>
-                  </AND>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>Move</StringValue>
-                     </Name>
-                     <Arguments LineNo="24" ColNo="17">
-                        <IntegerValue>10</IntegerValue>
-                     </Arguments>
-                  </Command>
                </NodeBody>
             </Node>
          </NodeList>
