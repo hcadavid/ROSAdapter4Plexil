@@ -12,8 +12,8 @@ void setTemperature (const int& s);
 
 
 
-bool getWheelStuck();
-void setWheelStuck(const bool& s);
+int getWheelStuck();
+void setWheelStuck(const int& s);
 
 //commands
 

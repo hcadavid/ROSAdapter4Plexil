@@ -17,86 +17,42 @@
       <NodeId>Example</NodeId>
       <InvariantCondition>
          <NOT>
-            <OR>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">NodeOne</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">NodeOne</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">NodeTwo</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">NodeTwo</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-            </OR>
+            <AND>
+               <EQInternal>
+                  <NodeOutcomeVariable>
+                     <NodeRef dir="child">NodeTwo</NodeRef>
+                  </NodeOutcomeVariable>
+                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+               </EQInternal>
+               <EQInternal>
+                  <NodeStateVariable>
+                     <NodeRef dir="child">NodeTwo</NodeRef>
+                  </NodeStateVariable>
+                  <NodeStateValue>FINISHED</NodeStateValue>
+               </EQInternal>
+            </AND>
          </NOT>
       </InvariantCondition>
       <NodeBody>
          <NodeList>
             <Node NodeType="Command" LineNo="9" ColNo="12">
-               <NodeId>NodeOne</NodeId>
-               <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>Temperature</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>100</IntegerValue>
-                  </GT>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>TakePicture</StringValue>
-                     </Name>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="13" ColNo="12">
                <NodeId>NodeTwo</NodeId>
                <StartCondition>
-                  <AND>
-                     <EQInternal>
-                        <NodeStateVariable>
-                           <NodeRef dir="sibling">NodeOne</NodeRef>
-                        </NodeStateVariable>
-                        <NodeStateValue>FINISHED</NodeStateValue>
-                     </EQInternal>
-                     <GT>
-                        <LookupOnChange>
-                           <Name>
-                              <StringValue>Speed</StringValue>
-                           </Name>
-                        </LookupOnChange>
-                        <IntegerValue>100</IntegerValue>
-                     </GT>
-                  </AND>
+                  <EQNumeric>
+                     <LookupOnChange>
+                        <Name>
+                           <StringValue>WheelStuck</StringValue>
+                        </Name>
+                     </LookupOnChange>
+                     <IntegerValue>1</IntegerValue>
+                  </EQNumeric>
                </StartCondition>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>Move</StringValue>
                      </Name>
-                     <Arguments LineNo="14" ColNo="17">
+                     <Arguments LineNo="10" ColNo="17">
                         <IntegerValue>1</IntegerValue>
                      </Arguments>
                   </Command>

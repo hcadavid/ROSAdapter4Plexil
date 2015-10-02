@@ -54,14 +54,14 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   if (state_name == "Speed"){
     retval = getSpeed();
   }
-  if (state_name == "Temperature"){
+  else if (state_name == "Temperature"){
     retval = getTemperature();
   }
   else if (state_name == "WheelStuck"){
       retval = getWheelStuck();
   }
   else {
-    cerr << error << "invalid state: " << state_name << endl;
+    cerr << error << "invalid state: [" << state_name << "]" << endl;
     retval = Unknown;
   }
 

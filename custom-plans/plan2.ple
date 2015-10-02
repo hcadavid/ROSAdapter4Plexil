@@ -4,12 +4,8 @@ Command Move(Integer);
 Example:{
 
     
-        NodeOne:{
-            StartCondition Lookup(Temperature)>100;
-            TakePicture();
-        }
         NodeTwo:{
-            StartCondition Lookup(Speed)>100;
+            StartCondition Lookup(WheelStuck)==1;
             Move(1);
         }
     

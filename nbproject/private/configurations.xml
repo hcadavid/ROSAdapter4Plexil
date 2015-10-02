@@ -6,7 +6,10 @@
       </df>
       <df name="plans">
       </df>
-      <in>sample_system.hh</in>
+      <in>ECIRobotAdapter.cc</in>
+      <in>ECIRobotAdapter.hh</in>
+      <in>ECIRobotSystemHandler.cc</in>
+      <in>ECIRobotSystemHandler.hh</in>
       <in>subscriber.cc</in>
       <in>subscriber.hh</in>
     </df>

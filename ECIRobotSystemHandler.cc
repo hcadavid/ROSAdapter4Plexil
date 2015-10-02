@@ -14,7 +14,7 @@ using std::pair;
 
 static int Speed = 4;
 static int Temperature = 0;
-static bool WheelStuck = false;
+static int WheelStuck = 0;
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -36,7 +36,7 @@ void set##name (const type & s) \
 }
 
 defAccessors(Speed, int)
-defAccessors(WheelStuck, bool)
+defAccessors(WheelStuck, int)
 defAccessors(Temperature, int)
 
 
@@ -77,8 +77,10 @@ void turnFrontGear(int angle){
 
 void *print_message_function(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
-    sleep(30);
-    setTemperature(1000);
+    sleep(10);
+    setWheelStuck(true);
+    //setTemperature(1000);
+    //setSpeed(1000);
     /*for (int i=0;i<5;i++){
         char *message;
         message = (char *) ptr;
