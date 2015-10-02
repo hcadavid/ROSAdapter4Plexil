@@ -18,7 +18,7 @@ void setWheelStuck(const int& s);
 //commands
 
 // This command changes the 'at' state.
-void move (int distance);
+int move (int distance);
 
 void takePicture ();
 

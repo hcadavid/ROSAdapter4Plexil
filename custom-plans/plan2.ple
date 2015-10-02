@@ -2,11 +2,11 @@ Command TakePicture;
 Command Move(Integer);
 
 Example:{
-
+        Integer x=0;
     
         NodeTwo:{
             StartCondition Lookup(WheelStuck)==1;
-            Move(1);
+            SynchronousCommand x=Move(1) ;
         }
     
 

@@ -45,9 +45,13 @@ defAccessors(Temperature, int)
 // data accessor, and otherwise it is a predicate.
 
 
-void move (int distance)
+int move (int distance)
 {
     cout << "******** moving " << distance << "\n";
+   
+    sleep(20);
+    
+    return 0;
   /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
     AtCoordinates.first = x;
     AtCoordinates.second = y;

@@ -200,7 +200,7 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
     
   if (name == "Move") {
     args[0].getValue(d);
-    move(d);
+    retval=move(d);
   }
   else if (name == "TurnFront") {
     args[0].getValue(d);
