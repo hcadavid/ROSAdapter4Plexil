@@ -12,11 +12,14 @@
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
+      <CommandDeclaration LineNo="4" ColNo="0">
+         <Name>pprint</Name>
+      </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="6" ColNo="8">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="7" ColNo="8">
       <NodeId>Example</NodeId>
       <VariableDeclarations>
-         <DeclareVariable LineNo="5" ColNo="8">
+         <DeclareVariable LineNo="6" ColNo="8">
             <Name>x</Name>
             <Type>Integer</Type>
             <InitialValue>
@@ -44,11 +47,11 @@
       </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="NodeList" epx="Concurrence" LineNo="8" ColNo="8">
+            <Node NodeType="NodeList" epx="Concurrence" LineNo="9" ColNo="8">
                <NodeId>Concurrence__0</NodeId>
                <NodeBody>
                   <NodeList>
-                     <Node NodeType="NodeList" epx="Sequence" LineNo="10" ColNo="16">
+                     <Node NodeType="NodeList" epx="Sequence" LineNo="11" ColNo="16">
                         <NodeId>NodeTwo</NodeId>
                         <StartCondition>
                            <EQNumeric>
@@ -80,7 +83,7 @@
                         </InvariantCondition>
                         <NodeBody>
                            <NodeList>
-                              <Node NodeType="NodeList" epx="SynchronousCommand" LineNo="11" ColNo="16">
+                              <Node NodeType="NodeList" epx="SynchronousCommand" LineNo="12" ColNo="16">
                                  <NodeId>SynchronousCommand__1</NodeId>
                                  <NodeBody>
                                     <NodeList>
@@ -107,7 +110,7 @@
                                                          <Name>
                                                             <StringValue>Move</StringValue>
                                                          </Name>
-                                                         <Arguments LineNo="11" ColNo="42">
+                                                         <Arguments LineNo="12" ColNo="42">
                                                             <IntegerValue>1</IntegerValue>
                                                          </Arguments>
                                                       </Command>
@@ -141,7 +144,7 @@
                            </NodeList>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="Command" LineNo="14" ColNo="16">
+                     <Node NodeType="Command" LineNo="15" ColNo="16">
                         <NodeId>NodeOne</NodeId>
                         <StartCondition>
                            <EQNumeric>
@@ -158,6 +161,27 @@
                               <Name>
                                  <StringValue>TakePicture</StringValue>
                               </Name>
+                           </Command>
+                        </NodeBody>
+                     </Node>
+                     <Node NodeType="Command" LineNo="19" ColNo="16">
+                        <NodeId>NodeThree</NodeId>
+                        <StartCondition>
+                           <EQInternal>
+                              <NodeStateVariable>
+                                 <NodeId>NodeTwo</NodeId>
+                              </NodeStateVariable>
+                              <NodeStateValue>FINISHED</NodeStateValue>
+                           </EQInternal>
+                        </StartCondition>
+                        <NodeBody>
+                           <Command>
+                              <Name>
+                                 <StringValue>pprint</StringValue>
+                              </Name>
+                              <Arguments LineNo="20" ColNo="24">
+                                 <StringValue>*************** Moving command finished:</StringValue>
+                              </Arguments>
                            </Command>
                         </NodeBody>
                      </Node>

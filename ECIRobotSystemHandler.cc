@@ -1,8 +1,11 @@
 
 #include <iostream>
+#include <stdlib.h>
 #include "subscriber.hh"
 #include <pthread.h>
 #include <unistd.h>
+#include <stdio.h>
+
 
 using std::cout;
 using std::endl;
