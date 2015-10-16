@@ -157,14 +157,22 @@
                      <Node NodeType="Command" LineNo="15" ColNo="16">
                         <NodeId>NodeOne</NodeId>
                         <StartCondition>
-                           <EQNumeric>
-                              <LookupOnChange>
-                                 <Name>
-                                    <StringValue>WheelStuck</StringValue>
-                                 </Name>
-                              </LookupOnChange>
-                              <IntegerValue>1</IntegerValue>
-                           </EQNumeric>
+                           <AND>
+                              <EQNumeric>
+                                 <LookupOnChange>
+                                    <Name>
+                                       <StringValue>WheelStuck</StringValue>
+                                    </Name>
+                                 </LookupOnChange>
+                                 <IntegerValue>1</IntegerValue>
+                              </EQNumeric>
+                              <EQInternal>
+                                 <NodeStateVariable>
+                                    <NodeId>NodeTwo</NodeId>
+                                 </NodeStateVariable>
+                                 <NodeStateValue>FINISHED</NodeStateValue>
+                              </EQInternal>
+                           </AND>
                         </StartCondition>
                         <NodeBody>
                            <Command>

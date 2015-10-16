@@ -51,8 +51,9 @@ defAccessors(Temperature, int)
 int move (int distance)
 {
     cout << "\n[CMD] move " << distance << "\n";
+    cout.flush();
    
-    sleep(5);
+    sleep(20);
     
     return 0;
   /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
@@ -69,14 +70,17 @@ int move (int distance)
 
 void takePicture (){
     cout << "\n[CMD] takepicture \n ";
+    cout.flush();
 }
 
 void plantSeed (){
     cout << "\n[CMD] plantseed \n ";
+    cout.flush();
 }
 
 void turnFrontGear(int angle){
     cout << "\n[CMD] turning fron gear\n " << angle << "degrees";
+    cout.flush();
 }
 
 

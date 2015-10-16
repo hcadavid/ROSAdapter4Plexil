@@ -11,7 +11,7 @@ Example:{
                 SynchronousCommand x=Move(1) ;
             }
             NodeOne:{
-                StartCondition Lookup(WheelStuck)==1;
+                StartCondition Lookup(WheelStuck)==1 && NodeTwo.state == FINISHED;
                 TakePicture();
             }
             NodeThree:{
