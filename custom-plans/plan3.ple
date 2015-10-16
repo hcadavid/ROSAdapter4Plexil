@@ -7,7 +7,7 @@ Example:{
     
         Concurrence{
             NodeTwo:{
-                StartCondition Lookup(WheelStuck)==1;
+                StartCondition Lookup(WheelStuck)==1 && Lookup(Temperature)>10;
                 SynchronousCommand x=Move(1) ;
             }
             NodeOne:{

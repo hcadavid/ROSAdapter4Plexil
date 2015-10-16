@@ -5,7 +5,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>
-
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -50,9 +50,9 @@ defAccessors(Temperature, int)
 
 int move (int distance)
 {
-    cout << "******** moving " << distance << "\n";
+    cout << "\n[CMD] move " << distance << "\n";
    
-    sleep(20);
+    sleep(5);
     
     return 0;
   /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
@@ -68,15 +68,15 @@ int move (int distance)
 
 
 void takePicture (){
-    cout << "*********** taking picture\n ";
+    cout << "\n[CMD] takepicture \n ";
 }
 
 void plantSeed (){
-    cout << "*********** planting seed\n ";
+    cout << "\n[CMD] plantseed \n ";
 }
 
 void turnFrontGear(int angle){
-    cout << "*********** turning fron gear\n " << angle << "degrees";
+    cout << "\n[CMD] turning fron gear\n " << angle << "degrees";
 }
 
 
@@ -84,8 +84,28 @@ void turnFrontGear(int angle){
 
 void *print_message_function(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
-    sleep(10);
-    setWheelStuck(true);
+    cout << "Waiting for input";  
+    for (std::string line; std::getline(std::cin, line);) {
+        cout << "GOT INPUT:";  
+        std::cout << line << std::endl;
+        if (line.compare("ws")==0){
+            cout << "Wheel Stuck!\n`";  
+            setWheelStuck(1);            
+        }
+        else if(line.compare("temp")==0){
+            cout << "Warm temp!\n";  
+            setTemperature(11);            
+        }
+        else if(line.compare("speed")==0){
+            cout << "Speed!\n";  
+            setSpeed(11);            
+        }
+
+        
+    }
+    
+    //sleep(10);
+    
     //setTemperature(1000);
     //setSpeed(1000);
     /*for (int i=0;i<5;i++){

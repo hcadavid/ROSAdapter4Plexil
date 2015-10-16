@@ -54,14 +54,24 @@
                      <Node NodeType="NodeList" epx="Sequence" LineNo="11" ColNo="16">
                         <NodeId>NodeTwo</NodeId>
                         <StartCondition>
-                           <EQNumeric>
-                              <LookupOnChange>
-                                 <Name>
-                                    <StringValue>WheelStuck</StringValue>
-                                 </Name>
-                              </LookupOnChange>
-                              <IntegerValue>1</IntegerValue>
-                           </EQNumeric>
+                           <AND>
+                              <EQNumeric>
+                                 <LookupOnChange>
+                                    <Name>
+                                       <StringValue>WheelStuck</StringValue>
+                                    </Name>
+                                 </LookupOnChange>
+                                 <IntegerValue>1</IntegerValue>
+                              </EQNumeric>
+                              <GT>
+                                 <LookupOnChange>
+                                    <Name>
+                                       <StringValue>Temperature</StringValue>
+                                    </Name>
+                                 </LookupOnChange>
+                                 <IntegerValue>10</IntegerValue>
+                              </GT>
+                           </AND>
                         </StartCondition>
                         <InvariantCondition>
                            <NOT>

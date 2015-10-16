@@ -233,8 +233,7 @@ void ECIRobotAdapter::lookupNow(State const &state, StateCacheEntry &entry)
 
 
 void ECIRobotAdapter::subscribe(const State& state)
-{
-  cout << "**** SUBSCRIBING!!\n";
+{  
   debugMsg("ECIRobotAdapter:subscribe", " processing state "
            << state.name());
   m_subscribedStates.insert(state);
@@ -260,14 +259,12 @@ void ECIRobotAdapter::setThresholds (const State& state, int32_t hi, int32_t lo)
 
 void ECIRobotAdapter::propagateValueChange (const State& state,
                                           const vector<Value>& vals) const
-{
-    cout << "**** Propagating value changes\n";
+{    
   if (!isStateSubscribed(state)){
-    cout << "**** Value changes propagation failed:" << state << "\n";
+    cout << "[ERROR] Value changes propagation failed:" << state << "\n";
       return; 
   }
-  else{
-      cout << "**** Value changes propagation success:" << state << "\n";
+  else{      
     m_execInterface.handleValueChange(state, vals.front());
     m_execInterface.notifyOfExternalEvent();      
   }
