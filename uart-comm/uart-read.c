@@ -22,7 +22,8 @@ int main(void) {
   	char readbuf[1024]={0};       
   	readsize = read(fd,readbuf,1024);       
   	//printf("Rx via /dev/ttyMFD1\n");
-	printf("%s \n",&readbuf[0]);       
+	printf("%s ",&readbuf[0]);
+	fflush(stdout);       
   }  
   close(fd);  
   return 0;
