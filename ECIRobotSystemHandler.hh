@@ -28,8 +28,7 @@ void plantSeed ();
 
 void turnFrontGear(int angle);
 
-
-
+int move (int distance);
 
 void startThread();
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "subscriber.hh"
+#include "RobotInterface.hh"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -50,6 +51,7 @@ defAccessors(Temperature, int)
 
 int move (int distance)
 {
+    sendData(55);
     cout << "\n[CMD] move " << distance << "\n";
     cout.flush();
    

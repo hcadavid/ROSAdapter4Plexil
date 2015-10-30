@@ -15,6 +15,9 @@
       <in>ECIRobotAdapter.hh</in>
       <in>ECIRobotSystemHandler.cc</in>
       <in>ECIRobotSystemHandler.hh</in>
+      <in>RobotInterface.hh</in>
+      <in>RobotInterfaceSerial.cc</in>
+      <in>RobotInterfaceStdout.cc</in>
       <in>subscriber.cc</in>
       <in>subscriber.hh</in>
     </df>
