@@ -18,13 +18,18 @@ void setWheelStuck(const int& s);
 //commands
 
 // This command changes the 'at' state.
-int move (int distance);
+void startEngine(int power);
+
+void stopEngine();
 
 void takePicture ();
 
 void plantSeed ();
 
 void turnFrontGear(int angle);
+
+
+
 
 void startThread();
 

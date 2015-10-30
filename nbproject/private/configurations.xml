@@ -6,6 +6,10 @@
       </df>
       <df name="plans">
       </df>
+      <df name="uart-comm">
+        <in>uart-read.c</in>
+        <in>uart-write.c</in>
+      </df>
       <in>ECIRobotAdapter.cc</in>
       <in>ECIRobotAdapter.hh</in>
       <in>ECIRobotSystemHandler.cc</in>
