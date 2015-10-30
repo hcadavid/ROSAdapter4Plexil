@@ -3,6 +3,7 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="uart-comm">
+        <in>gpioinit.js</in>
         <in>uart-read.c</in>
         <in>uart-write.c</in>
       </df>
@@ -74,6 +75,8 @@
         </ccTool>
       </item>
       <item path="original.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="uart-comm/gpioinit.js" ex="false" tool="3" flavor2="0">
       </item>
       <item path="uart-comm/uart-read.c" ex="false" tool="0" flavor2="0">
       </item>

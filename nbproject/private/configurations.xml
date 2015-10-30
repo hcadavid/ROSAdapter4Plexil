@@ -7,6 +7,7 @@
       <df name="plans">
       </df>
       <df name="uart-comm">
+        <in>gpioinit.js</in>
         <in>uart-read.c</in>
         <in>uart-write.c</in>
       </df>
