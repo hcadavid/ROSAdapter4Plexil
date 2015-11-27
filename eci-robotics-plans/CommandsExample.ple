@@ -7,21 +7,34 @@ Command MoveForward(Integer);
 Command MoveBackward(Integer); 
 
 CommandsTest:{
-    {
+    Concurrence{
+    
         TFWR:{
-            TurnFrontWheelsRight(1);
+            StartCondition MB.state == FINISHED;
+            TurnFrontWheelsRight(3);
         }
         TFWL:{
-            TurnFrontWheelsLeft(2);
+            StartCondition TFWR.state == FINISHED;
+            TurnFrontWheelsLeft(3);
+        }
+        TRWR:{
+            StartCondition TFWL.state == FINISHED;
+            TurnRearWheelsRight(3);
+        }
+        TRWL:{
+            StartCondition TRWR.state == FINISHED;
+            TurnRearWheelsLeft(3);
         }
         PS:{
+            StartCondition TRWL.state == FINISHED;
             PlantSeed();
         }
-        MV:{
+        MF:{            
             MoveForward(3);
         }       
         MB:{
-            MoveBackward(4);
+            StartCondition MF.state == FINISHED;
+            MoveBackward(3);
         }
 
     }

@@ -67,8 +67,6 @@ void *receive_robot_input(void *ptr) {
 }
 
 
-
-
 void startLookupEventsThread(){
     const char *message1 = "Running a thread";
     pthread_t thread1;

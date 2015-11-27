@@ -43,105 +43,37 @@
          </Parameter>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="12" ColNo="8">
+   <Node NodeType="NodeList" epx="Concurrence" LineNo="11" ColNo="4">
       <NodeId>CommandsTest</NodeId>
-      <InvariantCondition>
-         <NOT>
-            <OR>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">TFWR</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">TFWR</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">TFWL</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">TFWL</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">PS</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">PS</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">MV</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">MV</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">MB</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">MB</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
-            </OR>
-         </NOT>
-      </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="Command" LineNo="12" ColNo="12">
+            <Node NodeType="Command" LineNo="14" ColNo="12">
                <NodeId>TFWR</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeId>MB</NodeId>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>TurnFrontWheelsRight</StringValue>
                      </Name>
-                     <Arguments LineNo="13" ColNo="33">
-                        <IntegerValue>1</IntegerValue>
+                     <Arguments LineNo="15" ColNo="33">
+                        <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="15" ColNo="12">
+            <Node NodeType="Command" LineNo="18" ColNo="12">
                <NodeId>TFWL</NodeId>
                <StartCondition>
                   <EQInternal>
                      <NodeStateVariable>
-                        <NodeRef dir="sibling">TFWR</NodeRef>
+                        <NodeId>TFWR</NodeId>
                      </NodeStateVariable>
                      <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
@@ -151,18 +83,60 @@
                      <Name>
                         <StringValue>TurnFrontWheelsLeft</StringValue>
                      </Name>
-                     <Arguments LineNo="16" ColNo="32">
-                        <IntegerValue>2</IntegerValue>
+                     <Arguments LineNo="19" ColNo="32">
+                        <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="18" ColNo="12">
+            <Node NodeType="Command" LineNo="22" ColNo="12">
+               <NodeId>TRWR</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeId>TFWL</NodeId>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>TurnRearWheelsRight</StringValue>
+                     </Name>
+                     <Arguments LineNo="23" ColNo="32">
+                        <IntegerValue>3</IntegerValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="26" ColNo="12">
+               <NodeId>TRWL</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeId>TRWR</NodeId>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>TurnRearWheelsLeft</StringValue>
+                     </Name>
+                     <Arguments LineNo="27" ColNo="31">
+                        <IntegerValue>3</IntegerValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="30" ColNo="12">
                <NodeId>PS</NodeId>
                <StartCondition>
                   <EQInternal>
                      <NodeStateVariable>
-                        <NodeRef dir="sibling">TFWL</NodeRef>
+                        <NodeId>TRWL</NodeId>
                      </NodeStateVariable>
                      <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
@@ -175,33 +149,25 @@
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="21" ColNo="12">
-               <NodeId>MV</NodeId>
-               <StartCondition>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="sibling">PS</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </StartCondition>
+            <Node NodeType="Command" LineNo="33" ColNo="12">
+               <NodeId>MF</NodeId>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>MoveForward</StringValue>
                      </Name>
-                     <Arguments LineNo="22" ColNo="24">
+                     <Arguments LineNo="34" ColNo="24">
                         <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="24" ColNo="12">
+            <Node NodeType="Command" LineNo="37" ColNo="12">
                <NodeId>MB</NodeId>
                <StartCondition>
                   <EQInternal>
                      <NodeStateVariable>
-                        <NodeRef dir="sibling">MV</NodeRef>
+                        <NodeId>MF</NodeId>
                      </NodeStateVariable>
                      <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
@@ -211,8 +177,8 @@
                      <Name>
                         <StringValue>MoveBackward</StringValue>
                      </Name>
-                     <Arguments LineNo="25" ColNo="25">
-                        <IntegerValue>4</IntegerValue>
+                     <Arguments LineNo="38" ColNo="25">
+                        <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
