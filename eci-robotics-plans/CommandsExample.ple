@@ -1,0 +1,28 @@
+Command PlantSeed;
+Command TurnFrontWheelsRight(Integer);
+Command TurnFrontWheelsLeft(Integer); 
+Command TurnRearWheelsRight(Integer); 
+Command TurnRearWheelsLeft(Integer); 
+Command MoveForward(Integer); 
+Command MoveBackward(Integer); 
+
+CommandsTest:{
+    {
+        TFWR:{
+            TurnFrontWheelsRight(1);
+        }
+        TFWL:{
+            TurnFrontWheelsLeft(2);
+        }
+        PS:{
+            PlantSeed();
+        }
+        MV:{
+            MoveForward(3);
+        }       
+        MB:{
+            MoveBackward(4);
+        }
+
+    }
+}

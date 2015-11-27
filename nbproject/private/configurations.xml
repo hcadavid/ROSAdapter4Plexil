@@ -4,6 +4,9 @@
     <df root="." name="0">
       <df name="custom-plans">
       </df>
+      <df name="eci-robotics-plans">
+        <in>reserved-words.txt</in>
+      </df>
       <df name="plans">
       </df>
       <df name="uart-comm">

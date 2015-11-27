@@ -2,6 +2,9 @@
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="eci-robotics-plans">
+        <in>reserved-words.txt</in>
+      </df>
       <df name="uart-comm">
         <in>gpioinit.js</in>
         <in>uart-read.c</in>
@@ -82,6 +85,11 @@
       <item path="RobotInterfaceSerial.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RobotInterfaceStdout.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="eci-robotics-plans/reserved-words.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="original.txt" ex="false" tool="3" flavor2="0">
       </item>
