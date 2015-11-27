@@ -146,7 +146,7 @@ bool ECIRobotAdapter::initialize()
   setSubscriberBoolIntInt (receive);
   debugMsg("ECIRobotAdapter", " initialized.");
   
-  startThread();
+  startLookupEventsThread();
   
   
   return true;
@@ -197,17 +197,33 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   //int32_t i1 = 0, i2 = 0;
   
   double d = 0.0;
-    
-  if (name == "Move") {
+
+  if (name == "PlantSeed") {
+    retval=plantSeed();
+  }   
+  else if (name == "TurnFrontWheelsRight") {    
     args[0].getValue(d);
-    retval=move(d);
+    retval=turnFrontWheelsRight(d);
   }
-  else if (name == "TurnFront") {
+  else if (name == "TurnFrontWheelsLeft") {    
     args[0].getValue(d);
-    turnFrontGear(d);
+    retval=turnFrontWheelsLeft(d);
   }
-  else if (name == "TakePicture") {    
-    takePicture();
+  else if (name == "TurnRearWheelsRight") {    
+    args[0].getValue(d);
+    retval=turnRearWheelsRight(d);
+  }
+  else if (name == "TurnRearWheelsLeft") {    
+    args[0].getValue(d);
+    retval=turnRearWheelsLeft(d);
+  }   
+  else if (name == "MoveForward") {    
+    args[0].getValue(d);
+    moveForward(d);
+  }
+  else if (name == "MoveBackward") {    
+    args[0].getValue(d);
+    moveBackward(d);
   }
   else if (name == "PlantSeed") {    
     plantSeed();

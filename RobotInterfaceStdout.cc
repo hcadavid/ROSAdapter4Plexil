@@ -11,6 +11,7 @@ using std::endl;
 
 
 void sendData(int v){
-    cout << "Stdout: " << v << endl;
+    cout << "[CMD] " << v << endl;
+    cout.flush();
     
 }

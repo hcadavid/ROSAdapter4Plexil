@@ -49,7 +49,7 @@ defAccessors(Temperature, int)
 // data accessor, and otherwise it is a predicate.
 
 
-int move (int distance)
+/*int move (int distance)
 {
     sendData(55);
     cout << "\n[CMD] move " << distance << "\n";
@@ -58,15 +58,7 @@ int move (int distance)
     sleep(20);
     
     return 0;
-  /*if (x != AtCoordinates.first || y != AtCoordinates.second) {
-    AtCoordinates.first = x;
-    AtCoordinates.second = y;
-    publish ("At", true, x, y);
-  }
-  if (location != AtLocation) {
-    AtLocation = location;
-    publish ("At", true, location);
-  }*/
+  
 }
 
 
@@ -114,7 +106,7 @@ void *print_message_function(void *ptr) {
     
     //setTemperature(1000);
     //setSpeed(1000);
-    /*for (int i=0;i<5;i++){
+    for (int i=0;i<5;i++){
         char *message;
         message = (char *) ptr;
         printf(">>>>>>>>>>>>++++>>>>>>>>>>>>>> %s \n", message);
@@ -125,17 +117,83 @@ void *print_message_function(void *ptr) {
             setTemperature(i*50);
         //}
         //}
-    }*/
+    }
+    return EXIT_SUCCESS;
+}*/
+
+void *receive_robot_input(void *ptr) {
+    cout << "CREATING POSIX THREAD.";  
+    cout << "Waiting for input";  
+    for (std::string line; std::getline(std::cin, line);) {
+        cout << "GOT INPUT:";  
+        std::cout << line << std::endl;
+        if (line.compare("ws")==0){
+            cout << "Wheel Stuck!\n`";  
+            setWheelStuck(1);            
+        }
+        else if(line.compare("temp")==0){
+            cout << "Warm temp!\n";  
+            setTemperature(11);            
+        }
+        else if(line.compare("speed")==0){
+            cout << "Speed!\n";  
+            setSpeed(11);            
+        }
+    }
+    
     return EXIT_SUCCESS;
 }
 
 
-void startThread(){
+
+
+void startLookupEventsThread(){
     const char *message1 = "Running a thread";
     pthread_t thread1;
-    int iret1 = pthread_create(&thread1, NULL, print_message_function, (void*) message1);
+    int iret1 = pthread_create(&thread1, NULL, receive_robot_input, (void*) message1);
     if (iret1) {
         fprintf(stderr, "Error - pthread_create() return code: %d\n", iret1);
         exit(EXIT_FAILURE);
     }    
 }
+
+
+
+
+void moveForward(int power){
+    sendData(1);        
+}
+
+/**
+ * @param power: [20,40,60,80,100]
+ */
+void moveBackward(int power){
+    sendData(2);        
+}
+
+/**
+ * @param angle: [0..100]
+ */
+int turnFrontWheelsRight(int angle){
+    sendData(3);        
+}
+
+
+int turnFrontWheelsLeft(int angle){
+    
+}
+
+int turnRearWheelsRight(int angle){
+    sendData(4);            
+}
+
+int turnRearWheelsLeft(int angle){
+    sendData(5);            
+}
+
+int plantSeed (){
+    sendData(6);            
+}
+
+
+
