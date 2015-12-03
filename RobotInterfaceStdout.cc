@@ -15,7 +15,7 @@ bool  interfaceSetup(){
     return true;
 }
 
-void sendData(int v){
+void sendData(char v){
     std::cout << "[CMD] " << v << std::endl;
     std::cout.flush();    
 }

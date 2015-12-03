@@ -28,7 +28,7 @@ bool  interfaceSetup(){
     
 }
 
-void sendData(int v){
+void sendData(char v){
     std::stringstream s;
     s << v << "\r";    
     int n = write(fd, s.str().c_str(), 2);

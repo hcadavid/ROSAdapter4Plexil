@@ -9,7 +9,7 @@
  */
 bool interfaceSetup();
 
-void sendData(int v);
+void sendData(char v);
 
 bool receiveNextInput(std::string& str);
 

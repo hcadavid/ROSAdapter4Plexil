@@ -97,19 +97,19 @@ void startLookupEventsThread(){
 
 void moveForward(int power){
     if(power>0 && power<=20){
-        sendData((int)('a'));   
+        sendData(('a'));   
     }
     else if(power>20 && power<=40){
-        sendData((int)('b'));   
+        sendData(('b'));   
     }
     else if(power>40 && power<=60){
-        sendData((int)('c'));   
+        sendData(('c'));   
     }
     else if(power>60 && power<=80){
-        sendData((int)('d'));   
+        sendData(('d'));   
     }
     else if(power>80 && power<=100){
-        sendData((int)('e'));   
+        sendData(('e'));   
     }
     
 }
@@ -119,19 +119,19 @@ void moveForward(int power){
  */
 void moveBackward(int power){
     if(power>0 && power<=20){
-        sendData((int)('f'));   
+        sendData(('f'));   
     }
     else if(power>20 && power<=40){
-        sendData((int)('g'));   
+        sendData(('g'));   
     }
     else if(power>40 && power<=60){
-        sendData((int)('h'));   
+        sendData(('h'));   
     }
     else if(power>60 && power<=80){
-        sendData((int)('i'));   
+        sendData(('i'));   
     }
     else if(power>80 && power<=100){
-        sendData((int)('j'));   
+        sendData(('j'));   
     }
 }
 
@@ -140,25 +140,25 @@ void moveBackward(int power){
  */
 int turnFrontWheels(int angle){
     if(angle <= -30){
-        sendData((int)('m'));   
+        sendData(('m'));   
     }
     else if(angle> -30 && angle <= -20){
-        sendData((int)('n'));   
+        sendData(('n'));   
     }
     else if(angle> -20 && angle <= -10){
-        sendData((int)('o'));   
+        sendData(('o'));   
     }
     else if(angle> -10 && angle <= 0){
-        sendData((int)('p'));   
+        sendData(('p'));   
     }
     else if(angle> 0 && angle <= 10){
-        sendData((int)('q'));   
+        sendData(('q'));   
     }
     else if(angle> 10 && angle <= 20){
-        sendData((int)('r'));   
+        sendData(('r'));   
     }
     else if(angle>= 30){
-        sendData((int)('s'));   
+        sendData(('s'));   
     }
 
     return 0;
@@ -168,25 +168,25 @@ int turnFrontWheels(int angle){
 
 int turnRearWheels(int angle){
     if(angle <= -30){
-        sendData((int)('M'));   
+        sendData(('M'));   
     }
     else if(angle> -30 && angle <= -20){
-        sendData((int)('N'));   
+        sendData(('N'));   
     }
     else if(angle> -20 && angle <= -10){
-        sendData((int)('O'));   
+        sendData(('O'));   
     }
     else if(angle> -10 && angle <= 0){
-        sendData((int)('P'));   
+        sendData(('P'));   
     }
     else if(angle> 0 && angle <= 10){
-        sendData((int)('Q'));   
+        sendData(('Q'));   
     }
     else if(angle> 10 && angle <= 20){
-        sendData((int)('R'));   
+        sendData(('R'));   
     }
     else if(angle>= 30){
-        sendData((int)('S'));   
+        sendData(('S'));   
     }    
     return 0;
 }
