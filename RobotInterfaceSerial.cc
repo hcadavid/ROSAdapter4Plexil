@@ -9,12 +9,16 @@
 using std::cout;
 using std::endl;
 
-
-void sendData(int v){
-    cout << "Serial:" << v << endl;
-    
+void interfaceSetup(){
+    std::cout << "Setting up Serial/UART interface "<< std::endl;
 }
 
-std::string receiveNextInput(){
-    return "";
+void sendData(int v){
+    std::cout << "[SERIALCMD] " << v << std::endl;
+    std::cout.flush();    
+}
+
+bool receiveNextInput(std::string& line){    
+    return std::getline(std::cin, line);    
+    
 }

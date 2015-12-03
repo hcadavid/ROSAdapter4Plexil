@@ -68,6 +68,13 @@ void *receive_robot_input(void *ptr) {
 }
 
 
+void initializeCommunications(){
+    cout << "Initializing communications " << endl;  
+    //invoke the linked implementation of 'interfaceSetup' defined in
+    //RoboticInterface.hh
+    interfaceSetup();    
+}
+
 void startLookupEventsThread(){
     const char *message1 = "Running a thread";
     pthread_t thread1;

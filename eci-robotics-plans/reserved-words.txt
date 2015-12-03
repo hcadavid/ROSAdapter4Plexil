@@ -1,8 +1,6 @@
 NAME    PARAMS  TYPE
 PlantSeed   N/A SYNC
-TurnFrontWheelsRight ang ASYNC
-TurnFrontWheelsLeft ang ASYNC
-TurnRearWheelsRight ang ASYNC
-TurnRearWheelsLeft ang ASYNC
+TurnFrontWheels ang ASYNC
+TurnRearWheels ang ASYNC
 MoveForward power   ASYNC
 MoveBackward power  ASYNC

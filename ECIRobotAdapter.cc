@@ -146,6 +146,10 @@ bool ECIRobotAdapter::initialize()
   setSubscriberBoolIntInt (receive);
   debugMsg("ECIRobotAdapter", " initialized.");
   
+  //setup(initialize) communication interface
+  initializeCommunications();
+  
+  //start thread that receives events from comm interface
   startLookupEventsThread();
   
   

@@ -3,6 +3,8 @@
 
 #include <string>
 
+void interfaceSetup();
+
 void sendData(int v);
 
 bool receiveNextInput(std::string& str);

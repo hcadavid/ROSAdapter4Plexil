@@ -10,6 +10,10 @@ using std::endl;
 using std::string;
 using std::pair;
 
+void interfaceSetup(){
+    std::cout << "Setting up Stdin/Stdout interface "<< std::endl;
+}
+
 void sendData(int v){
     std::cout << "[CMD] " << v << std::endl;
     std::cout.flush();    
