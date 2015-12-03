@@ -47,10 +47,7 @@ void *receive_robot_input(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
     cout << "Waiting for input";  
     
-    std::string receiveNextInput();
-    
-    
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; receiveNextInput(line);) {
         cout << "GOT INPUT:";  
         std::cout << line << std::endl;
         if (line.compare("ws")==0){
@@ -85,37 +82,98 @@ void startLookupEventsThread(){
 
 
 void moveForward(int power){
-    sendData(1);   
+    if(power>0 && power<=20){
+        sendData((int)('a'));   
+    }
+    else if(power>20 && power<=40){
+        sendData((int)('b'));   
+    }
+    else if(power>40 && power<=60){
+        sendData((int)('c'));   
+    }
+    else if(power>60 && power<=80){
+        sendData((int)('d'));   
+    }
+    else if(power>80 && power<=100){
+        sendData((int)('e'));   
+    }
+    
 }
 
 /**
  * @param power: [20,40,60,80,100]
  */
 void moveBackward(int power){
-    sendData(2); 
+    if(power>0 && power<=20){
+        sendData((int)('f'));   
+    }
+    else if(power>20 && power<=40){
+        sendData((int)('g'));   
+    }
+    else if(power>40 && power<=60){
+        sendData((int)('h'));   
+    }
+    else if(power>60 && power<=80){
+        sendData((int)('i'));   
+    }
+    else if(power>80 && power<=100){
+        sendData((int)('j'));   
+    }
 }
 
 /**
  * @param angle: [0..100]
  */
-int turnFrontWheelsRight(int angle){
-    sendData(3);  
+int turnFrontWheels(int angle){
+    if(angle <= -30){
+        sendData((int)('m'));   
+    }
+    else if(angle> -30 && angle <= -20){
+        sendData((int)('n'));   
+    }
+    else if(angle> -20 && angle <= -10){
+        sendData((int)('o'));   
+    }
+    else if(angle> -10 && angle <= 0){
+        sendData((int)('p'));   
+    }
+    else if(angle> 0 && angle <= 10){
+        sendData((int)('q'));   
+    }
+    else if(angle> 10 && angle <= 20){
+        sendData((int)('r'));   
+    }
+    else if(angle>= 30){
+        sendData((int)('s'));   
+    }
+
     return 0;
 }
 
 
-int turnFrontWheelsLeft(int angle){
-    sendData(4);
-    return 0;
-}
 
-int turnRearWheelsRight(int angle){
-    sendData(5);  
-    return 0;
-}
-
-int turnRearWheelsLeft(int angle){
-    sendData(6);  
+int turnRearWheels(int angle){
+    if(angle <= -30){
+        sendData((int)('M'));   
+    }
+    else if(angle> -30 && angle <= -20){
+        sendData((int)('N'));   
+    }
+    else if(angle> -20 && angle <= -10){
+        sendData((int)('O'));   
+    }
+    else if(angle> -10 && angle <= 0){
+        sendData((int)('P'));   
+    }
+    else if(angle> 0 && angle <= 10){
+        sendData((int)('Q'));   
+    }
+    else if(angle> 10 && angle <= 20){
+        sendData((int)('R'));   
+    }
+    else if(angle>= 30){
+        sendData((int)('S'));   
+    }    
     return 0;
 }
 
@@ -124,7 +182,8 @@ int plantSeed (){
     return 0;
 }
 
-void stop(){
+int stopEngine(){    
     sendData(0);
+    return 0;
 }
 

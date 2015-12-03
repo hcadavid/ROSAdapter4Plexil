@@ -29,20 +29,19 @@ void moveForward(int power);
 void moveBackward(int power);
 
 /**
- * @param angle: [0..100]
+ * @param angle: [-30...+30]
  */
-int turnFrontWheelsRight(int angle);
+int turnFrontWheels(int angle);
 
+/**
+ * @param angle: [-30...+30]
+ */
+int turnRearWheels(int angle);
 
-int turnFrontWheelsLeft(int angle);
-
-int turnRearWheelsRight(int angle);
-
-int turnRearWheelsLeft(int angle);
 
 int plantSeed ();
 
-void stop();
+int stopEngine();
 
 void startLookupEventsThread();
 

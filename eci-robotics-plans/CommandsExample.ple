@@ -1,8 +1,6 @@
 Command PlantSeed;
-Command TurnFrontWheelsRight(Integer);
-Command TurnFrontWheelsLeft(Integer); 
-Command TurnRearWheelsRight(Integer); 
-Command TurnRearWheelsLeft(Integer); 
+Command TurnFrontWheels(Integer);
+Command TurnRearWheels(Integer); 
 Command MoveForward(Integer); 
 Command MoveBackward(Integer); 
 
@@ -11,19 +9,19 @@ CommandsTest:{
     
         TFWR:{
             StartCondition MB.state == FINISHED;
-            TurnFrontWheelsRight(3);
+            TurnFrontWheels(-30);
         }
         TFWL:{
             StartCondition TFWR.state == FINISHED;
-            TurnFrontWheelsLeft(3);
+            TurnFrontWheels(30);
         }
         TRWR:{
             StartCondition TFWL.state == FINISHED;
-            TurnRearWheelsRight(3);
+            TurnRearWheels(-30);
         }
         TRWL:{
             StartCondition TRWR.state == FINISHED;
-            TurnRearWheelsLeft(3);
+            TurnRearWheels(30);
         }
         PS:{
             StartCondition TRWL.state == FINISHED;

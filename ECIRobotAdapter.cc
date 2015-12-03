@@ -201,22 +201,14 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   if (name == "PlantSeed") {
     retval=plantSeed();
   }   
-  else if (name == "TurnFrontWheelsRight") {    
+  else if (name == "TurnFrontWheels") {    
     args[0].getValue(d);
-    retval=turnFrontWheelsRight(d);
-  }
-  else if (name == "TurnFrontWheelsLeft") {    
+    retval=turnFrontWheels(d);
+  }  
+  else if (name == "TurnRearWheels") {    
     args[0].getValue(d);
-    retval=turnFrontWheelsLeft(d);
-  }
-  else if (name == "TurnRearWheelsRight") {    
-    args[0].getValue(d);
-    retval=turnRearWheelsRight(d);
-  }
-  else if (name == "TurnRearWheelsLeft") {    
-    args[0].getValue(d);
-    retval=turnRearWheelsLeft(d);
-  }   
+    retval=turnRearWheels(d);
+  }  
   else if (name == "MoveForward") {    
     args[0].getValue(d);
     moveForward(d);
@@ -229,7 +221,7 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
     plantSeed();
   }
   else if (name == "Stop") {    
-    stop();
+    stopEngine();
   }
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;

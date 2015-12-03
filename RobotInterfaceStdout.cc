@@ -11,13 +11,12 @@ using std::string;
 using std::pair;
 
 void sendData(int v){
-    cout << "[CMD] " << v << endl;
-    cout.flush();    
+    std::cout << "[CMD] " << v << std::endl;
+    std::cout.flush();    
 }
 
-std::string receiveNextInput(){
-    std::string line;    
-    std::getline(std::cin, line);    
-    return line;
+bool receiveNextInput(std::string& line){    
+    return std::getline(std::cin, line);    
+    
 }
 

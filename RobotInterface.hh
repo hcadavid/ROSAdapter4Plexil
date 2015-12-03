@@ -5,7 +5,7 @@
 
 void sendData(int v);
 
-std::string receiveNextInput();
+bool receiveNextInput(std::string& str);
 
 #endif
 

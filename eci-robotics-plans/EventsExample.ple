@@ -5,6 +5,7 @@ Command TurnRearWheelsRight(Integer);
 Command TurnRearWheelsLeft(Integer); 
 Command MoveForward(Integer); 
 Command MoveBackward(Integer); 
+Command Stop(); 
 Command pprint(...);
 
 
@@ -13,8 +14,8 @@ EventsTest:{
     
         WHEELSTUCKLISTENER:{
             StartCondition Lookup(WheelStuck)==1;
-            
-            
+            pprint ("*************** GOT EVENT: WHEELSTUCK:");
+            Stop();
         }        
 
     }

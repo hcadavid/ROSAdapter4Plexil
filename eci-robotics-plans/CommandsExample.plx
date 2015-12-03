@@ -7,47 +7,35 @@
          <Name>PlantSeed</Name>
       </CommandDeclaration>
       <CommandDeclaration LineNo="3" ColNo="0">
-         <Name>TurnFrontWheelsRight</Name>
+         <Name>TurnFrontWheels</Name>
          <Parameter>
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
       <CommandDeclaration LineNo="4" ColNo="0">
-         <Name>TurnFrontWheelsLeft</Name>
+         <Name>TurnRearWheels</Name>
          <Parameter>
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
       <CommandDeclaration LineNo="5" ColNo="0">
-         <Name>TurnRearWheelsRight</Name>
-         <Parameter>
-            <Type>Integer</Type>
-         </Parameter>
-      </CommandDeclaration>
-      <CommandDeclaration LineNo="6" ColNo="0">
-         <Name>TurnRearWheelsLeft</Name>
-         <Parameter>
-            <Type>Integer</Type>
-         </Parameter>
-      </CommandDeclaration>
-      <CommandDeclaration LineNo="7" ColNo="0">
          <Name>MoveForward</Name>
          <Parameter>
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
-      <CommandDeclaration LineNo="8" ColNo="0">
+      <CommandDeclaration LineNo="6" ColNo="0">
          <Name>MoveBackward</Name>
          <Parameter>
             <Type>Integer</Type>
          </Parameter>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Concurrence" LineNo="11" ColNo="4">
+   <Node NodeType="NodeList" epx="Concurrence" LineNo="9" ColNo="4">
       <NodeId>CommandsTest</NodeId>
       <NodeBody>
          <NodeList>
-            <Node NodeType="Command" LineNo="14" ColNo="12">
+            <Node NodeType="Command" LineNo="12" ColNo="12">
                <NodeId>TFWR</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -60,15 +48,15 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>TurnFrontWheelsRight</StringValue>
+                        <StringValue>TurnFrontWheels</StringValue>
                      </Name>
-                     <Arguments LineNo="15" ColNo="33">
-                        <IntegerValue>3</IntegerValue>
+                     <Arguments LineNo="13" ColNo="29">
+                        <IntegerValue>-30</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="18" ColNo="12">
+            <Node NodeType="Command" LineNo="16" ColNo="12">
                <NodeId>TFWL</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -81,15 +69,15 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>TurnFrontWheelsLeft</StringValue>
+                        <StringValue>TurnFrontWheels</StringValue>
                      </Name>
-                     <Arguments LineNo="19" ColNo="32">
-                        <IntegerValue>3</IntegerValue>
+                     <Arguments LineNo="17" ColNo="28">
+                        <IntegerValue>30</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="22" ColNo="12">
+            <Node NodeType="Command" LineNo="20" ColNo="12">
                <NodeId>TRWR</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -102,15 +90,15 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>TurnRearWheelsRight</StringValue>
+                        <StringValue>TurnRearWheels</StringValue>
                      </Name>
-                     <Arguments LineNo="23" ColNo="32">
-                        <IntegerValue>3</IntegerValue>
+                     <Arguments LineNo="21" ColNo="28">
+                        <IntegerValue>-30</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="26" ColNo="12">
+            <Node NodeType="Command" LineNo="24" ColNo="12">
                <NodeId>TRWL</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -123,15 +111,15 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>TurnRearWheelsLeft</StringValue>
+                        <StringValue>TurnRearWheels</StringValue>
                      </Name>
-                     <Arguments LineNo="27" ColNo="31">
-                        <IntegerValue>3</IntegerValue>
+                     <Arguments LineNo="25" ColNo="27">
+                        <IntegerValue>30</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="30" ColNo="12">
+            <Node NodeType="Command" LineNo="28" ColNo="12">
                <NodeId>PS</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -149,20 +137,20 @@
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="33" ColNo="12">
+            <Node NodeType="Command" LineNo="31" ColNo="12">
                <NodeId>MF</NodeId>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>MoveForward</StringValue>
                      </Name>
-                     <Arguments LineNo="34" ColNo="24">
+                     <Arguments LineNo="32" ColNo="24">
                         <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="37" ColNo="12">
+            <Node NodeType="Command" LineNo="35" ColNo="12">
                <NodeId>MB</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -177,7 +165,7 @@
                      <Name>
                         <StringValue>MoveBackward</StringValue>
                      </Name>
-                     <Arguments LineNo="38" ColNo="25">
+                     <Arguments LineNo="36" ColNo="25">
                         <IntegerValue>3</IntegerValue>
                      </Arguments>
                   </Command>
