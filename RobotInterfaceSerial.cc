@@ -14,3 +14,7 @@ void sendData(int v){
     cout << "Serial:" << v << endl;
     
 }
+
+std::string receiveNextInput(){
+    return "";
+}

@@ -29,4 +29,3 @@ ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/app-framework/AdapterExecInterface.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/utils/Debug.hh \
   /Users/hcadavid/apps/plexil-4.0.1/src/intfc/StateCacheEntry.hh
-RobotInterfaceStdout.o: RobotInterfaceStdout.cc RobotInterface.hh

@@ -46,6 +46,10 @@ defAccessors(Temperature, int)
 void *receive_robot_input(void *ptr) {
     cout << "CREATING POSIX THREAD.";  
     cout << "Waiting for input";  
+    
+    std::string receiveNextInput();
+    
+    
     for (std::string line; std::getline(std::cin, line);) {
         cout << "GOT INPUT:";  
         std::cout << line << std::endl;
@@ -120,5 +124,7 @@ int plantSeed (){
     return 0;
 }
 
-
+void stop(){
+    sendData(0);
+}
 

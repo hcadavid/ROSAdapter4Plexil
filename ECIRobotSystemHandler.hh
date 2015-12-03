@@ -42,7 +42,7 @@ int turnRearWheelsLeft(int angle);
 
 int plantSeed ();
 
-
+void stop();
 
 void startLookupEventsThread();
 

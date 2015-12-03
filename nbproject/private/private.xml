@@ -13,17 +13,15 @@
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/concurrence_test.ple</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/SafeDrive.ple</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/ECIRobotAdapter.cc</file>
-            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/plan3.ple</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/ECIRobotAdapter.hh</file>
-            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/uart-comm/uart-read.c</file>
+            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/plan3.ple</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/RobotInterfaceStdout.cc</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/plan3.plx</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/RobotInterfaceSerial.cc</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/RobotInterface.hh</file>
-            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/uart-comm/gpioinit.js</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/custom-plans/plan2.ple</file>
-            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/ECIRobotSystemHandler.cc</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/ECIRobotSystemHandler.hh</file>
+            <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/ECIRobotSystemHandler.cc</file>
             <file>file:/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/uart-comm/uart-write.c</file>
         </group>
     </open-files>

@@ -228,6 +228,9 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   else if (name == "PlantSeed") {    
     plantSeed();
   }
+  else if (name == "Stop") {    
+    stop();
+  }
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 
