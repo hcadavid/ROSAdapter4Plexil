@@ -3,7 +3,11 @@
 
 #include <string>
 
-void interfaceSetup();
+/**
+ * Initialize the interface
+ * @return true if the interface setup was successful
+ */
+bool interfaceSetup();
 
 void sendData(int v);
 

@@ -68,11 +68,18 @@ void *receive_robot_input(void *ptr) {
 }
 
 
-void initializeCommunications(){
-    cout << "Initializing communications " << endl;  
+bool initializeCommunications(){
+    cout << "Initializing communications... ";  
     //invoke the linked implementation of 'interfaceSetup' defined in
     //RoboticInterface.hh
-    interfaceSetup();    
+    if (interfaceSetup()){
+        cout << "Success " << endl;  
+        return true;
+    }
+    else{
+        cout << "Failed " << endl;  
+        return false;
+    }
 }
 
 void startLookupEventsThread(){

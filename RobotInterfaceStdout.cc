@@ -10,8 +10,9 @@ using std::endl;
 using std::string;
 using std::pair;
 
-void interfaceSetup(){
+bool  interfaceSetup(){
     std::cout << "Setting up Stdin/Stdout interface "<< std::endl;
+    return true;
 }
 
 void sendData(int v){

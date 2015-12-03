@@ -45,6 +45,6 @@ int stopEngine();
 
 void startLookupEventsThread();
 
-void initializeCommunications();
+bool initializeCommunications();
 
 #endif
