@@ -197,7 +197,7 @@ int plantSeed (){
 }
 
 int stopEngine(){    
-    sendData(0);
+    sendData('0');
     return 0;
 }
 
