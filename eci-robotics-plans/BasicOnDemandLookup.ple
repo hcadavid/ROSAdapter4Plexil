@@ -1,0 +1,43 @@
+Real Lookup Latitude;
+
+Command pprint(...);
+
+CommandsTest:{
+    
+    Real pi;    
+    
+    sequence:{
+
+        init:{
+            pi=0;
+        }
+
+        concurrence:{
+            LatUpdateNotifier:{
+                RepeatCondition isKnown(Lookup(Latitude)) && Lookup(Latitude)!=pi;
+                pprint("===>Old Latitude value:",Lookup(latitude));
+                pi=Lookup(Latitude);
+                pprint("=====>Latitude changed to:",pi);
+            }
+
+            EndNode:{
+                    StartCondition Lookup(Latitude)>4;
+                    pi=Lookup(Latitude);
+                    pprint("Done");
+            }
+
+        }
+
+
+
+    }
+    
+    
+
+
+
+
+
+        
+    
+}
