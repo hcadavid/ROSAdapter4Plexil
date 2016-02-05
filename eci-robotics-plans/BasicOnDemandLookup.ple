@@ -9,20 +9,21 @@ CommandsTest:{
     sequence:{
 
         init:{
-            pi=0;
+            pi=Lookup(Latitude);
+            pprint("===>Latitude intialized",pi);
         }
 
         concurrence:{
             LatUpdateNotifier:{
-                RepeatCondition isKnown(Lookup(Latitude)) && Lookup(Latitude)!=pi;
-                pprint("===>Old Latitude value:",Lookup(latitude));
+                StartCondition Lookup(Latitude)!=pi;
+                RepeatCondition true;
+                //EndCondition EndNode.outcome == SUCCESS;
                 pi=Lookup(Latitude);
                 pprint("=====>Latitude changed to:",pi);
             }
 
             EndNode:{
-                    StartCondition Lookup(Latitude)>4;
-                    pi=Lookup(Latitude);
+                    StartCondition Lookup(Latitude)>4;                    
                     pprint("Done");
             }
 
