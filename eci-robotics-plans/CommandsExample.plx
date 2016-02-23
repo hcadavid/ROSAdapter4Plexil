@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PlexilPlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:tr="extended-plexil-translator"
-            FileName="CommandsExample.ple">
+            FileName="/Users/hcadavid/ECI/2015-2/Robotics-Plexil/source-adapter/robotics-interfacing/eci-robotics-plans/CommandsExample.ple">
    <GlobalDeclarations LineNo="2" ColNo="0">
       <CommandDeclaration LineNo="2" ColNo="0">
          <Name>PlantSeed</Name>

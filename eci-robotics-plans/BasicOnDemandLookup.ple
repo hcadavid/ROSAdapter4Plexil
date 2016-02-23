@@ -15,12 +15,21 @@ CommandsTest:{
 
         concurrence:{
             LatUpdateNotifier:{
-                StartCondition Lookup(Latitude)!=pi;
-                RepeatCondition true;
+                StartCondition Lookup(Latitude)>2;
+                //RepeatCondition true;
                 //EndCondition EndNode.outcome == SUCCESS;
                 pi=Lookup(Latitude);
                 pprint("=====>Latitude changed to:",pi);
             }
+
+            LatUpdateNotifier2:{
+                StartCondition Lookup(Latitude)>2;
+                //RepeatCondition true;
+                //EndCondition EndNode.outcome == SUCCESS;
+                pi=Lookup(Latitude);
+                pprint("*****>Latitude changed to:",pi);
+            }
+
 
             EndNode:{
                     StartCondition Lookup(Latitude)>4;                    

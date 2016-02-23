@@ -14,6 +14,16 @@ void setTemperature (const int& s);
 int getWheelStuck();
 void setWheelStuck(const int& s);
 
+float getLatitude();
+void setLatitude(const float& s);
+
+float getLongitude();
+void setLongitude(const float& s);
+
+int getPositionChanged();
+void setPositionChanged(const int& s);
+
+
 //commands
 
 // This command changes the 'at' state.

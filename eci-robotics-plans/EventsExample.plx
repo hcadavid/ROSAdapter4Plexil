@@ -49,112 +49,133 @@
          <Name>pprint</Name>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="16" ColNo="8">
+   <Node NodeType="NodeList" epx="Concurrence" LineNo="14" ColNo="4">
       <NodeId>EventsTest</NodeId>
-      <InvariantCondition>
-         <NOT>
-            <AND>
-               <EQInternal>
-                  <NodeOutcomeVariable>
-                     <NodeRef dir="child">Concurrence__0</NodeRef>
-                  </NodeOutcomeVariable>
-                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-               </EQInternal>
-               <EQInternal>
-                  <NodeStateVariable>
-                     <NodeRef dir="child">Concurrence__0</NodeRef>
-                  </NodeStateVariable>
-                  <NodeStateValue>FINISHED</NodeStateValue>
-               </EQInternal>
-            </AND>
-         </NOT>
-      </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="NodeList" epx="Concurrence" LineNo="14" ColNo="4">
-               <NodeId>Concurrence__0</NodeId>
+            <Node NodeType="Command" LineNo="17" ColNo="12">
+               <NodeId>LATITUDE</NodeId>
+               <StartCondition>
+                  <GT>
+                     <LookupOnChange>
+                        <Name>
+                           <StringValue>Latitude</StringValue>
+                        </Name>
+                     </LookupOnChange>
+                     <RealValue>10.1</RealValue>
+                  </GT>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>pprint</StringValue>
+                     </Name>
+                     <Arguments LineNo="18" ColNo="19">
+                        <StringValue>Latitude &gt; 10.1</StringValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="22" ColNo="12">
+               <NodeId>LONG</NodeId>
+               <StartCondition>
+                  <GT>
+                     <LookupOnChange>
+                        <Name>
+                           <StringValue>Longitude</StringValue>
+                        </Name>
+                     </LookupOnChange>
+                     <RealValue>10.1</RealValue>
+                  </GT>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>pprint</StringValue>
+                     </Name>
+                     <Arguments LineNo="23" ColNo="19">
+                        <StringValue>Longitude &gt; 10.1</StringValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="NodeList" epx="Sequence" LineNo="27" ColNo="12">
+               <NodeId>WHEELSTUCKLISTENER</NodeId>
+               <StartCondition>
+                  <EQNumeric>
+                     <LookupOnChange>
+                        <Name>
+                           <StringValue>WheelStuck</StringValue>
+                        </Name>
+                     </LookupOnChange>
+                     <IntegerValue>1</IntegerValue>
+                  </EQNumeric>
+               </StartCondition>
+               <InvariantCondition>
+                  <NOT>
+                     <OR>
+                        <AND>
+                           <EQInternal>
+                              <NodeOutcomeVariable>
+                                 <NodeRef dir="child">COMMAND__3</NodeRef>
+                              </NodeOutcomeVariable>
+                              <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                           </EQInternal>
+                           <EQInternal>
+                              <NodeStateVariable>
+                                 <NodeRef dir="child">COMMAND__3</NodeRef>
+                              </NodeStateVariable>
+                              <NodeStateValue>FINISHED</NodeStateValue>
+                           </EQInternal>
+                        </AND>
+                        <AND>
+                           <EQInternal>
+                              <NodeOutcomeVariable>
+                                 <NodeRef dir="child">COMMAND__4</NodeRef>
+                              </NodeOutcomeVariable>
+                              <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                           </EQInternal>
+                           <EQInternal>
+                              <NodeStateVariable>
+                                 <NodeRef dir="child">COMMAND__4</NodeRef>
+                              </NodeStateVariable>
+                              <NodeStateValue>FINISHED</NodeStateValue>
+                           </EQInternal>
+                        </AND>
+                     </OR>
+                  </NOT>
+               </InvariantCondition>
                <NodeBody>
                   <NodeList>
-                     <Node NodeType="NodeList" epx="Sequence" LineNo="17" ColNo="12">
-                        <NodeId>WHEELSTUCKLISTENER</NodeId>
-                        <StartCondition>
-                           <EQNumeric>
-                              <LookupOnChange>
-                                 <Name>
-                                    <StringValue>WheelStuck</StringValue>
-                                 </Name>
-                              </LookupOnChange>
-                              <IntegerValue>1</IntegerValue>
-                           </EQNumeric>
-                        </StartCondition>
-                        <InvariantCondition>
-                           <NOT>
-                              <OR>
-                                 <AND>
-                                    <EQInternal>
-                                       <NodeOutcomeVariable>
-                                          <NodeRef dir="child">COMMAND__1</NodeRef>
-                                       </NodeOutcomeVariable>
-                                       <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                                    </EQInternal>
-                                    <EQInternal>
-                                       <NodeStateVariable>
-                                          <NodeRef dir="child">COMMAND__1</NodeRef>
-                                       </NodeStateVariable>
-                                       <NodeStateValue>FINISHED</NodeStateValue>
-                                    </EQInternal>
-                                 </AND>
-                                 <AND>
-                                    <EQInternal>
-                                       <NodeOutcomeVariable>
-                                          <NodeRef dir="child">COMMAND__2</NodeRef>
-                                       </NodeOutcomeVariable>
-                                       <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                                    </EQInternal>
-                                    <EQInternal>
-                                       <NodeStateVariable>
-                                          <NodeRef dir="child">COMMAND__2</NodeRef>
-                                       </NodeStateVariable>
-                                       <NodeStateValue>FINISHED</NodeStateValue>
-                                    </EQInternal>
-                                 </AND>
-                              </OR>
-                           </NOT>
-                        </InvariantCondition>
+                     <Node NodeType="Command" LineNo="27" ColNo="12">
+                        <NodeId>COMMAND__3</NodeId>
                         <NodeBody>
-                           <NodeList>
-                              <Node NodeType="Command" LineNo="17" ColNo="12">
-                                 <NodeId>COMMAND__1</NodeId>
-                                 <NodeBody>
-                                    <Command>
-                                       <Name>
-                                          <StringValue>pprint</StringValue>
-                                       </Name>
-                                       <Arguments LineNo="18" ColNo="20">
-                                          <StringValue>*************** GOT EVENT: WHEELSTUCK:</StringValue>
-                                       </Arguments>
-                                    </Command>
-                                 </NodeBody>
-                              </Node>
-                              <Node NodeType="Command" LineNo="18" ColNo="12">
-                                 <NodeId>COMMAND__2</NodeId>
-                                 <StartCondition>
-                                    <EQInternal>
-                                       <NodeStateVariable>
-                                          <NodeRef dir="sibling">COMMAND__1</NodeRef>
-                                       </NodeStateVariable>
-                                       <NodeStateValue>FINISHED</NodeStateValue>
-                                    </EQInternal>
-                                 </StartCondition>
-                                 <NodeBody>
-                                    <Command>
-                                       <Name>
-                                          <StringValue>Stop</StringValue>
-                                       </Name>
-                                    </Command>
-                                 </NodeBody>
-                              </Node>
-                           </NodeList>
+                           <Command>
+                              <Name>
+                                 <StringValue>pprint</StringValue>
+                              </Name>
+                              <Arguments LineNo="28" ColNo="20">
+                                 <StringValue>*************** GOT EVENT: WHEELSTUCK:</StringValue>
+                              </Arguments>
+                           </Command>
+                        </NodeBody>
+                     </Node>
+                     <Node NodeType="Command" LineNo="28" ColNo="12">
+                        <NodeId>COMMAND__4</NodeId>
+                        <StartCondition>
+                           <EQInternal>
+                              <NodeStateVariable>
+                                 <NodeRef dir="sibling">COMMAND__3</NodeRef>
+                              </NodeStateVariable>
+                              <NodeStateValue>FINISHED</NodeStateValue>
+                           </EQInternal>
+                        </StartCondition>
+                        <NodeBody>
+                           <Command>
+                              <Name>
+                                 <StringValue>Stop</StringValue>
+                              </Name>
+                           </Command>
                         </NodeBody>
                      </Node>
                   </NodeList>

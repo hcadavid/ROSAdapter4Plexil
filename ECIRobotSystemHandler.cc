@@ -19,6 +19,9 @@ using std::pair;
 static int Speed = 4;
 static int Temperature = 0;
 static int WheelStuck = 0;
+static float Latitude = 0.0;
+static float Longitude = 0.0;
+static int PositionChanged=0;
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -43,18 +46,86 @@ defAccessors(Speed, int)
 defAccessors(WheelStuck, int)
 defAccessors(Temperature, int)
 
+//defAccessors(Latitude, float)
+defAccessors(Longitude, float)
+defAccessors(PositionChanged, int)
+
+/*Custom accessors*/
+
+float getLatitude(){
+    cout << "Getting latitude!!" << endl;
+    return Latitude;
+}
+
+void setLatitude(const float& s){
+    if (s!=Latitude){
+        Latitude=s;
+        publish("Latitude",s);
+        //update position changed when Latitude is updated
+        cout << "updating setPositionChanged!!" << endl;
+        setPositionChanged(1);
+        PositionChanged=0;
+    }
+}
+
+ 
+ /*--------------*/
+
+
+
 void *receive_robot_input(void *ptr) {
-    cout << "CREATING POSIX THREAD.";  
-    cout << "Waiting for input";  
+    cout << "CREATING POSIX THREAD." << endl;  
+    cout << "Waiting for input" << endl;  
     
     for (std::string line; receiveNextInput(line);) {
-        cout << "GOT INPUT:";  
-        std::cout << line << std::endl;
-        if (line.compare("ws")==0){
-            cout << "Wheel Stuck!\n`";  
-            setWheelStuck(1);            
+        
+        if (line.find("pos.updated", 0 )==0){
+            std::string coord = line.substr (12);
+            
+            std::size_t commapos = coord.find(",");
+            
+            
+            std::string lat = coord.substr (0,commapos);     
+            std::string lng = coord.substr (commapos+1);     
+            
+            
+            setLatitude(std::stof(lat));
+            setLongitude(std::stof(lng));    
+            
+            cout << "[PLEXIL-DEBUG]" << "Updating coordinates to" << lat << "," << lng << endl;
         }
-        else if(line.compare("temp")==0){
+
+        else if (line.compare("newlat")==0){     
+            
+            for (int i=0;i<100;i++){
+                setLatitude(getLatitude()+1);
+                
+                //setPositionChanged(1);
+                cout << "[PLEXIL-DEBUG]" << "Updating latitude" << endl;
+                sleep(2);
+            }            
+            
+        }
+
+        else if (line.compare("pu")==0){     
+            
+            for (int i=0;i<100;i++){
+                setPositionChanged(1);
+                setPositionChanged(0);
+                //setPositionChanged(1);
+                cout << "[PLEXIL-DEBUG]" << "Position changed" << endl;
+                sleep(5);
+                
+            }            
+            
+        }
+
+        
+        else if (line.compare("ws")==0){            
+            setWheelStuck(1);            
+            cout << "[PLEXIL-DEBUG]" << "Wheel stuck state set to 1" << endl;
+        }
+        /*else if(line.compare("temp")==0){
             cout << "Warm temp!\n";  
             setTemperature(11);            
         }
@@ -62,10 +133,23 @@ void *receive_robot_input(void *ptr) {
             cout << "Speed!\n";  
             setSpeed(11);            
         }
+        else if(line.compare("lat")==0){
+            cout << "Latitude!\n";  
+            setLatitude(10);            
+        }
+        else if(line.compare("long")==0){
+            cout << "Longitude!\n";  
+            setLongitude(10);            
+        }*/
+
+
+        
     }
     
     return EXIT_SUCCESS;
 }
+
+
 
 
 bool initializeCommunications(){
@@ -139,26 +223,20 @@ void moveBackward(int power){
  * @param angle: [0..100]
  */
 int turnFrontWheels(int angle){
-    if(angle <= -30){
+    if(angle >= 30){
         sendData(('m'));   
     }
-    else if(angle> -30 && angle <= -20){
+    else if(angle>= 15 && angle < 30){
         sendData(('n'));   
     }
-    else if(angle> -20 && angle <= -10){
+    else if(angle>=0  && angle < 15){
         sendData(('o'));   
     }
-    else if(angle> -10 && angle <= 0){
+    else if(angle>=-15 && angle < 0){
         sendData(('p'));   
     }
-    else if(angle> 0 && angle <= 10){
+    else if(angle>= -30 && angle < -15){
         sendData(('q'));   
-    }
-    else if(angle> 10 && angle <= 20){
-        sendData(('r'));   
-    }
-    else if(angle>= 30){
-        sendData(('s'));   
     }
 
     return 0;
@@ -167,28 +245,25 @@ int turnFrontWheels(int angle){
 
 
 int turnRearWheels(int angle){
-    if(angle <= -30){
+
+    if(angle >= 30){
         sendData(('M'));   
     }
-    else if(angle> -30 && angle <= -20){
+    else if(angle>= 15 && angle < 30){
         sendData(('N'));   
     }
-    else if(angle> -20 && angle <= -10){
+    else if(angle>=0  && angle < 15){
         sendData(('O'));   
     }
-    else if(angle> -10 && angle <= 0){
+    else if(angle>=-15 && angle < 0){
         sendData(('P'));   
     }
-    else if(angle> 0 && angle <= 10){
+    else if(angle>= -30 && angle < -15){
         sendData(('Q'));   
     }
-    else if(angle> 10 && angle <= 20){
-        sendData(('R'));   
-    }
-    else if(angle>= 30){
-        sendData(('S'));   
-    }    
+
     return 0;
+    
 }
 
 int plantSeed (){
@@ -200,4 +275,3 @@ int stopEngine(){
     sendData('0');
     return 0;
 }
-

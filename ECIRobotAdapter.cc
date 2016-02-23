@@ -60,6 +60,15 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   else if (state_name == "WheelStuck"){
       retval = getWheelStuck();
   }
+  else if (state_name == "Latitude"){
+      retval = getLatitude();
+  }
+  else if (state_name == "Longitude"){
+      retval = getLongitude();
+  }
+  else if (state_name == "PositionChanged"){                          
+      retval = getPositionChanged();
+  }
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
     retval = Unknown;
