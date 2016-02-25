@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <cstdlib>
 #include <stdlib.h>
 #include "subscriber.hh"
 #include "RobotInterface.hh"
@@ -22,6 +23,10 @@ static int WheelStuck = 0;
 static float Latitude = 0.0;
 static float Longitude = 0.0;
 static int PositionChanged=0;
+
+static int StartRequested=0;
+static int AbortRequested=0;
+
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -50,6 +55,10 @@ defAccessors(Temperature, int)
 defAccessors(Longitude, float)
 defAccessors(PositionChanged, int)
 
+defAccessors(StartRequested, int)
+defAccessors(AbortRequested, int)
+
+
 /*Custom accessors*/
 
 float getLatitude(){
@@ -64,7 +73,7 @@ void setLatitude(const float& s){
         //update position changed when Latitude is updated
         cout << "updating setPositionChanged!!" << endl;
         setPositionChanged(1);
-        PositionChanged=0;
+        //PositionChanged=0;
     }
 }
 
@@ -89,12 +98,22 @@ void *receive_robot_input(void *ptr) {
             std::string lng = coord.substr (commapos+1);     
             
             
-            setLatitude(std::stof(lat));
-            setLongitude(std::stof(lng));    
+            setLatitude(std::atof(lat.c_str()));
+            setLongitude(std::atof(lng.c_str()));    
             
             cout << "[PLEXIL-DEBUG]" << "Updating coordinates to" << lat << "," << lng << endl;
         }
-
+        else if (line.compare("start")==0){     
+            setStartRequested(1);
+        }
+        else if (line.compare("abort")==0){     
+            setAbortRequested(1);
+        }
+        
+        else if (line.compare("newpos")==0){     
+            setPositionChanged(1);
+        }
+        
         else if (line.compare("newlat")==0){     
             
             for (int i=0;i<100;i++){
@@ -111,7 +130,7 @@ void *receive_robot_input(void *ptr) {
             
             for (int i=0;i<100;i++){
                 setPositionChanged(1);
-                setPositionChanged(0);
+                
                 //setPositionChanged(1);
                 cout << "[PLEXIL-DEBUG]" << "Position changed" << endl;
                 sleep(5);
@@ -150,6 +169,23 @@ void *receive_robot_input(void *ptr) {
 }
 
 
+void *state_polling(void *ptr) {
+    cout << "CREATING STATE POLLING POSIX THREAD." << endl;  
+        
+    while(1){
+        sendData('u');
+        sendData('v');
+        sendData('w');
+        sleep(1);
+    }
+    
+    return EXIT_SUCCESS;
+}
+
+
+
+
+
 
 
 bool initializeCommunications(){
@@ -170,6 +206,17 @@ void startLookupEventsThread(){
     const char *message1 = "Running a thread";
     pthread_t thread1;
     int iret1 = pthread_create(&thread1, NULL, receive_robot_input, (void*) message1);
+    if (iret1) {
+        fprintf(stderr, "Error - pthread_create() return code: %d\n", iret1);
+        exit(EXIT_FAILURE);
+    }    
+}
+
+
+void startStatusPollingThread(){
+    const char *message1 = "Running a thread";
+    pthread_t thread1;
+    int iret1 = pthread_create(&thread1, NULL, state_polling, (void*) message1);
     if (iret1) {
         fprintf(stderr, "Error - pthread_create() return code: %d\n", iret1);
         exit(EXIT_FAILURE);

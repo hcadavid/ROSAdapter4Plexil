@@ -24,6 +24,16 @@ int getPositionChanged();
 void setPositionChanged(const int& s);
 
 
+
+int getStartRequested();
+void setStartRequested(const int& s);
+
+int getAbortRequested();
+void setAbortRequested(const int& s);
+
+
+
+
 //commands
 
 // This command changes the 'at' state.
@@ -48,12 +58,13 @@ int turnFrontWheels(int angle);
  */
 int turnRearWheels(int angle);
 
-
 int plantSeed ();
 
 int stopEngine();
 
 void startLookupEventsThread();
+
+void startStatusPollingThread();
 
 bool initializeCommunications();
 

@@ -23,7 +23,7 @@ Command pprint(...);
 CommandsTest:{
     
     Real pi=0;
-    Real ct=0;
+    Real ct=0;    
 
     Date startime;
 
@@ -35,6 +35,7 @@ CommandsTest:{
         Setup:{
             startime=Lookup(time,tolerance);
             pprint("PLAN SETUP AT",startime);
+
         }
 
 
@@ -56,12 +57,16 @@ CommandsTest:{
             }
         
 
-            TF:{                
-                while (Lookup(time,tolerance) < (startime+maxtime)){
-                    TurnFrontWheels(30);
+            TF:{  
+                while (Lookup(PositionChanged)==1){
                     pi=Lookup(Latitude);
                     pprint(">>>>>>>>>>>>>",pi);
-                    }                
+                }              
+                //while (Lookup(time,tolerance) < (startime+maxtime)){
+                //    TurnFrontWheels(30);
+                //    pi=Lookup(Latitude);
+                //    pprint(">>>>>>>>>>>>>",pi);
+                //    }                
             }
             
             WHEELSTUCKLISTENER:{

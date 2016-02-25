@@ -69,6 +69,14 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   else if (state_name == "PositionChanged"){                          
       retval = getPositionChanged();
   }
+  else if (state_name == "StartRequested"){                          
+      retval = getStartRequested();
+  }
+  else if (state_name == "AbortRequested"){                          
+      retval = getAbortRequested();
+  }  
+  
+  
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
     retval = Unknown;
@@ -162,6 +170,7 @@ bool ECIRobotAdapter::initialize()
   
   //start thread that receives events from comm interface
   startLookupEventsThread();
+  //startStatusPollingThread();
   
   
   return true;
