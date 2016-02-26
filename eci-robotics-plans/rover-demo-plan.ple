@@ -5,6 +5,11 @@ Command Stop();
 Integer Lookup StartRequested;
 Integer Lookup AbortRequested;
 
+Command TurnFrontWheels(Integer);
+Command TurnRearWheels(Integer); 
+Command MoveForward(Integer); 
+Command MoveBackward(Integer); 
+Command Stop();
 
 CountIteration:
 {
@@ -41,9 +46,8 @@ CountIteration:
             Concurrence{
                 obstacleCheck:
                 {            
-                    Start periodicIteration.state==FINISHED;
-                    //Repeat periodicIteration.state!=FINISHED;            
-                    pprint ("Concurrently printing something");
+                    Start periodicIteration.state==FINISHED;                    
+                    pprint ("Periodic iteration finished.");
                 }
 
                 periodicIteration:
@@ -53,10 +57,13 @@ CountIteration:
                     stepsCount=stepsCount+1;
                     
                     pprint ("steps Performed: ", stepsCount);
+
                     Sequence{
+
                         WaitABit:{                    
-                            Wait (delay*4),tolerance;
+                            Wait (delay*2),tolerance;
                         }                                    
+
 
                         ConditionallyEndIteration:
                         {
@@ -64,6 +71,25 @@ CountIteration:
                             continue = false;
                             //pprint ("Ending periodic iteration");
                         }
+
+                        StepOne:{
+                            Skip stepsCount!=1;                            
+                            pprint ("Step one");
+                        }
+                        StepTwo:{
+                            Skip stepsCount!=2;
+                            pprint ("Step two");
+                        }
+                        StepThree:{
+                            Skip stepsCount!=3;
+                            pprint ("Step three");
+                        }
+                        StepFour:{
+                            Skip stepsCount!=4;
+                            pprint ("Step four");
+                        }
+
+
                     }
                 }
             }

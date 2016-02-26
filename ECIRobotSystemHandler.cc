@@ -103,6 +103,12 @@ void *receive_robot_input(void *ptr) {
             
             cout << "[PLEXIL-DEBUG]" << "Updating coordinates to" << lat << "," << lng << endl;
         }
+        else if (line.compare("I")==0){     
+            setStartRequested(1);
+        }
+        else if (line.compare("A")==0){     
+            setAbortRequested(1);
+        }
         else if (line.compare("start")==0){     
             setStartRequested(1);
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PlexilPlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:tr="extended-plexil-translator"
-            FileName="eci-robotics-plans/count-iteration.ple">
+            FileName="eci-robotics-plans/rover-demo-plan.ple">
    <GlobalDeclarations LineNo="2" ColNo="5">
       <StateDeclaration LineNo="2" ColNo="5">
          <Name>time</Name>
@@ -360,7 +360,7 @@
                                  <NodeId>Concurrence__6</NodeId>
                                  <NodeBody>
                                     <NodeList>
-                                       <Node NodeType="Command" LineNo="46" ColNo="20">
+                                       <Node NodeType="Command" LineNo="45" ColNo="20">
                                           <NodeId>obstacleCheck</NodeId>
                                           <StartCondition>
                                              <EQInternal>
@@ -375,13 +375,13 @@
                                                 <Name>
                                                    <StringValue>pprint</StringValue>
                                                 </Name>
-                                                <Arguments LineNo="47" ColNo="28">
-                                                   <StringValue>Concurrently printing something</StringValue>
+                                                <Arguments LineNo="46" ColNo="28">
+                                                   <StringValue>Periodic iteration finished.</StringValue>
                                                 </Arguments>
                                              </Command>
                                           </NodeBody>
                                        </Node>
-                                       <Node NodeType="NodeList" epx="Sequence" LineNo="52" ColNo="20">
+                                       <Node NodeType="NodeList" epx="Sequence" LineNo="51" ColNo="20">
                                           <NodeId>periodicIteration</NodeId>
                                           <RepeatCondition>
                                              <BooleanVariable>continue</BooleanVariable>
@@ -436,13 +436,13 @@
                                           </InvariantCondition>
                                           <NodeBody>
                                              <NodeList>
-                                                <Node NodeType="Assignment" LineNo="54" ColNo="20">
+                                                <Node NodeType="Assignment" LineNo="53" ColNo="20">
                                                    <NodeId>ASSIGNMENT__8</NodeId>
                                                    <NodeBody>
                                                       <Assignment>
                                                          <IntegerVariable>stepsCount</IntegerVariable>
                                                          <NumericRHS>
-                                                            <ADD LineNo="54" ColNo="41">
+                                                            <ADD LineNo="53" ColNo="41">
                                                                <IntegerVariable>stepsCount</IntegerVariable>
                                                                <IntegerValue>1</IntegerValue>
                                                             </ADD>
@@ -450,7 +450,7 @@
                                                       </Assignment>
                                                    </NodeBody>
                                                 </Node>
-                                                <Node NodeType="Command" LineNo="55" ColNo="20">
+                                                <Node NodeType="Command" LineNo="54" ColNo="20">
                                                    <NodeId>COMMAND__9</NodeId>
                                                    <StartCondition>
                                                       <EQInternal>
@@ -465,7 +465,7 @@
                                                          <Name>
                                                             <StringValue>pprint</StringValue>
                                                          </Name>
-                                                         <Arguments LineNo="56" ColNo="28">
+                                                         <Arguments LineNo="55" ColNo="28">
                                                             <StringValue>steps Performed: </StringValue>
                                                             <IntegerVariable>stepsCount</IntegerVariable>
                                                          </Arguments>
@@ -513,12 +513,68 @@
                                                                   <NodeStateValue>FINISHED</NodeStateValue>
                                                                </EQInternal>
                                                             </AND>
+                                                            <AND>
+                                                               <EQInternal>
+                                                                  <NodeOutcomeVariable>
+                                                                     <NodeRef dir="child">StepOne</NodeRef>
+                                                                  </NodeOutcomeVariable>
+                                                                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                                               </EQInternal>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="child">StepOne</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </AND>
+                                                            <AND>
+                                                               <EQInternal>
+                                                                  <NodeOutcomeVariable>
+                                                                     <NodeRef dir="child">StepTwo</NodeRef>
+                                                                  </NodeOutcomeVariable>
+                                                                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                                               </EQInternal>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="child">StepTwo</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </AND>
+                                                            <AND>
+                                                               <EQInternal>
+                                                                  <NodeOutcomeVariable>
+                                                                     <NodeRef dir="child">StepThree</NodeRef>
+                                                                  </NodeOutcomeVariable>
+                                                                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                                               </EQInternal>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="child">StepThree</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </AND>
+                                                            <AND>
+                                                               <EQInternal>
+                                                                  <NodeOutcomeVariable>
+                                                                     <NodeRef dir="child">StepFour</NodeRef>
+                                                                  </NodeOutcomeVariable>
+                                                                  <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                                               </EQInternal>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="child">StepFour</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </AND>
                                                          </OR>
                                                       </NOT>
                                                    </InvariantCondition>
                                                    <NodeBody>
                                                       <NodeList>
-                                                         <Node NodeType="NodeList" epx="Sequence" LineNo="59" ColNo="28">
+                                                         <Node NodeType="NodeList" epx="Sequence" LineNo="60" ColNo="28">
                                                             <NodeId>WaitABit</NodeId>
                                                             <InvariantCondition>
                                                                <NOT>
@@ -540,7 +596,7 @@
                                                             </InvariantCondition>
                                                             <NodeBody>
                                                                <NodeList>
-                                                                  <Node NodeType="Empty" epx="Wait" LineNo="59" ColNo="28">
+                                                                  <Node NodeType="Empty" epx="Wait" LineNo="60" ColNo="28">
                                                                      <NodeId>Wait__11</NodeId>
                                                                      <EndCondition>
                                                                         <GE>
@@ -553,9 +609,9 @@
                                                                               </Tolerance>
                                                                            </LookupOnChange>
                                                                            <ADD>
-                                                                              <MUL LineNo="59" ColNo="39">
+                                                                              <MUL LineNo="60" ColNo="39">
                                                                                  <RealVariable>delay</RealVariable>
-                                                                                 <IntegerValue>4</IntegerValue>
+                                                                                 <IntegerValue>2</IntegerValue>
                                                                               </MUL>
                                                                               <NodeTimepointValue>
                                                                                  <NodeId>Wait__11</NodeId>
@@ -569,7 +625,7 @@
                                                                </NodeList>
                                                             </NodeBody>
                                                          </Node>
-                                                         <Node NodeType="Assignment" LineNo="65" ColNo="28">
+                                                         <Node NodeType="Assignment" LineNo="67" ColNo="28">
                                                             <NodeId>ConditionallyEndIteration</NodeId>
                                                             <StartCondition>
                                                                <EQInternal>
@@ -600,6 +656,146 @@
                                                                      <BooleanValue>false</BooleanValue>
                                                                   </BooleanRHS>
                                                                </Assignment>
+                                                            </NodeBody>
+                                                         </Node>
+                                                         <Node NodeType="Command" LineNo="72" ColNo="28">
+                                                            <NodeId>StepOne</NodeId>
+                                                            <StartCondition>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="sibling">ConditionallyEndIteration</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </StartCondition>
+                                                            <SkipCondition>
+                                                               <AND>
+                                                                  <EQInternal>
+                                                                     <NodeStateVariable>
+                                                                        <NodeRef dir="sibling">ConditionallyEndIteration</NodeRef>
+                                                                     </NodeStateVariable>
+                                                                     <NodeStateValue>FINISHED</NodeStateValue>
+                                                                  </EQInternal>
+                                                                  <NENumeric>
+                                                                     <IntegerVariable>stepsCount</IntegerVariable>
+                                                                     <IntegerValue>1</IntegerValue>
+                                                                  </NENumeric>
+                                                               </AND>
+                                                            </SkipCondition>
+                                                            <NodeBody>
+                                                               <Command>
+                                                                  <Name>
+                                                                     <StringValue>pprint</StringValue>
+                                                                  </Name>
+                                                                  <Arguments LineNo="73" ColNo="36">
+                                                                     <StringValue>Step one</StringValue>
+                                                                  </Arguments>
+                                                               </Command>
+                                                            </NodeBody>
+                                                         </Node>
+                                                         <Node NodeType="Command" LineNo="76" ColNo="28">
+                                                            <NodeId>StepTwo</NodeId>
+                                                            <StartCondition>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="sibling">StepOne</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </StartCondition>
+                                                            <SkipCondition>
+                                                               <AND>
+                                                                  <EQInternal>
+                                                                     <NodeStateVariable>
+                                                                        <NodeRef dir="sibling">StepOne</NodeRef>
+                                                                     </NodeStateVariable>
+                                                                     <NodeStateValue>FINISHED</NodeStateValue>
+                                                                  </EQInternal>
+                                                                  <NENumeric>
+                                                                     <IntegerVariable>stepsCount</IntegerVariable>
+                                                                     <IntegerValue>2</IntegerValue>
+                                                                  </NENumeric>
+                                                               </AND>
+                                                            </SkipCondition>
+                                                            <NodeBody>
+                                                               <Command>
+                                                                  <Name>
+                                                                     <StringValue>pprint</StringValue>
+                                                                  </Name>
+                                                                  <Arguments LineNo="77" ColNo="36">
+                                                                     <StringValue>Step two</StringValue>
+                                                                  </Arguments>
+                                                               </Command>
+                                                            </NodeBody>
+                                                         </Node>
+                                                         <Node NodeType="Command" LineNo="80" ColNo="28">
+                                                            <NodeId>StepThree</NodeId>
+                                                            <StartCondition>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="sibling">StepTwo</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </StartCondition>
+                                                            <SkipCondition>
+                                                               <AND>
+                                                                  <EQInternal>
+                                                                     <NodeStateVariable>
+                                                                        <NodeRef dir="sibling">StepTwo</NodeRef>
+                                                                     </NodeStateVariable>
+                                                                     <NodeStateValue>FINISHED</NodeStateValue>
+                                                                  </EQInternal>
+                                                                  <NENumeric>
+                                                                     <IntegerVariable>stepsCount</IntegerVariable>
+                                                                     <IntegerValue>3</IntegerValue>
+                                                                  </NENumeric>
+                                                               </AND>
+                                                            </SkipCondition>
+                                                            <NodeBody>
+                                                               <Command>
+                                                                  <Name>
+                                                                     <StringValue>pprint</StringValue>
+                                                                  </Name>
+                                                                  <Arguments LineNo="81" ColNo="36">
+                                                                     <StringValue>Step three</StringValue>
+                                                                  </Arguments>
+                                                               </Command>
+                                                            </NodeBody>
+                                                         </Node>
+                                                         <Node NodeType="Command" LineNo="84" ColNo="28">
+                                                            <NodeId>StepFour</NodeId>
+                                                            <StartCondition>
+                                                               <EQInternal>
+                                                                  <NodeStateVariable>
+                                                                     <NodeRef dir="sibling">StepThree</NodeRef>
+                                                                  </NodeStateVariable>
+                                                                  <NodeStateValue>FINISHED</NodeStateValue>
+                                                               </EQInternal>
+                                                            </StartCondition>
+                                                            <SkipCondition>
+                                                               <AND>
+                                                                  <EQInternal>
+                                                                     <NodeStateVariable>
+                                                                        <NodeRef dir="sibling">StepThree</NodeRef>
+                                                                     </NodeStateVariable>
+                                                                     <NodeStateValue>FINISHED</NodeStateValue>
+                                                                  </EQInternal>
+                                                                  <NENumeric>
+                                                                     <IntegerVariable>stepsCount</IntegerVariable>
+                                                                     <IntegerValue>4</IntegerValue>
+                                                                  </NENumeric>
+                                                               </AND>
+                                                            </SkipCondition>
+                                                            <NodeBody>
+                                                               <Command>
+                                                                  <Name>
+                                                                     <StringValue>pprint</StringValue>
+                                                                  </Name>
+                                                                  <Arguments LineNo="85" ColNo="36">
+                                                                     <StringValue>Step four</StringValue>
+                                                                  </Arguments>
+                                                               </Command>
                                                             </NodeBody>
                                                          </Node>
                                                       </NodeList>
