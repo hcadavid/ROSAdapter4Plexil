@@ -62,7 +62,11 @@ int plantSeed ();
 
 int stopEngine();
 
+int nativeSleep(int sec);
+
 void startLookupEventsThread();
+
+void startClockTickThread();
 
 void startStatusPollingThread();
 

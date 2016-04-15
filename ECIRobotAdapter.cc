@@ -169,10 +169,8 @@ bool ECIRobotAdapter::initialize()
   }
   
   //start thread that receives events from comm interface
-  startLookupEventsThread();
-  //startStatusPollingThread();
-  
-  
+  startLookupEventsThread(); 
+  //startStatusPollingThread();  
   return true;
 }
 
@@ -247,6 +245,10 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   else if (name == "Stop") {    
     stopEngine();
   }
+  else if (name == "NativeSleep") {    
+    args[0].getValue(d);
+    retval=nativeSleep(d);
+  }  
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 

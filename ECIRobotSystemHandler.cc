@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string>
+#include <csignal>
+    
+
 
 using std::cout;
 using std::endl;
@@ -23,7 +26,7 @@ static int WheelStuck = 0;
 static float Latitude = 0.0;
 static float Longitude = 0.0;
 static int PositionChanged=0;
-
+           
 static int StartRequested=0;
 static int AbortRequested=0;
 
@@ -85,6 +88,20 @@ void setLatitude(const float& s){
 void *receive_robot_input(void *ptr) {
     cout << "CREATING POSIX THREAD." << endl;  
     cout << "Waiting for input" << endl;  
+
+    /*
+    From Chuck Fry @ NASA:
+    My guess is your thread isn't blocking SIGUSR1, and so it's getting the 
+    wakeup signal intended for the time adapter. The exec process as a whole 
+    is supposed to block SIGUSR1.      
+     */
+    /*-----------*/
+    sigset_t mask;
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGUSR1);
+    pthread_sigmask(SIG_BLOCK, &mask, NULL);
+    /*-----------*/
+    
     
     for (std::string line; receiveNextInput(line);) {
         
@@ -177,7 +194,15 @@ void *receive_robot_input(void *ptr) {
 
 void *state_polling(void *ptr) {
     cout << "CREATING STATE POLLING POSIX THREAD." << endl;  
-        
+
+    /*-----------*/
+    sigset_t mask;
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGUSR1);
+    pthread_sigmask(SIG_BLOCK, &mask, NULL);
+    /*-----------*/
+    
+    
     while(1){
         sendData('u');
         sendData('v');
@@ -193,17 +218,16 @@ void *state_polling(void *ptr) {
 
 
 
-
 bool initializeCommunications(){
     cout << "Initializing communications... ";  
     //invoke the linked implementation of 'interfaceSetup' defined in
     //RoboticInterface.hh
     if (interfaceSetup()){
-        cout << "Success " << endl;  
+        cout << "Interface Setup Success " << endl;  
         return true;
     }
     else{
-        cout << "Failed " << endl;  
+        cout << "Interface Setup Failed " << endl;  
         return false;
     }
 }
@@ -217,6 +241,7 @@ void startLookupEventsThread(){
         exit(EXIT_FAILURE);
     }    
 }
+
 
 
 void startStatusPollingThread(){
@@ -295,7 +320,10 @@ int turnFrontWheels(int angle){
     return 0;
 }
 
-
+int nativeSleep(int sec){
+    sleep(sec);
+    return 0;
+}
 
 int turnRearWheels(int angle){
 
