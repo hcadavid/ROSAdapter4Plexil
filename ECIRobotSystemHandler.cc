@@ -31,6 +31,10 @@ static int StartRequested=0;
 static int AbortRequested=0;
 
 
+static float LeftSonarMeasuredDistance=1;
+static float RightSonarMeasuredDistance=1;
+static float CenterSonarMeasuredDistance=1;
+
 
 // Functions that provide access (read and write) for the simple parameter-less
 // states.  These functions are very similar and thus conveniently defined with
@@ -61,6 +65,10 @@ defAccessors(PositionChanged, int)
 defAccessors(StartRequested, int)
 defAccessors(AbortRequested, int)
 
+
+defAccessors(LeftSonarMeasuredDistance, float)
+defAccessors(RightSonarMeasuredDistance, float)
+defAccessors(CenterSonarMeasuredDistance, float)
 
 /*Custom accessors*/
 
@@ -104,8 +112,15 @@ void *receive_robot_input(void *ptr) {
     
     
     for (std::string line; receiveNextInput(line);) {
+
+        cout << "[PLEXIL-DEBUG*] GOT INPUT " << line <<  endl;  
         
-        if (line.find("pos.updated", 0 )==0){
+        if (line.find("leftobstacle.distance", 0 )==0){
+            std::string coord = line.substr (22);                                    
+            cout << "[OBSTACLE DETECTED AT LEFT *] DISTANCE " << coord << endl;
+            setLeftSonarMeasuredDistance(std::atof(coord.c_str()));            
+        }        
+        else if (line.find("pos.updated", 0 )==0){
             std::string coord = line.substr (12);
             
             std::size_t commapos = coord.find(",");
@@ -118,8 +133,11 @@ void *receive_robot_input(void *ptr) {
             setLatitude(std::atof(lat.c_str()));
             setLongitude(std::atof(lng.c_str()));    
             
-            cout << "[PLEXIL-DEBUG]" << "Updating coordinates to" << lat << "," << lng << endl;
+            cout << "[PLEXIL-DEBUG*]" << " Updating coordinates to " << lat << "," << lng << endl;
         }
+        
+        
+        
         else if (line.compare("I")==0){     
             setStartRequested(1);
         }

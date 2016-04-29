@@ -1,0 +1,35 @@
+//Set front wheels angle [-30..30]
+Command TurnFrontWheels(Integer);
+
+//Set rear wheels angle [-30..30]
+Command TurnRearWheels(Integer); 
+
+//Move forward with a given power level [0..100]
+Command MoveForward(Integer); 
+
+//Move backwards with a given power level [0..100]
+Command MoveBackward(Integer); 
+
+//Stop
+Command StopEngine();
+
+Command pprint(...);
+
+CommandsTest:{
+    Concurrence{
+        TF:{
+            TurnFrontWheels(30);
+        }
+        
+        MF:{            
+            MoveForward(3);
+        }       
+        
+        WHEELSTUCKLISTENER:{
+            StartCondition Lookup(WheelStuck)==1;
+            pprint ("*************** GOT EVENT: WHEELSTUCK:");
+            StopEngine();
+        }
+        
+    }
+}

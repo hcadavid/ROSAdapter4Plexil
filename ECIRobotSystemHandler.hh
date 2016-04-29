@@ -20,6 +20,16 @@ void setLatitude(const float& s);
 float getLongitude();
 void setLongitude(const float& s);
 
+float getLeftSonarMeasuredDistance();
+void setLeftSonarMeasuredDistance(const float& s);
+
+float getRightSonarMeasuredDistance();
+void setRightSonarMeasuredDistance(const float& s);
+
+float getCenterSonarMeasuredDistance();
+void setCenterSonarMeasuredDistance(const float& s);
+
+
 int getPositionChanged();
 void setPositionChanged(const int& s);
 
