@@ -54,6 +54,12 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   if (state_name == "Speed"){
     retval = getSpeed();
   }
+  else if (state_name == "LeftSonarMeasuredDistance"){
+    retval = getLeftSonarMeasuredDistance();
+  }
+  else if (state_name == "RightSonarMeasuredDistance"){
+    retval = getRightSonarMeasuredDistance();
+  }
   else if (state_name == "Temperature"){
     retval = getTemperature();
   }

@@ -1,0 +1,18 @@
+Command Stop(); 
+Command pprint(...);
+
+EventsTest:{
+    Real lat;
+    Real long;
+
+    Concurrence{
+    
+        CollisionDetect:{
+            StartCondition Lookup(LeftSonarMeasuredDistance)<1;
+            RepeatCondition Lookup(LeftSonarMeasuredDistance)<1;
+            pprint ("*************** Collision!");
+        }
+
+    }
+}
+

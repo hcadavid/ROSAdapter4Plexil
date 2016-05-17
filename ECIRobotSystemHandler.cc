@@ -113,12 +113,17 @@ void *receive_robot_input(void *ptr) {
     
     for (std::string line; receiveNextInput(line);) {
 
-        cout << "[PLEXIL-DEBUG*] GOT INPUT " << line <<  endl;  
+        //cout << "[PLEXIL-DEBUG*] GOT INPUT " << line <<  endl;  
         
         if (line.find("leftobstacle.distance", 0 )==0){
             std::string coord = line.substr (22);                                    
-            cout << "[OBSTACLE DETECTED AT LEFT *] DISTANCE " << coord << endl;
+            //cout << "[OBSTACLE DETECTED AT LEFT *] DISTANCE " << coord << endl;
             setLeftSonarMeasuredDistance(std::atof(coord.c_str()));            
+        }        
+        else if (line.find("rightobstacle.distance", 0 )==0){
+            std::string coord = line.substr (22);                                    
+            //cout << "[OBSTACLE DETECTED AT RIGHT *] DISTANCE " << coord << endl;
+            setRightSonarMeasuredDistance(std::atof(coord.c_str()));            
         }        
         else if (line.find("pos.updated", 0 )==0){
             std::string coord = line.substr (12);
