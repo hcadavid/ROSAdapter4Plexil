@@ -121,7 +121,7 @@ void *receive_robot_input(void *ptr) {
             setLeftSonarMeasuredDistance(std::atof(coord.c_str()));            
         }        
         else if (line.find("rightobstacle.distance", 0 )==0){
-            std::string coord = line.substr (22);                                    
+            std::string coord = line.substr (23);                                    
             //cout << "[OBSTACLE DETECTED AT RIGHT *] DISTANCE " << coord << endl;
             setRightSonarMeasuredDistance(std::atof(coord.c_str()));            
         }        

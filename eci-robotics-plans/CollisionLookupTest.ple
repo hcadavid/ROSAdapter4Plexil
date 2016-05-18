@@ -1,18 +1,48 @@
-Command Stop(); 
+//Set front wheels angle [-30..30]
+Command TurnFrontWheels(Integer);
+
+//Set rear wheels angle [-30..30]
+Command TurnRearWheels(Integer); 
+
+//Move forward with a given power level [0..100]
+Command MoveForward(Integer); 
+
+//Move backwards with a given power level [0..100]
+Command MoveBackward(Integer); 
+
+//Stop
+Command Stop();
+
 Command pprint(...);
 
-EventsTest:{
-    Real lat;
-    Real long;
+SimpleDrive:
+{
+  Integer steps=0;
 
-    Concurrence{
-    
-        CollisionDetect:{
-            StartCondition Lookup(LeftSonarMeasuredDistance)<1;
-            RepeatCondition Lookup(LeftSonarMeasuredDistance)<1;
-            pprint ("*************** Collision!");
-        }
-
+  Concurrence{
+    TF:{
+        TurnFrontWheels(30);
     }
+        
+    MF:{            
+        MoveForward(3);
+    }   
+
+    HandleLeftSensor: {    
+        Start Lookup(LeftSonarMeasuredDistance)<1;
+        Repeat true;        
+        pprint("Collision at left");
+    }
+
+    HandleRightSensor: {    
+        Start Lookup(RightSonarMeasuredDistance)<1;
+        Repeat true;
+        pprint("Collision at right");
+    }
+
+
+  }
+  
 }
+
 

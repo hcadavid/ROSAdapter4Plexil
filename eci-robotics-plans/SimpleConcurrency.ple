@@ -1,0 +1,27 @@
+Command Stop(); 
+Command pprint(...);
+
+SimpleDrive:
+{
+  Integer steps=0;
+
+  Concurrence{
+    Drive: {
+        Start steps<101;
+        RepeatCondition steps<101;    
+        steps=steps+1;
+        pprint("Steps:",steps);
+    }
+
+    TakeSample: {    
+        Start steps%50==0;
+        Repeat true;
+        steps=steps+1;    
+        pprint("Taking sample");
+    }
+
+  }
+  
+}
+
+
