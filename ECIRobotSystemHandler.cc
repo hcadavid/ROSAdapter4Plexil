@@ -125,6 +125,11 @@ void *receive_robot_input(void *ptr) {
             //cout << "[OBSTACLE DETECTED AT RIGHT *] DISTANCE " << coord << endl;
             setRightSonarMeasuredDistance(std::atof(coord.c_str()));            
         }        
+        else if (line.find("centerobstacle.distance", 0 )==0){
+            std::string coord = line.substr (24);                                    
+            //cout << "[OBSTACLE DETECTED AT CENTER *] DISTANCE " << coord << endl;
+            setCenterSonarMeasuredDistance(std::atof(coord.c_str()));            
+        }        
         else if (line.find("pos.updated", 0 )==0){
             std::string coord = line.substr (12);
             

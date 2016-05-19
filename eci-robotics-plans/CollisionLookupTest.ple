@@ -34,6 +34,14 @@ SimpleDrive:
         pprint("Collision at left");
     }
 
+
+    HandleCenterSensor: {    
+        Start Lookup(CenterSonarMeasuredDistance)<1;
+        Repeat true;        
+
+        pprint("Collision at center!!!",Lookup(CenterSonarMeasuredDistance));
+    }
+
     HandleRightSensor: {    
         Start Lookup(RightSonarMeasuredDistance)<1;
         Repeat true;
