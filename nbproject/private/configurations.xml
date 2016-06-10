@@ -10,7 +10,10 @@
       <df name="plans">
       </df>
       <df name="uart-comm">
+        <in>bitwiseoptest.c</in>
         <in>gpioinit.js</in>
+        <in>uart-bin-read.c</in>
+        <in>uart-bin-write.c</in>
         <in>uart-read.c</in>
         <in>uart-write.c</in>
       </df>

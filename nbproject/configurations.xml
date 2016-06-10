@@ -6,7 +6,10 @@
         <in>reserved-words.txt</in>
       </df>
       <df name="uart-comm">
+        <in>bitwiseoptest.c</in>
         <in>gpioinit.js</in>
+        <in>uart-bin-read.c</in>
+        <in>uart-bin-write.c</in>
         <in>uart-read.c</in>
         <in>uart-write.c</in>
       </df>
@@ -97,7 +100,13 @@
       </item>
       <item path="original.txt" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="uart-comm/bitwiseoptest.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="uart-comm/gpioinit.js" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="uart-comm/uart-bin-read.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="uart-comm/uart-bin-write.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="uart-comm/uart-read.c" ex="false" tool="0" flavor2="0">
       </item>
