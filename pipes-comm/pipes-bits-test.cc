@@ -46,9 +46,10 @@ void sendData(char v){
     std::cout.flush();    
 }
 
-bool receiveNextInput(std::string& line){    
-    return std::getline(std::cin, line);    
-    
+unsigned char receiveNextInput(){     
+    std::string line;
+    std::getline(std::cin, line);    
+    return std::atoi(line.c_str());    
 }
 
 
@@ -57,10 +58,11 @@ bool receiveNextInput(std::string& line){
  */
 int main(int argc, char** argv) {
 
-    std::string line;
+    unsigned char ni;
     
-    while(receiveNextInput(line)){
-        cout << line << endl;
+    while(true){
+        ni=receiveNextInput();
+        cout << (int)ni << endl;
     }
     
     
