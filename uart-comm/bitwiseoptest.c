@@ -4,64 +4,6 @@
 #include <fcntl.h>
 
 
-
-unsigned char byteLastNBits(unsigned char input, int N){
-    
-    unsigned  mask;
-    mask = (1 << N) - 1;
-    unsigned char lastXbits = input & mask;
-    return lastXbits;
-}
-
-unsigned char integerLastNBits(int input, int N){
-    
-    unsigned  mask;
-    mask = (1 << N) - 1;
-    unsigned char lastXbits = input & mask;
-    return lastXbits;
-}
-
-unsigned int integerIntermediateBits(int input, int startBit, int N){
-    
-    unsigned  mask;
-    mask = ((1 << N) - 1) << startBit;
-    
-    printf("MASK:%d \n",mask);
-    
-    unsigned char isolatedXbits = input & mask;
-    return isolatedXbits ;
-}
-
-
-
-unsigned char intermediateBits(unsigned char input, int startBit, int N){
-    
-    unsigned  mask;
-    mask = ((1 << N) - 1) << startBit;
-    unsigned char isolatedXbits = input & mask;
-    return isolatedXbits >> 4;
-}
-
-unsigned char firstNBits(unsigned char input,  int N){
-    
-    unsigned  mask;
-    mask = ((1 << N) - 1) << (8-N);
-    unsigned char isolatedXbits = input & mask;
-    return isolatedXbits >> (8-N);
-}
-
-unsigned short compose16BitsByte(unsigned char firstHalf,unsigned char secondHalf){
-    
-    unsigned short result=0;
-    
-    result = result | firstHalf;
-    result = result << 8;
-    result = result | secondHalf;
-    
-    return result;
-    
-}
-
 //1110000000000000 57344
 const int MASKP1=57344;
 
@@ -204,27 +146,9 @@ void decodeData(unsigned char p1, unsigned char p2, unsigned char p3, unsigned i
 }
 
 
-/**
- * 
-  
- 1110000000000000 57344
- 0001111111000000 8128
- 0000000000111111 63
- 
-  
- * 
- */
-
-
+//EJEMPLO DE USO
 int main(void) {
 
-    int value=31432;
-    
-    
-    
-    printf("first 3:%d \n",p1(value));
-    printf("first 7:%d \n",p2(value));
-    printf("last:%d \n",p3(value));
     
     /*
      
@@ -275,29 +199,8 @@ int main(void) {
     
     printf("Decoded value: %d \n",encodedRes);
     printf("Decoded s id: %d \n",encodedSensorId);
-    
-    
-    
-    /*unsigned char theByte=246;
-    //last 4 bytes
-    printf("last 4:%d \n",lastNBits(theByte,4));
-    fflush(stdout); 
-  
-    theByte=246;
-    //first 4 bytes
-    printf("first 4:%d \n",intermediateBits(theByte,4,4));
-    fflush(stdout); */
-
-    /*theByte=246;
-    //first 5 bytes
-    printf("first 5:%d \n",firstNBits(theByte,5));
-    fflush(stdout); 
-
-    unsigned char firstHalf=254;
-    unsigned char secondHalf=254;
-    //create 16 bits bytes by composing two 1-byte integers
-    //ex: 11111110=254, 11111110=254 -> 1111111011111110 = 65278
-    printf("bytes comp:%d \n",compose16BitsByte(firstHalf,secondHalf));*/
+        
+        
     fflush(stdout); 
 
     
