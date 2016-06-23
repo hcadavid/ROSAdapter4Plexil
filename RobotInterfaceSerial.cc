@@ -36,23 +36,14 @@ void sendData(char v){
     std::cout.flush();    
 }
 
-bool receiveNextInput(std::string& line){
 
-    char readbuf[1024] = {0};
-    
-    readsize = read(fd, readbuf, 1024);
-    
-    std::string s(readbuf);
-    line=s;
-    
-    std::cout <<  "[INFO] data received from serial port:" << line << std::endl;
+int readNextByte(unsigned char* theByte){ 
+    int n = 0;
+    n = read(fd, theByte, 1);
+
+    std::cout <<  "[INFO] data received from serial port:" << *theByte << std::endl;
     std::cout.flush();    
-    
-    return true;
-    
-    
-    //return std::getline(std::cin, line);    
-    
-}
 
+    return n;
+}
 

@@ -4,6 +4,10 @@
 #define _H_ECIRobotSystemHandler
 
 
+void encodeData(unsigned int value,unsigned char sensorId,unsigned char out[]);
+void decodeData(unsigned char p1, unsigned char p2, unsigned char p3, unsigned int* value, unsigned char* sensorId, unsigned char* parity );
+bool beginsWithZero(unsigned char byte);
+
 
 int getSpeed ();
 void setSpeed (const int& s);

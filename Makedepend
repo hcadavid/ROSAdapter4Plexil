@@ -1,6 +1,6 @@
 subscriber.o: subscriber.cc subscriber.hh
 ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
-  RobotInterface.hh
+  RobotInterface.hh ECIRobotSystemHandler.hh
 ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
   /Users/hcadavid/apps/plexil-4.0.1.1/include/Command.hh \
   /Users/hcadavid/apps/plexil-4.0.1.1/include/CommandHandleVariable.hh \

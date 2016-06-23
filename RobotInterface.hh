@@ -11,7 +11,13 @@ bool interfaceSetup();
 
 void sendData(char v);
 
-bool receiveNextInput(std::string& str);
+/**
+ * 
+ * @param theByte reference where the read value will be placed 
+ * @return the number of bytes read. 0 if an EOF occurs, or -1 if an error occurs.
+ */
+int readNextByte(unsigned char* theByte);
+
 
 #endif
 

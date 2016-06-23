@@ -1,8 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-
 
 //1110000000000000 57344
 const int MASKP1=57344;
@@ -33,6 +29,12 @@ unsigned char p3(unsigned int value){
     return result;
 }
 
+int beginsWithZero(unsigned char byte){
+    //011111111
+    //100000000
+    //000000001
+    return byte<128;
+}
 
 
 unsigned char parity1(unsigned int data)
@@ -83,7 +85,7 @@ void encodeData(unsigned int value,unsigned char sensorId,unsigned char out[]){
     out3 = out3 << 1;
     
     //    0VVVVVC
-    //    C=
+    //    C=parity(value)
     unsigned char checkcode=parity1(value);
         
     out[2]= out3 | checkcode;    
@@ -169,6 +171,9 @@ int main(void) {
      */
     
     
+    printf("p1:%d \n",p1(32002));
+    printf("p2:%d \n",p2(32002));
+    printf("p3:%d \n",p3(32002));
     
     unsigned char res[3];
     unsigned char res2[3];
@@ -203,6 +208,65 @@ int main(void) {
         
     fflush(stdout); 
 
+    return 0;
     
 }
 
+int main2(void){
+    unsigned int encodedRes=0;
+    unsigned char encodedSensorId=0;
+    unsigned char parity=0;
+
+    unsigned char part1=0;
+    unsigned char part2=0;
+    unsigned char part3=0;
+    
+    int packagePartCount=0;
+    int skipUntilNextHead=0;
+    
+    int nextByte;
+    
+    while(1){
+        
+        scanf("%d",&nextByte);
+        
+        if (!beginsWithZero(nextByte)){
+            
+            if (packagePartCount==0){
+                packagePartCount=1;
+                part1=nextByte;                
+            }
+            //invalid state: expecting 1XXXXXXX after reading 1st part (0XXXXX)
+            //applies to packagePartCount == 1 and packagePartCount = 0
+            else{
+                packagePartCount=0;
+                printf("Error - resetting\n");
+                fflush(stdout); 
+            }            
+        }
+        else{
+            //invalid state: 1XXXXXXX while expecting 0XXXXXXXX
+            if (packagePartCount==0){
+                packagePartCount=0;
+                printf("Error - resetting\n");
+                fflush(stdout); 
+                
+            }
+            if (packagePartCount==1){
+                packagePartCount=2;
+                part2=nextByte;
+            }
+            else if (packagePartCount==2){
+                packagePartCount=0;
+                part3=nextByte;
+                decodeData(211, 102, 77, &encodedRes, &encodedSensorId, &parity);
+                
+                //evaluate input
+                printf("Done");
+                fflush(stdout); 
+            }
+        }
+
+    }
+    
+}

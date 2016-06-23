@@ -7,6 +7,9 @@
       <df name="eci-robotics-plans">
         <in>reserved-words.txt</in>
       </df>
+      <df name="pipes-comm">
+        <in>pipes-bits-test.cc</in>
+      </df>
       <df name="plans">
       </df>
       <df name="uart-comm">
