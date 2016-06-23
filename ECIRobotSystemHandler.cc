@@ -27,6 +27,7 @@ static int WheelStuck = 0;
 static float Latitude = 0.0;
 static float Longitude = 0.0;
 static int PositionChanged=0;
+static int Heading=0;
            
 static int StartRequested=0;
 static int AbortRequested=0;
@@ -58,6 +59,7 @@ void set##name (const type & s) \
 defAccessors(Speed, int)
 defAccessors(WheelStuck, int)
 defAccessors(Temperature, int)
+defAccessors(Heading, int)
 
 //defAccessors(Latitude, float)
 defAccessors(Longitude, float)
@@ -106,6 +108,10 @@ void handleInput(unsigned int value, unsigned int sensorId){
     else if (sensorId==2){
         setRightSonarMeasuredDistance(value);
     }
+    else if (sensorId==3){
+        setHeading(value);
+    }
+
     
     
         /*else if (line.find("pos.updated", 0 )==0){
@@ -415,11 +421,6 @@ int turnFrontWheels(int angle){
         sendData(('q'));   
     }
 
-    return 0;
-}
-
-int nativeSleep(int sec){
-    sleep(sec);
     return 0;
 }
 

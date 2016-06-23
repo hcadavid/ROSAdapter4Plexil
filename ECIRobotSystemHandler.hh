@@ -24,6 +24,10 @@ void setLatitude(const float& s);
 float getLongitude();
 void setLongitude(const float& s);
 
+int getHeading();
+void setHeading(const int& s);
+
+
 float getLeftSonarMeasuredDistance();
 void setLeftSonarMeasuredDistance(const float& s);
 
@@ -75,8 +79,6 @@ int turnRearWheels(int angle);
 int plantSeed ();
 
 int stopEngine();
-
-int nativeSleep(int sec);
 
 void startLookupEventsThread();
 

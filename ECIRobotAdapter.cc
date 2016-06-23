@@ -75,6 +75,9 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   else if (state_name == "Longitude"){
       retval = getLongitude();
   }
+  else if (state_name == "Heading"){
+      retval = getHeading();
+  }
   else if (state_name == "PositionChanged"){                          
       retval = getPositionChanged();
   }
@@ -254,10 +257,6 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   else if (name == "Stop") {    
     stopEngine();
   }
-  else if (name == "NativeSleep") {    
-    args[0].getValue(d);
-    retval=nativeSleep(d);
-  }  
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 

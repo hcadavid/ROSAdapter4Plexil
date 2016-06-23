@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 //1110000000000000 57344
 const int MASKP1=57344;
@@ -148,8 +150,31 @@ void decodeData(unsigned char p1, unsigned char p2, unsigned char p3, unsigned i
 }
 
 
+int main(int argc,char* argv[]) {
+    if (argc < 3){
+        printf("Command line Parameters: SENSOR_ID VALUE\n");
+        return 0;
+    }
+    
+    unsigned char res[3];
+    
+    
+    printf("Command line Parameters: SENSOR_ID VALUE\n");
+    
+        
+    encodeData(atoi(argv[2]),atoi(argv[1]),res);
+
+    
+    printf("byte 1:%d \n",res[0]);
+    printf("byte 2:%d \n",res[1]);
+    printf("byte 3:%d \n",res[2]);
+    
+    
+}
+
+
 //EJEMPLO DE USO
-int main(void) {
+int main3(void) {
 
     
     /*
