@@ -1,0 +1,64 @@
+//Set front wheels angle [-30..30]
+Command TurnFrontWheels(Integer);
+
+//Set rear wheels angle [-30..30]
+Command TurnRearWheels(Integer); 
+
+//Move forward with a given power level [0..100]
+Command MoveForward(Integer); 
+
+//Move backwards with a given power level [0..100]
+Command MoveBackward(Integer); 
+
+//Stop
+Command Stop();
+
+Command pprint(...);
+
+ObstacleAvoid:
+{
+  Integer steps=0;
+
+  Concurrence{    
+        
+    MF:{            
+        MoveForward(3);
+    }   
+
+    FrontCollision:{
+        Start Lookup(CenterSonarMeasuredDistance)<1;
+        
+
+    }
+
+        WHEELSTUCKLISTENER:{
+            StartCondition Lookup(Heading)>100;
+            pprint ("*************** GOT EVENT: HEADING:");
+        }
+
+    HandleLeftSensor: {    
+        Start Lookup(LeftSonarMeasuredDistance)<1;
+        Repeat true;        
+        pprint("Collision at left");
+    }
+
+
+    HandleCenterSensor: {    
+        Start Lookup(CenterSonarMeasuredDistance)<1;
+        Repeat true;        
+
+        pprint("Collision at center!!!",Lookup(CenterSonarMeasuredDistance));
+    }
+
+    HandleRightSensor: {    
+        Start Lookup(RightSonarMeasuredDistance)<1;
+        Repeat true;
+        pprint("Collision at right");
+    }
+
+
+  }
+  
+}
+
+

@@ -406,19 +406,19 @@ void moveBackward(int power){
  */
 int turnFrontWheels(int angle){
     if(angle >= 30){
-        sendData(('m'));   
+        sendData(('q'));   
     }
     else if(angle>= 15 && angle < 30){
-        sendData(('n'));   
+        sendData(('p'));   
     }
     else if(angle>=0  && angle < 15){
         sendData(('o'));   
     }
     else if(angle>=-15 && angle < 0){
-        sendData(('p'));   
+        sendData(('n'));   
     }
     else if(angle>= -30 && angle < -15){
-        sendData(('q'));   
+        sendData(('m'));   
     }
 
     return 0;
@@ -427,19 +427,19 @@ int turnFrontWheels(int angle){
 int turnRearWheels(int angle){
 
     if(angle >= 30){
-        sendData(('M'));   
+        sendData(('Q'));   
     }
     else if(angle>= 15 && angle < 30){
-        sendData(('N'));   
+        sendData(('P'));   
     }
     else if(angle>=0  && angle < 15){
         sendData(('O'));   
     }
     else if(angle>=-15 && angle < 0){
-        sendData(('P'));   
+        sendData(('N'));   
     }
     else if(angle>= -30 && angle < -15){
-        sendData(('Q'));   
+        sendData(('M'));   
     }
 
     return 0;
