@@ -109,27 +109,9 @@ void handleInput(unsigned int value, unsigned int sensorId){
         setRightSonarMeasuredDistance(value);
     }
     else if (sensorId==3){
+        
         setHeading(value);
     }
-
-    
-    
-        /*else if (line.find("pos.updated", 0 )==0){
-            std::string coord = line.substr (12);
-            
-            std::size_t commapos = coord.find(",");
-            
-            
-            std::string lat = coord.substr (0,commapos);     
-            std::string lng = coord.substr (commapos+1);     
-            
-            
-            setLatitude(std::atof(lat.c_str()));
-            setLongitude(std::atof(lng.c_str()));    
-            
-            cout << "[PLEXIL-DEBUG*]" << " Updating coordinates to " << lat << "," << lng << endl;
-        }*/
-    
     
 }
 
@@ -194,7 +176,8 @@ void *receive_robot_input(void *ptr) {
                 decodeData(part1, part2, part3, &decodedRes, &decodedSensorId, &parity);
                 
                 //evaluate input
-                handleInput(decodedRes, decodedSensorId);
+                handleInput(decodedRes, decodedSensorId);                               
+                
             }
         }
 
@@ -446,6 +429,29 @@ int turnRearWheels(int angle){
     
 }
 
+
+int moveSprinklerToLeft(){
+    sendData('t');
+    return 0;    
+}
+
+int moveSprinklerToRight(){
+    sendData('u');
+    return 0;        
+}
+
+int openSprinkler(){
+    sendData('v');
+    return 0;       
+}
+
+int closeSprinkler(){
+    sendData('w');
+    return 0;        
+}
+
+
+
 int plantSeed (){
     sendData(7);   
     return 0;
@@ -455,6 +461,7 @@ int stopEngine(){
     sendData('0');
     return 0;
 }
+
 
 
 //encoding / decoding routines

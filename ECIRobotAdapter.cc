@@ -251,6 +251,18 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
     args[0].getValue(d);
     moveBackward(d);
   }
+  else if (name == "MoveSprinklerToLeft") {    
+    moveSprinklerToLeft();
+  }
+  else if (name == "MoveSprinklerToRight") {    
+    moveSprinklerToRight();
+  }
+  else if (name == "OpenSprinkler") {    
+      openSprinkler();
+  }
+  else if (name == "CloseSprinkler") {    
+      closeSprinkler();
+  }
   else if (name == "PlantSeed") {    
     plantSeed();
   }

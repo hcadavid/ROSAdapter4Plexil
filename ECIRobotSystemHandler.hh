@@ -76,9 +76,21 @@ int turnFrontWheels(int angle);
  */
 int turnRearWheels(int angle);
 
+
+int moveSprinklerToLeft();
+
+int moveSprinklerToRight();
+
+int openSprinkler();
+
+int closeSprinkler();
+
 int plantSeed ();
 
 int stopEngine();
+
+
+//----- commands
 
 void startLookupEventsThread();
 

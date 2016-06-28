@@ -28,7 +28,7 @@ int readNextByte(unsigned char* theByte){
     *theByte=atoi( line.c_str() );
     
     //std::cout <<  "[INFO] data received from stdin:[" << line << "], " << "converted to:[" << ((int)*theByte) <<"]"<< std::endl;                
-    //std::cout.flush();    
+    std::cout.flush();    
     
     return 1;
 }
