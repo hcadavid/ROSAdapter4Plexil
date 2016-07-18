@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdlib.h>
+#include <float.h>
 #include "subscriber.hh"
 #include "RobotInterface.hh"
 #include "ECIRobotSystemHandler.hh"
@@ -33,9 +34,9 @@ static int StartRequested=0;
 static int AbortRequested=0;
 
 
-static float LeftSonarMeasuredDistance=1;
-static float RightSonarMeasuredDistance=1;
-static float CenterSonarMeasuredDistance=1;
+static float LeftSonarMeasuredDistance=FLT_MAX;
+static float RightSonarMeasuredDistance=FLT_MAX;
+static float CenterSonarMeasuredDistance=FLT_MAX;
 
 
 // Functions that provide access (read and write) for the simple parameter-less
@@ -177,6 +178,15 @@ void *receive_robot_input(void *ptr) {
                 
                 //evaluate input
                 handleInput(decodedRes, decodedSensorId);                               
+                
+                if (decodedSensorId==3 && part2>5){
+                    cout << "---------------" << endl;                      
+                    cout << "Error:" << endl;                      
+                    cout << (int)part1 << endl;                      
+                    cout << (int)part2 << endl;                      
+                    cout << (int)part3 << endl;                      
+                    cout << "---------------" << endl;                      
+                }
                 
             }
         }
