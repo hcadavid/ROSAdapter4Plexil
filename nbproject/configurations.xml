@@ -87,8 +87,6 @@
           </incDir>
         </ccTool>
       </item>
-      <item path="BitwiseOps.hh" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="RobotInterface.hh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RobotInterfaceSerial.cc" ex="false" tool="1" flavor2="0">

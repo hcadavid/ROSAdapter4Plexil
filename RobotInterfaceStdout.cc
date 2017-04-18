@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sstream>
+#include "geometry_msgs/Twist.h"
+#include "turtlesim/Pose.h"
+#include "ros/ros.h"
+#include <sstream>
 
 using std::cout;
 using std::endl;

@@ -1,32 +1,98 @@
 subscriber.o: subscriber.cc subscriber.hh
 ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
-  RobotInterface.hh ECIRobotSystemHandler.hh
+ RobotInterface.hh ECIRobotSystemHandler.hh
 ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Command.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/CommandHandleVariable.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/CommandHandle.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ExpressionImpl.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Expression.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Array.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ValueType.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ParserException.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ArrayFwd.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/plexil-config.h \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ExpressionListener.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/NotifierImpl.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/State.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Value.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/SimpleBooleanVariable.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/AssignableImpl.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Assignable.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/ArrayImpl.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/InterfaceAdapter.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/pugixml.hpp \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/pugiconfig.hpp \
-  subscriber.hh ECIRobotSystemHandler.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/AdapterConfiguration.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/AdapterFactory.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/AdapterExecInterface.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/Debug.hh \
-  /Users/hcadavid/apps/plexil-4.0.1.1/include/StateCacheEntry.hh
-RobotInterfaceStdout.o: RobotInterfaceStdout.cc RobotInterface.hh
+ /root/plexil/plexil-4.0.1//src/intfc/Command.hh \
+ /root/plexil/plexil-4.0.1//src/intfc/CommandHandleVariable.hh \
+ /root/plexil/plexil-4.0.1//src/value/CommandHandle.hh \
+ /root/plexil/plexil-4.0.1//src/expr/ExpressionImpl.hh \
+ /root/plexil/plexil-4.0.1//src/expr/Expression.hh \
+ /root/plexil/plexil-4.0.1//src/value/Array.hh \
+ /root/plexil/plexil-4.0.1//src/value/ValueType.hh \
+ /root/plexil/plexil-4.0.1//src/utils/ParserException.hh \
+ /root/plexil/plexil-4.0.1//src/value/ArrayFwd.hh \
+ /root/plexil/plexil-4.0.1//src/plexil-config.h \
+ /root/plexil/plexil-4.0.1//src/expr/ExpressionListener.hh \
+ /root/plexil/plexil-4.0.1//src/expr/NotifierImpl.hh \
+ /root/plexil/plexil-4.0.1//src/intfc/State.hh \
+ /root/plexil/plexil-4.0.1//src/value/Value.hh \
+ /root/plexil/plexil-4.0.1//src/value/Array.hh \
+ /root/plexil/plexil-4.0.1//src/expr/SimpleBooleanVariable.hh \
+ /root/plexil/plexil-4.0.1//src/expr/AssignableImpl.hh \
+ /root/plexil/plexil-4.0.1//src/expr/Assignable.hh \
+ /root/plexil/plexil-4.0.1//src/expr/NotifierImpl.hh \
+ /root/plexil/plexil-4.0.1//src/value/ArrayImpl.hh \
+ /root/plexil/plexil-4.0.1//src/expr/ExpressionImpl.hh \
+ /root/plexil/plexil-4.0.1//src/app-framework/InterfaceAdapter.hh \
+ /root/plexil/plexil-4.0.1//src/third-party/pugixml/src/pugixml.hpp \
+ /root/plexil/plexil-4.0.1//src/third-party/pugixml/src/pugiconfig.hpp \
+ subscriber.hh ECIRobotSystemHandler.hh \
+ /root/plexil/plexil-4.0.1//src/app-framework/AdapterConfiguration.hh \
+ /root/plexil/plexil-4.0.1//src/app-framework/InterfaceAdapter.hh \
+ /root/plexil/plexil-4.0.1//src/app-framework/AdapterFactory.hh \
+ /root/plexil/plexil-4.0.1//src/app-framework/AdapterExecInterface.hh \
+ /root/plexil/plexil-4.0.1//src/utils/Debug.hh \
+ /root/plexil/plexil-4.0.1//src/intfc/StateCacheEntry.hh
+RobotInterfaceStdout.o: RobotInterfaceStdout.cc RobotInterface.hh \
+ /opt/ros/indigo/include/geometry_msgs/Twist.h \
+ /opt/ros/indigo/include/ros/types.h \
+ /opt/ros/indigo/include/ros/serialization.h \
+ /opt/ros/indigo/include/ros/roscpp_serialization_macros.h \
+ /opt/ros/indigo/include/ros/macros.h /opt/ros/indigo/include/ros/time.h \
+ /opt/ros/indigo/include/ros/platform.h \
+ /opt/ros/indigo/include/ros/exception.h \
+ /opt/ros/indigo/include/ros/duration.h \
+ /opt/ros/indigo/include/ros/rostime_decl.h \
+ /opt/ros/indigo/include/ros/serialized_message.h \
+ /opt/ros/indigo/include/ros/message_traits.h \
+ /opt/ros/indigo/include/ros/message_forward.h \
+ /opt/ros/indigo/include/ros/builtin_message_traits.h \
+ /opt/ros/indigo/include/ros/message_traits.h \
+ /opt/ros/indigo/include/ros/datatypes.h \
+ /opt/ros/indigo/include/ros/message_operations.h \
+ /opt/ros/indigo/include/geometry_msgs/Vector3.h \
+ /opt/ros/indigo/include/turtlesim/Pose.h \
+ /opt/ros/indigo/include/ros/ros.h /opt/ros/indigo/include/ros/rate.h \
+ /opt/ros/indigo/include/ros/console.h \
+ /opt/ros/indigo/include/ros/console_backend.h \
+ /opt/ros/indigo/include/rosconsole/macros_generated.h \
+ /opt/ros/indigo/include/ros/assert.h \
+ /opt/ros/indigo/include/ros/static_assert.h \
+ /opt/ros/indigo/include/ros/common.h \
+ /opt/ros/indigo/include/ros/forwards.h \
+ /opt/ros/indigo/include/ros/exceptions.h \
+ /opt/ros/indigo/include/ros/serialized_message.h \
+ /opt/ros/indigo/include/ros/node_handle.h \
+ /opt/ros/indigo/include/ros/publisher.h \
+ /opt/ros/indigo/include/ros/message.h \
+ /opt/ros/indigo/include/ros/subscriber.h \
+ /opt/ros/indigo/include/ros/common.h \
+ /opt/ros/indigo/include/ros/subscription_callback_helper.h \
+ /opt/ros/indigo/include/ros/parameter_adapter.h \
+ /opt/ros/indigo/include/ros/message_event.h \
+ /opt/ros/indigo/include/ros/service_server.h \
+ /opt/ros/indigo/include/ros/service_client.h \
+ /opt/ros/indigo/include/ros/service_traits.h \
+ /opt/ros/indigo/include/ros/timer.h \
+ /opt/ros/indigo/include/ros/forwards.h \
+ /opt/ros/indigo/include/ros/timer_options.h \
+ /opt/ros/indigo/include/ros/wall_timer.h \
+ /opt/ros/indigo/include/ros/wall_timer_options.h \
+ /opt/ros/indigo/include/ros/advertise_options.h \
+ /opt/ros/indigo/include/ros/advertise_service_options.h \
+ /opt/ros/indigo/include/ros/service_callback_helper.h \
+ /opt/ros/indigo/include/ros/subscribe_options.h \
+ /opt/ros/indigo/include/ros/transport_hints.h \
+ /opt/ros/indigo/include/ros/subscription_callback_helper.h \
+ /opt/ros/indigo/include/ros/service_client_options.h \
+ /opt/ros/indigo/include/ros/timer_options.h \
+ /opt/ros/indigo/include/ros/wall_timer_options.h \
+ /opt/ros/indigo/include/ros/spinner.h /opt/ros/indigo/include/ros/init.h \
+ /opt/ros/indigo/include/XmlRpcValue.h \
+ /opt/ros/indigo/include/XmlRpcDecl.h \
+ /opt/ros/indigo/include/ros/single_subscriber_publisher.h \
+ /opt/ros/indigo/include/ros/service.h \
+ /opt/ros/indigo/include/ros/names.h /opt/ros/indigo/include/ros/master.h \
+ /opt/ros/indigo/include/ros/this_node.h \
+ /opt/ros/indigo/include/ros/param.h /opt/ros/indigo/include/ros/topic.h \
+ /opt/ros/indigo/include/ros/node_handle.h
