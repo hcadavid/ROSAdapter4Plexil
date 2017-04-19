@@ -82,6 +82,7 @@ void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
 }
 
 void setupROSPublisherSubscriber(){
+    cout << "Intializing ROS" << endl;
     int argc=0;
     char** argv=NULL;
     ros::init(argc, argv, "turtlesim_cleaner");

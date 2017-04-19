@@ -1,5 +1,2 @@
-plexilc $1
-plan=$1
-echo $plan
-echo Executing "${plan%?}"x
-plexilexec -p "${plan%?}"x
+echo $PLEXIL_HOME/scripts/plexilexec  -p $1 -c $2
+$PLEXIL_HOME/scripts/plexilexec  -p $1 -c $2
