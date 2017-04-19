@@ -65,12 +65,29 @@ defAccessors(CurrentAngle, int)
 
 
 int rotate(int angle) {
-    cout << "ROTATING!" << endl;
+    cout << "ROTATING!" << endl;    
     return 0;
 }
 
-int move(int distance) {
+int move(int speed) {
     cout << "MOVING!" << endl;
+    geometry_msgs::Twist vel_msg;
+    
+    vel_msg.linear.x = abs(speed);
+    vel_msg.linear.y = 0;
+    vel_msg.linear.z = 0;
+    //set a random angular velocity in the y-axis
+    vel_msg.angular.x = 0;
+    vel_msg.angular.y = 0;
+    vel_msg.angular.z = 0;
+
+    ros::Rate loop_rate(100);
+    for (int i = 0; i < 100; i++) {
+        velocity_publisher.publish(vel_msg);
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+    
     return 0;
 }
 

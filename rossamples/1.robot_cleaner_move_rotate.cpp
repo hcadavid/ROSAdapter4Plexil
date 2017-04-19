@@ -26,24 +26,9 @@ int main(int argc, char **argv)
 	velocity_publisher = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000);
 	ros::Rate loop_rate(10);
 
-	//	/turtle1/cmd_vel is the Topic name
-	//	/geometry_msgs::Twist is the msg type 
-	ROS_INFO("\n\n\n ********START TESTING*********\n");
-	cout<<"enter speed: ";
-	cin>>speed;
-	cout<<"enter distance: ";
-	cin>>distance;
-	cout<<"forward?: ";
-	cin>>isForward;
-	move(speed, distance, isForward);
+	move(100, 100, true);
 
-	cout<<"enter angular velocity: ";
-	cin>>angular_speed;
-	cout<<"enter angle: ";
-	cin>>angle;
-	cout<<"Clockwise?: ";
-	cin>>clockwise;
-	rotate(degrees2radians(angular_speed), degrees2radians(angle), clockwise);
+
 
 	ros::spin();
 

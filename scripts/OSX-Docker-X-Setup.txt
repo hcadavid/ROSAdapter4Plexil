@@ -1,0 +1,15 @@
+1. OSX With XQuarts requires socat runnint:
+
+	brew install socat
+	socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
+
+2. export ip=[HOST IP]
+
+3. Create docker container with shared volumes (/tmp/.X11-unix:/tmp/.X11-unix is required to use X apps)
+
+docker run -d --name firefox -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /Users/hcadavid/ECI/2017-1/ROS_Plexil_Plans/workspace/dockerws/adapter/:/root/adapter/src -i -t hectorcadavid/ubuntu-roscore-plexil:14.04-indigo-4.0.1
+
+4. Execute bash in the previously created container
+
+docker exec -it [CONTAINERID] bash
+
