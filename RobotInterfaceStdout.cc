@@ -15,6 +15,11 @@ using std::endl;
 using std::string;
 using std::pair;
 
+ros::Publisher velocity_publisher;
+ros::Subscriber pose_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
+turtlesim::Pose turtlesim_pose;
+
+
 bool  interfaceSetup(){
     std::cout << "Setting up Stdin/Stdout interface "<< std::endl;
     return true;

@@ -50,45 +50,16 @@ static Value fetch (const string& state_name, const vector<Value>& args)
 
   // NOTE: A more streamlined approach to dispatching on state name
   // would be nice.
-
-  if (state_name == "Speed"){
-    retval = getSpeed();
-  }
-  else if (state_name == "LeftSonarMeasuredDistance"){
-    retval = getLeftSonarMeasuredDistance();
-  }
-  else if (state_name == "RightSonarMeasuredDistance"){
-    retval = getRightSonarMeasuredDistance();
-  }
-  else if (state_name == "CenterSonarMeasuredDistance"){
-    retval = getCenterSonarMeasuredDistance();
-  }
-  else if (state_name == "Temperature"){
-    retval = getTemperature();
-  }
-  else if (state_name == "WheelStuck"){
-      retval = getWheelStuck();
-  }
-  else if (state_name == "Latitude"){
-      retval = getLatitude();
-  }
-  else if (state_name == "Longitude"){
-      retval = getLongitude();
-  }
-  else if (state_name == "Heading"){
-      retval = getHeading();
-  }
-  else if (state_name == "PositionChanged"){                          
-      retval = getPositionChanged();
-  }
-  else if (state_name == "StartRequested"){                          
-      retval = getStartRequested();
-  }
-  else if (state_name == "AbortRequested"){                          
-      retval = getAbortRequested();
-  }  
   
-  
+  if (state_name == "IsForward"){
+    retval = getIsForward();
+  }
+  else if (state_name == "CurrentDistance"){
+    retval = getCurrentDistance();
+  }
+  else if (state_name == "CurrentAngle"){
+    retval = getCurrentAngle();
+  }
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
     retval = Unknown;
@@ -175,14 +146,9 @@ bool ECIRobotAdapter::initialize()
   setSubscriberBoolIntInt (receive);
   debugMsg("ECIRobotAdapter", " initialized.");
   
-  //setup(initialize) communication interface  
-  if (!initializeCommunications()){
-      return false;
-  }
-  
-  //start thread that receives events from comm interface
-  startLookupEventsThread(); 
-  //startStatusPollingThread();  
+  //initialize ROS
+  setupROSPublisherSubscriber();
+    
   return true;
 }
 
@@ -228,47 +194,16 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   // would be nice.
   string s;
   
-  //int32_t i1 = 0, i2 = 0;
-  
   double d = 0.0;
 
-  if (name == "PlantSeed") {
-    retval=plantSeed();
-  }   
-  else if (name == "TurnFrontWheels") {    
+  if (name == "Rotate") {    
     args[0].getValue(d);
-    retval=turnFrontWheels(d);
+    retval=rotate(d);
   }  
-  else if (name == "TurnRearWheels") {    
+  else if (name == "Move") {    
     args[0].getValue(d);
-    retval=turnRearWheels(d);
+    retval=move(d);
   }  
-  else if (name == "MoveForward") {    
-    args[0].getValue(d);
-    moveForward(d);
-  }
-  else if (name == "MoveBackward") {    
-    args[0].getValue(d);
-    moveBackward(d);
-  }
-  else if (name == "MoveSprinklerToLeft") {    
-    moveSprinklerToLeft();
-  }
-  else if (name == "MoveSprinklerToRight") {    
-    moveSprinklerToRight();
-  }
-  else if (name == "OpenSprinkler") {    
-      openSprinkler();
-  }
-  else if (name == "CloseSprinkler") {    
-      closeSprinkler();
-  }
-  else if (name == "PlantSeed") {    
-    plantSeed();
-  }
-  else if (name == "Stop") {    
-    stopEngine();
-  }
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 
