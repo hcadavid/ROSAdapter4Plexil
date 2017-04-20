@@ -38,8 +38,10 @@ ros::Subscriber pose_subscriber;	// to determine the position for turning the ro
 
 
 static int IsForward = 1;
-static int CurrentDistance = 0;
-static int CurrentAngle = 0;
+static int PoseX = 0;
+static int PoseY = 0;
+static int Theta = 0;
+static int LinearVelocity = 0;
 
 // Functions that provide access (read and write) for the simple parameter-less
 // states.  These functions are very similar and thus conveniently defined with
@@ -59,12 +61,14 @@ void set##name (const type & s) \
   } \
 }
 
+
 defAccessors(IsForward, int)
-defAccessors(CurrentDistance, int)
-defAccessors(CurrentAngle, int)
+defAccessors(PoseX, int)
+defAccessors(PoseY, int)
+defAccessors(Theta, int)
+defAccessors(LinearVelocity, int)
 
 /*--------------*/
-
 
 int rotate(int angle) {
     cout << "ROTATING!" << endl;    
@@ -103,6 +107,11 @@ void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
         turtlesim_pose.angular_velocity = pose_message->angular_velocity;
 
         cout << "GOT event! " << turtlesim_pose.linear_velocity << endl;
+        
+        setPoseX(turtlesim_pose.x);
+        setPoseY(turtlesim_pose.y);
+        setTheta(turtlesim_pose.theta);
+        setLinearVelocity(turtlesim_pose.linear_velocity);
         
 }
 

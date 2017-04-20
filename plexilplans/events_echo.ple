@@ -1,0 +1,30 @@
+
+Command Rotate(Integer);
+
+Command Move(Integer); 
+
+Command pprint(...);
+
+//*** Available Lookup Status Variables
+//IsForward
+//PoseX
+//PoseY
+//Theta
+//LinearVelocity
+
+
+
+BasicTest:
+{
+	Concurrence{		
+		LVEvent:{
+			Start Lookup(LinearVelocity)>10;
+			pprint("lv updated");
+		}
+		XEvent:{
+			Start Lookup(LinearVelocity)>20;
+			pprint("x updated");		
+		}
+	}
+    
+}

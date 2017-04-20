@@ -6,16 +6,20 @@
 
 //Status
 
-int getIsForward ();
+int  getIsForward ();
 void setIsForward (const int& s);
 
-int getCurrentDistance ();
-void setCurrentDistance (const int& s);
+int  getPoseX ();
+void setPoseX (const int& s);
 
-int getCurrentAngle();
-void setCurrentAngle(const int& s);
+int  getPoseY ();
+void setPoseY (const int& s);
 
+int getTheta ();
+void setTheta (const int& s);
 
+int  getLinearVelocity ();
+void setLinearVelocity (const int& s);
 
 //commands
 

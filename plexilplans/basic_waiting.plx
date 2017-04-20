@@ -16,7 +16,7 @@
          </Parameter>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="15" ColNo="4">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="18" ColNo="4">
       <NodeId>BasicTest</NodeId>
       <StartCondition>
          <EQNumeric>
@@ -64,20 +64,20 @@
       </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="Command" LineNo="15" ColNo="4">
+            <Node NodeType="Command" LineNo="18" ColNo="4">
                <NodeId>COMMAND__0</NodeId>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>Rotate</StringValue>
                      </Name>
-                     <Arguments LineNo="16" ColNo="11">
+                     <Arguments LineNo="19" ColNo="11">
                         <IntegerValue>10</IntegerValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="16" ColNo="4">
+            <Node NodeType="Command" LineNo="19" ColNo="4">
                <NodeId>COMMAND__1</NodeId>
                <StartCondition>
                   <EQInternal>
@@ -92,7 +92,7 @@
                      <Name>
                         <StringValue>Move</StringValue>
                      </Name>
-                     <Arguments LineNo="17" ColNo="9">
+                     <Arguments LineNo="20" ColNo="9">
                         <IntegerValue>10</IntegerValue>
                      </Arguments>
                   </Command>

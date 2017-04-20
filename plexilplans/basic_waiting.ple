@@ -5,8 +5,11 @@ Command Move(Integer);
 
 //*** Available Lookup Status Variables
 //IsForward
-//CurrentDistance
-//CurrentAngle
+//PoseX = 0;
+//PoseY = 0;
+//Theta = 0;
+//LinearVelocity = 0;
+
 
 
 BasicTest:

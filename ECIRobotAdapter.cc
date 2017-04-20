@@ -54,11 +54,20 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   if (state_name == "IsForward"){
     retval = getIsForward();
   }
-  else if (state_name == "CurrentDistance"){
-    retval = getCurrentDistance();
+  else if (state_name == "PoseX"){
+    retval = getPoseX();
   }
-  else if (state_name == "CurrentAngle"){
-    retval = getCurrentAngle();
+  else if (state_name == "PoseY"){
+    retval = getPoseY();
+  }
+  else if (state_name == "Theta"){
+    retval = getTheta();
+  }
+  else if (state_name == "PoseY"){
+    retval = getPoseY();
+  }
+  else if (state_name == "LinearVelocity"){
+    retval = getLinearVelocity();
   }
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
