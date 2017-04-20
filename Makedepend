@@ -61,7 +61,8 @@ ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
  /opt/ros/indigo/include/ros/names.h /opt/ros/indigo/include/ros/master.h \
  /opt/ros/indigo/include/ros/this_node.h \
  /opt/ros/indigo/include/ros/param.h /opt/ros/indigo/include/ros/topic.h \
- /opt/ros/indigo/include/ros/node_handle.h
+ /opt/ros/indigo/include/ros/node_handle.h \
+ /opt/ros/indigo/include/std_msgs/String.h
 ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
  /root/plexil/plexil-4.0.1/src/intfc/Command.hh \
  /root/plexil/plexil-4.0.1/src/intfc/CommandHandleVariable.hh \

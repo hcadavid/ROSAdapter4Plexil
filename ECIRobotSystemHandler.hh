@@ -25,7 +25,7 @@ int move(int distance);
 
 //
 
-void setupROSPublisherSubscriber();
+void setupROSPublisher();
 
 void startROSSuscriptionsThread();
 

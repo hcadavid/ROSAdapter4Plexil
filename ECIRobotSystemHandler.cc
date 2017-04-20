@@ -17,6 +17,8 @@
 #include "ros/ros.h"
 #include <sstream>
 
+#include "std_msgs/String.h"
+
 
 
 using std::cout;
@@ -27,7 +29,7 @@ using std::pair;
 //ROS elements
 ros::Publisher velocity_publisher;
 ros::Subscriber pose_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
-turtlesim::Pose turtlesim_pose;
+
 
 
 
@@ -92,10 +94,15 @@ int move(int speed) {
 }
 
 void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
+        turtlesim::Pose turtlesim_pose;
+    
 	turtlesim_pose.x=pose_message->x;
 	turtlesim_pose.y=pose_message->y;
 	turtlesim_pose.theta=pose_message->theta;
-        cout << "GOT event!" << endl;
+        turtlesim_pose.linear_velocity = pose_message->linear_velocity;
+        turtlesim_pose.angular_velocity = pose_message->angular_velocity;
+
+        cout << "GOT event! " << turtlesim_pose.linear_velocity << endl;
         
 }
 
@@ -115,8 +122,11 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
     sigaddset(&mask, SIGUSR1);
     pthread_sigmask(SIG_BLOCK, &mask, NULL);
     /*-----------*/
+        
+    ros::NodeHandle n;  
+    pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
+    ros::spin(); //pub    
     
-
     cout << "FINISHING THREAD." << endl;      
     return EXIT_SUCCESS;
 }
@@ -133,26 +143,19 @@ void startROSSuscriptionsThread(){
 }
 
 
-
-/*void chatterCallback(const std_msgs::String::ConstPtr& msg)//this function will be called when new data arrives
-{
-    cout << "\nListener heard: [" << msg->data << "]";//why doesn't this work?
-    //ROS_INFO("I heard: [%s]", msg->data.c_str());
-}*/
-
-
-
-void setupROSPublisherSubscriber(){
-    cout << "Intializing ROS" << endl;
+void setupROSPublisher(){
+    cout << "Intializing ROS publisher" << endl;
     int argc=0;
     char** argv=NULL;
-    ros::init(argc, argv, "turtlesim_cleaner");
-    ros::NodeHandle n;    
+    ros::init(argc, argv, "Plexil_ROS_ADAPTER");
+    ros::NodeHandle n;     
     velocity_publisher = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000); 
-    cout << "Suscribed to /turtle1/pose" << endl;
-    pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
-    ros::Rate loop_rate(0.5);
     
-    ROS_INFO("\n\n\n ********ROS CLIENT INITIALIZED*********\n");
+    
+    /*cout << "Suscribed to /turtle1/pose" << endl;
+    pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
+    ros::Rate loop_rate(0.5);*/
+    
+    ROS_INFO("\n\n\n ********ROS PUBLISHER INITIALIZED*********\n");
 }
 

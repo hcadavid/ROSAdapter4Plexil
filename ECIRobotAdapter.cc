@@ -147,7 +147,7 @@ bool ECIRobotAdapter::initialize()
   debugMsg("ECIRobotAdapter", " initialized.");
   
   //initialize publisher for ROSCORE
-  setupROSPublisherSubscriber();
+  setupROSPublisher();
   //initialize subscriber for ROSCORE
   startROSSuscriptionsThread();
     
