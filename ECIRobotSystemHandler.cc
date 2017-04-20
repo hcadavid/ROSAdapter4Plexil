@@ -95,8 +95,52 @@ void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
 	turtlesim_pose.x=pose_message->x;
 	turtlesim_pose.y=pose_message->y;
 	turtlesim_pose.theta=pose_message->theta;
+        cout << "GOT event!" << endl;
         
 }
+
+
+void *subscribeToROSEventsAndSpin(void *ptr) {
+    cout << "CREATING POSIX THREAD FOR ROS EVENTS SUBSCRIPTORS." << endl;      
+
+    /*
+    From Chuck Fry @ NASA:
+    My guess is your thread isn't blocking SIGUSR1, and so it's getting the 
+    wakeup signal intended for the time adapter. The exec process as a whole 
+    is supposed to block SIGUSR1.      
+     */
+    /*-----------*/
+    sigset_t mask;
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGUSR1);
+    pthread_sigmask(SIG_BLOCK, &mask, NULL);
+    /*-----------*/
+    
+
+    cout << "FINISHING THREAD." << endl;      
+    return EXIT_SUCCESS;
+}
+
+
+void startROSSuscriptionsThread(){
+    const char *message1 = "Running ROS Subscriptions thread";
+    pthread_t thread1;
+    int iret1 = pthread_create(&thread1, NULL, subscribeToROSEventsAndSpin, (void*) message1);
+    if (iret1) {
+        fprintf(stderr, "Error - pthread_create() return code: %d\n", iret1);
+        exit(EXIT_FAILURE);
+    }    
+}
+
+
+
+/*void chatterCallback(const std_msgs::String::ConstPtr& msg)//this function will be called when new data arrives
+{
+    cout << "\nListener heard: [" << msg->data << "]";//why doesn't this work?
+    //ROS_INFO("I heard: [%s]", msg->data.c_str());
+}*/
+
+
 
 void setupROSPublisherSubscriber(){
     cout << "Intializing ROS" << endl;
@@ -105,7 +149,7 @@ void setupROSPublisherSubscriber(){
     ros::init(argc, argv, "turtlesim_cleaner");
     ros::NodeHandle n;    
     velocity_publisher = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000); 
-    
+    cout << "Suscribed to /turtle1/pose" << endl;
     pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
     ros::Rate loop_rate(0.5);
     

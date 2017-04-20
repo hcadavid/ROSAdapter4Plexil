@@ -1,0 +1,17 @@
+
+Command Rotate(Integer);
+
+Command Move(Integer); 
+
+//*** Available Lookup Status Variables
+//IsForward
+//CurrentDistance
+//CurrentAngle
+
+
+BasicTest:
+{
+    Start Lookup(CurrentDistance)==1;
+    Rotate(10);
+    Move(10);  
+}
