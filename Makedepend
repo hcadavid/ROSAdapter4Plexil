@@ -1,6 +1,8 @@
 subscriber.o: subscriber.cc subscriber.hh
 ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
- ECIRobotSystemHandler.hh /opt/ros/indigo/include/geometry_msgs/Twist.h \
+ ECIRobotSystemHandler.hh \
+ /opt/ros/indigo/include/tf/transform_datatypes.h \
+ /opt/ros/indigo/include/geometry_msgs/PointStamped.h \
  /opt/ros/indigo/include/ros/types.h \
  /opt/ros/indigo/include/ros/serialization.h \
  /opt/ros/indigo/include/ros/roscpp_serialization_macros.h \
@@ -16,18 +18,31 @@ ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
  /opt/ros/indigo/include/ros/message_traits.h \
  /opt/ros/indigo/include/ros/datatypes.h \
  /opt/ros/indigo/include/ros/message_operations.h \
- /opt/ros/indigo/include/geometry_msgs/Vector3.h \
- /opt/ros/indigo/include/nav_msgs/Odometry.h \
  /opt/ros/indigo/include/std_msgs/Header.h \
- /opt/ros/indigo/include/geometry_msgs/PoseWithCovariance.h \
- /opt/ros/indigo/include/geometry_msgs/Pose.h \
  /opt/ros/indigo/include/geometry_msgs/Point.h \
+ /opt/ros/indigo/include/geometry_msgs/Vector3Stamped.h \
+ /opt/ros/indigo/include/geometry_msgs/Vector3.h \
+ /opt/ros/indigo/include/geometry_msgs/QuaternionStamped.h \
  /opt/ros/indigo/include/geometry_msgs/Quaternion.h \
- /opt/ros/indigo/include/geometry_msgs/TwistWithCovariance.h \
- /opt/ros/indigo/include/ros/ros.h /opt/ros/indigo/include/ros/rate.h \
+ /opt/ros/indigo/include/geometry_msgs/TransformStamped.h \
+ /opt/ros/indigo/include/geometry_msgs/Transform.h \
+ /opt/ros/indigo/include/geometry_msgs/PoseStamped.h \
+ /opt/ros/indigo/include/geometry_msgs/Pose.h \
+ /opt/ros/indigo/include/tf/LinearMath/Transform.h \
+ /opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h \
+ /opt/ros/indigo/include/tf/LinearMath/Vector3.h \
+ /opt/ros/indigo/include/tf/LinearMath/Scalar.h \
+ /opt/ros/indigo/include/tf/LinearMath/MinMax.h \
+ /opt/ros/indigo/include/tf/LinearMath/Quaternion.h \
+ /opt/ros/indigo/include/tf/LinearMath/QuadWord.h \
  /opt/ros/indigo/include/ros/console.h \
  /opt/ros/indigo/include/ros/console_backend.h \
  /opt/ros/indigo/include/rosconsole/macros_generated.h \
+ /opt/ros/indigo/include/geometry_msgs/Twist.h \
+ /opt/ros/indigo/include/nav_msgs/Odometry.h \
+ /opt/ros/indigo/include/geometry_msgs/PoseWithCovariance.h \
+ /opt/ros/indigo/include/geometry_msgs/TwistWithCovariance.h \
+ /opt/ros/indigo/include/ros/ros.h /opt/ros/indigo/include/ros/rate.h \
  /opt/ros/indigo/include/ros/assert.h \
  /opt/ros/indigo/include/ros/static_assert.h \
  /opt/ros/indigo/include/ros/common.h \

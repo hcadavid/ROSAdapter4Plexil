@@ -11,7 +11,8 @@
 #include <string>
 #include <csignal>
 
-//ros/turtlesim dependencies
+//ros/dependencies
+#include <tf/transform_datatypes.h>
 #include "geometry_msgs/Twist.h"
 #include "nav_msgs/Odometry.h"
 #include "ros/ros.h"
@@ -29,7 +30,12 @@ using std::pair;
 //ROS elements
 ros::Publisher twist_publisher;
 ros::Subscriber odom_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
+ros::Rate loop_rate(10);
 
+
+
+
+const float UPDATE_DELTA = 0.01;
 
 
 
@@ -63,7 +69,7 @@ void set##name (const type & s) \
 
 
 float  getYaw ();
-void setIsForward (const float& s);
+void setYaw (const float& s);
 
 float  getXPosition ();
 void setXPosition (const float& s);
@@ -87,50 +93,36 @@ defAccessors(AngularVelocity, float)
 /*--------------*/
 
 
-int requestLinearVelocity(float lv){
-   /*cout << "MOVING!" << endl;
-    geometry_msgs::Twist vel_msg;
-    
-    vel_msg.linear.x = abs(speed);
-    vel_msg.linear.y = 0;
-    vel_msg.linear.z = 0;
-    //set a random angular velocity in the y-axis
-    vel_msg.angular.x = 0;
-    vel_msg.angular.y = 0;
-    vel_msg.angular.z = 0;
 
-    ros::Rate loop_rate(100);
-    for (int i = 0; i < 100; i++) {
-        velocity_publisher.publish(vel_msg);
-        ros::spinOnce();
-        loop_rate.sleep();
-    }*/
+int requestLinearVelocity(float lv){
+
+    geometry_msgs::Twist msg;
+    msg.linear.x=lv;
+    twist_publisher.publish(msg);
+    loop_rate.sleep();        
     
     return 0;    
 }
 
 int requestAngularVelocity(float av){
-    /*cout << "ROTATING!" << endl;    */
-    return 0;    
+
+    geometry_msgs::Twist msg;
+    msg.linear.z=av;
+    twist_publisher.publish(msg);
+    loop_rate.sleep();        
+    
+    return 0;  
 }
 
 
-void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
-        
-        //turtlesim::Pose turtlesim_pose;
-    
-	/*turtlesim_pose.x=pose_message->x;
-	turtlesim_pose.y=pose_message->y;
-	turtlesim_pose.theta=pose_message->theta;
-        turtlesim_pose.linear_velocity = pose_message->linear_velocity;
-        turtlesim_pose.angular_velocity = pose_message->angular_velocity;
 
-        cout << "GOT event! " << turtlesim_pose.linear_velocity << endl;
-        
-        setPoseX(turtlesim_pose.x);
-        setPoseY(turtlesim_pose.y);
-        setTheta(turtlesim_pose.theta);
-        setLinearVelocity(turtlesim_pose.linear_velocity);*/
+void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
+
+    setXPosition(msg->pose.pose.position.x);
+    setYPosition(msg->pose.pose.position.y);
+    setYaw(tf::getYaw(msg->pose.pose.orientation));
+    setAngularVelocity(msg->twist.twist.linear.x);
+    setLinearVelocity(msg->twist.twist.angular.z);
         
 }
 
@@ -154,7 +146,7 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
     ros::NodeHandle n;  
 
     odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
-    ros::spin(); //pub    
+    ros::spin();    
     
     cout << "FINISHING THREAD." << endl;      
     return EXIT_SUCCESS;
