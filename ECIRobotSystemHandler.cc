@@ -13,7 +13,7 @@
 
 //ros/turtlesim dependencies
 #include "geometry_msgs/Twist.h"
-#include "turtlesim/Pose.h"
+#include "nav_msgs/Odometry.h"
 #include "ros/ros.h"
 #include <sstream>
 
@@ -27,8 +27,8 @@ using std::string;
 using std::pair;
 
 //ROS elements
-ros::Publisher velocity_publisher;
-ros::Subscriber pose_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
+ros::Publisher twist_publisher;
+ros::Subscriber odom_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
 
 
 
@@ -37,11 +37,11 @@ ros::Subscriber pose_subscriber;	// to determine the position for turning the ro
 //
 
 
-static int IsForward = 1;
-static int PoseX = 0;
-static int PoseY = 0;
-static int Theta = 0;
-static int LinearVelocity = 0;
+static float Yaw = 0.0;
+static float XPosition = 0.0;
+static float YPosition = 0.0;
+static float LinearVelocity = 0.0;
+static float AngularVelocity = 0.0;
 
 // Functions that provide access (read and write) for the simple parameter-less
 // states.  These functions are very similar and thus conveniently defined with
@@ -62,21 +62,33 @@ void set##name (const type & s) \
 }
 
 
-defAccessors(IsForward, int)
-defAccessors(PoseX, int)
-defAccessors(PoseY, int)
-defAccessors(Theta, int)
-defAccessors(LinearVelocity, int)
+float  getYaw ();
+void setIsForward (const float& s);
+
+float  getXPosition ();
+void setXPosition (const float& s);
+
+float  getYPosition ();
+void setYPosition (const float& s);
+
+float  getLinearVelocity ();
+void setLinearVelocity (const float& s);
+
+float getAngularVelocity ();
+void setAngularVelocity (const float& s);
+
+
+defAccessors(Yaw, float)
+defAccessors(XPosition, float )
+defAccessors(YPosition, float )
+defAccessors(LinearVelocity, float)
+defAccessors(AngularVelocity, float)
 
 /*--------------*/
 
-int rotate(int angle) {
-    cout << "ROTATING!" << endl;    
-    return 0;
-}
 
-int move(int speed) {
-    cout << "MOVING!" << endl;
+int requestLinearVelocity(float lv){
+   /*cout << "MOVING!" << endl;
     geometry_msgs::Twist vel_msg;
     
     vel_msg.linear.x = abs(speed);
@@ -92,15 +104,22 @@ int move(int speed) {
         velocity_publisher.publish(vel_msg);
         ros::spinOnce();
         loop_rate.sleep();
-    }
+    }*/
     
-    return 0;
+    return 0;    
 }
 
-void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
-        turtlesim::Pose turtlesim_pose;
+int requestAngularVelocity(float av){
+    /*cout << "ROTATING!" << endl;    */
+    return 0;    
+}
+
+
+void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
+        
+        //turtlesim::Pose turtlesim_pose;
     
-	turtlesim_pose.x=pose_message->x;
+	/*turtlesim_pose.x=pose_message->x;
 	turtlesim_pose.y=pose_message->y;
 	turtlesim_pose.theta=pose_message->theta;
         turtlesim_pose.linear_velocity = pose_message->linear_velocity;
@@ -111,7 +130,7 @@ void ROSEventsCallback(const turtlesim::Pose::ConstPtr & pose_message){
         setPoseX(turtlesim_pose.x);
         setPoseY(turtlesim_pose.y);
         setTheta(turtlesim_pose.theta);
-        setLinearVelocity(turtlesim_pose.linear_velocity);
+        setLinearVelocity(turtlesim_pose.linear_velocity);*/
         
 }
 
@@ -133,7 +152,8 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
     /*-----------*/
         
     ros::NodeHandle n;  
-    pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
+
+    odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
     ros::spin(); //pub    
     
     cout << "FINISHING THREAD." << endl;      
@@ -158,13 +178,9 @@ void setupROSPublisher(){
     char** argv=NULL;
     ros::init(argc, argv, "Plexil_ROS_ADAPTER");
     ros::NodeHandle n;     
-    velocity_publisher = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000); 
-    
-    
-    /*cout << "Suscribed to /turtle1/pose" << endl;
-    pose_subscriber = n.subscribe("/turtle1/pose", 10, ROSEventsCallback);
-    ros::Rate loop_rate(0.5);*/
-    
-    ROS_INFO("\n\n\n ********ROS PUBLISHER INITIALIZED*********\n");
+
+    twist_publisher = n.advertise<geometry_msgs::Twist>("/husky_velocity_controller/cmd_vel", 100);
+   
+    ROS_INFO("\n\n\n ********ROS TWIST PUBLISHER INITIALIZED*********\n");
 }
 

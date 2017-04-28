@@ -4,30 +4,32 @@
 #define _H_ECIRobotSystemHandler
 
 
-//Status
+//Environment Variables
 
-int  getIsForward ();
-void setIsForward (const int& s);
+// yaw in radians 
+float  getYaw ();
+void setIsForward (const float& s);
 
-int  getPoseX ();
-void setPoseX (const int& s);
+float  getXPosition ();
+void setXPosition (const float& s);
 
-int  getPoseY ();
-void setPoseY (const int& s);
+float  getYPosition ();
+void setYPosition (const float& s);
 
-int getTheta ();
-void setTheta (const int& s);
+float  getLinearVelocity ();
+void setLinearVelocity (const float& s);
 
-int  getLinearVelocity ();
-void setLinearVelocity (const int& s);
+float getAngularVelocity ();
+void setAngularVelocity (const float& s);
 
-//commands
 
-int rotate(int angle);
+//Commands
 
-int move(int distance);
+int requestLinearVelocity(float lv);
 
-//
+int requestAngularVelocity(float av);
+
+//setup routines
 
 void setupROSPublisher();
 

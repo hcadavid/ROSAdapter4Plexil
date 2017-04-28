@@ -17,7 +17,13 @@ ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
  /opt/ros/indigo/include/ros/datatypes.h \
  /opt/ros/indigo/include/ros/message_operations.h \
  /opt/ros/indigo/include/geometry_msgs/Vector3.h \
- /opt/ros/indigo/include/turtlesim/Pose.h \
+ /opt/ros/indigo/include/nav_msgs/Odometry.h \
+ /opt/ros/indigo/include/std_msgs/Header.h \
+ /opt/ros/indigo/include/geometry_msgs/PoseWithCovariance.h \
+ /opt/ros/indigo/include/geometry_msgs/Pose.h \
+ /opt/ros/indigo/include/geometry_msgs/Point.h \
+ /opt/ros/indigo/include/geometry_msgs/Quaternion.h \
+ /opt/ros/indigo/include/geometry_msgs/TwistWithCovariance.h \
  /opt/ros/indigo/include/ros/ros.h /opt/ros/indigo/include/ros/rate.h \
  /opt/ros/indigo/include/ros/console.h \
  /opt/ros/indigo/include/ros/console_backend.h \
@@ -64,34 +70,34 @@ ECIRobotSystemHandler.o: ECIRobotSystemHandler.cc subscriber.hh \
  /opt/ros/indigo/include/ros/node_handle.h \
  /opt/ros/indigo/include/std_msgs/String.h
 ECIRobotAdapter.o: ECIRobotAdapter.cc ECIRobotAdapter.hh \
- /root/plexil/plexil-4.0.1/src/intfc/Command.hh \
- /root/plexil/plexil-4.0.1/src/intfc/CommandHandleVariable.hh \
- /root/plexil/plexil-4.0.1/src/value/CommandHandle.hh \
- /root/plexil/plexil-4.0.1/src/expr/ExpressionImpl.hh \
- /root/plexil/plexil-4.0.1/src/expr/Expression.hh \
- /root/plexil/plexil-4.0.1/src/value/Array.hh \
- /root/plexil/plexil-4.0.1/src/value/ValueType.hh \
- /root/plexil/plexil-4.0.1/src/utils/ParserException.hh \
- /root/plexil/plexil-4.0.1/src/value/ArrayFwd.hh \
- /root/plexil/plexil-4.0.1/src/plexil-config.h \
- /root/plexil/plexil-4.0.1/src/expr/ExpressionListener.hh \
- /root/plexil/plexil-4.0.1/src/expr/NotifierImpl.hh \
- /root/plexil/plexil-4.0.1/src/intfc/State.hh \
- /root/plexil/plexil-4.0.1/src/value/Value.hh \
- /root/plexil/plexil-4.0.1/src/value/Array.hh \
- /root/plexil/plexil-4.0.1/src/expr/SimpleBooleanVariable.hh \
- /root/plexil/plexil-4.0.1/src/expr/AssignableImpl.hh \
- /root/plexil/plexil-4.0.1/src/expr/Assignable.hh \
- /root/plexil/plexil-4.0.1/src/expr/NotifierImpl.hh \
- /root/plexil/plexil-4.0.1/src/value/ArrayImpl.hh \
- /root/plexil/plexil-4.0.1/src/expr/ExpressionImpl.hh \
- /root/plexil/plexil-4.0.1/src/app-framework/InterfaceAdapter.hh \
- /root/plexil/plexil-4.0.1/src/third-party/pugixml/src/pugixml.hpp \
- /root/plexil/plexil-4.0.1/src/third-party/pugixml/src/pugiconfig.hpp \
+ /home/hcadavid/plexil-4.0.1//src/intfc/Command.hh \
+ /home/hcadavid/plexil-4.0.1//src/intfc/CommandHandleVariable.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/CommandHandle.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/ExpressionImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/Expression.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/Array.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/ValueType.hh \
+ /home/hcadavid/plexil-4.0.1//src/utils/ParserException.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/ArrayFwd.hh \
+ /home/hcadavid/plexil-4.0.1//src/plexil-config.h \
+ /home/hcadavid/plexil-4.0.1//src/expr/ExpressionListener.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/NotifierImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/intfc/State.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/Value.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/Array.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/SimpleBooleanVariable.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/AssignableImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/Assignable.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/NotifierImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/value/ArrayImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/expr/ExpressionImpl.hh \
+ /home/hcadavid/plexil-4.0.1//src/app-framework/InterfaceAdapter.hh \
+ /home/hcadavid/plexil-4.0.1//src/third-party/pugixml/src/pugixml.hpp \
+ /home/hcadavid/plexil-4.0.1//src/third-party/pugixml/src/pugiconfig.hpp \
  subscriber.hh ECIRobotSystemHandler.hh \
- /root/plexil/plexil-4.0.1/src/app-framework/AdapterConfiguration.hh \
- /root/plexil/plexil-4.0.1/src/app-framework/InterfaceAdapter.hh \
- /root/plexil/plexil-4.0.1/src/app-framework/AdapterFactory.hh \
- /root/plexil/plexil-4.0.1/src/app-framework/AdapterExecInterface.hh \
- /root/plexil/plexil-4.0.1/src/utils/Debug.hh \
- /root/plexil/plexil-4.0.1/src/intfc/StateCacheEntry.hh
+ /home/hcadavid/plexil-4.0.1//src/app-framework/AdapterConfiguration.hh \
+ /home/hcadavid/plexil-4.0.1//src/app-framework/InterfaceAdapter.hh \
+ /home/hcadavid/plexil-4.0.1//src/app-framework/AdapterFactory.hh \
+ /home/hcadavid/plexil-4.0.1//src/app-framework/AdapterExecInterface.hh \
+ /home/hcadavid/plexil-4.0.1//src/utils/Debug.hh \
+ /home/hcadavid/plexil-4.0.1//src/intfc/StateCacheEntry.hh

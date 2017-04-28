@@ -28,9 +28,9 @@ int main(int argc, char **argv)
 
     int count = 0;
 
-    for (int j=0;j<20;j++){
+    //for (int j=0;j<20;j++){
 
-        for (int i=0;i<10;i++){
+        /*for (int i=0;i<30;i++){
             geometry_msgs::Twist msg;
 
             msg.linear.x=1;
@@ -38,13 +38,13 @@ int main(int argc, char **argv)
             twist_pub.publish(msg);
 
             loop_rate.sleep();
-        }
+        }*/
 
-        for (int i=0;i<10;i++){
+        for (int i=0;i<200;i++){
             geometry_msgs::Twist msg;
 
-            msg.angular.z=0.1;
-            //msg.linear.x=1;        
+            msg.angular.z=0.2;
+            //msg.linear.x=1;
 
             twist_pub.publish(msg);
 
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
 
 
-    }
+    //}
 
 
     return 0;

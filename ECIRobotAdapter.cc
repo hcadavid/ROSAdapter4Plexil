@@ -51,23 +51,20 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   // NOTE: A more streamlined approach to dispatching on state name
   // would be nice.
   
-  if (state_name == "IsForward"){
-    retval = getIsForward();
+  if (state_name == "Yaw"){
+    retval = getYaw();
   }
-  else if (state_name == "PoseX"){
-    retval = getPoseX();
+  else if (state_name == "XPosition"){
+    retval = getXPosition();
   }
-  else if (state_name == "PoseY"){
-    retval = getPoseY();
-  }
-  else if (state_name == "Theta"){
-    retval = getTheta();
-  }
-  else if (state_name == "PoseY"){
-    retval = getPoseY();
+  else if (state_name == "YPosition"){
+    retval = getYPosition();
   }
   else if (state_name == "LinearVelocity"){
     retval = getLinearVelocity();
+  }
+  else if (state_name == "AngularVelocity"){
+    retval = getAngularVelocity();
   }
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
@@ -207,13 +204,13 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
   
   double d = 0.0;
 
-  if (name == "Rotate") {    
+  if (name == "RequestLinearVelocity") {    
     args[0].getValue(d);
-    retval=rotate(d);
+    retval=requestLinearVelocity(d);
   }  
-  else if (name == "Move") {    
+  else if (name == "RequestAngularVelocity") {    
     args[0].getValue(d);
-    retval=move(d);
+    retval=requestAngularVelocity(d);
   }  
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
