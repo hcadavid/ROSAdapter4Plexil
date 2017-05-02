@@ -1,0 +1,23 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+
+BasicTest:
+{
+	XPosUpdateHandler:{
+		Start Lookup(XPosition) > 0;		
+		pprint("Event received");						
+	}
+
+}

@@ -116,18 +116,27 @@ int requestAngularVelocity(float av){
     return 0;  
 }
 
+/**
+ * Invoke the setter of a property only if the previous value has changed at least
+ * 'delta' (in absolute)
+ */
+void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value, float delta){
+    if (fabs((*getter)()-value) > delta){       
+       (*setter)(value);
+    }
+}
 
 
 void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
     cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
-    
-    setXPosition(msg->pose.pose.position.x);
-    setYPosition(msg->pose.pose.position.y);
-    setYaw(tf::getYaw(msg->pose.pose.orientation));
-    setAngularVelocity(msg->twist.twist.linear.x);
-    setLinearVelocity(msg->twist.twist.angular.z);
-        
+    float delta=0.001;
+    updateIfChanged(getXPosition,setXPosition,msg->pose.pose.position.x,delta);
+    updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.x,delta);
+    updateIfChanged(getYaw,setYaw,tf::getYaw(msg->pose.pose.orientation),delta);
+    updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.linear.x,delta);
+    updateIfChanged(getLinearVelocity,setXPosition,msg->twist.twist.angular.z,delta);
+            
 }
 
 
@@ -151,6 +160,24 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
 
     odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
     ros::spin();    
+    
+    
+    
+    //For testing purposes - Keyboard generated events
+    /*while(true){
+        std::string cmd;        
+        std::getline(std::cin, cmd);    
+        float val=atof(cmd.c_str());
+        cout << "GOT:" << val << endl;  
+        updateIfChanged(getXPosition,setXPosition,val,0.001);        
+        //setXPosition(getXPosition()+val);
+        //setYPosition(getYPosition()+val);
+        //setYaw(getYaw()+val);
+        //setAngularVelocity(getAngul2arVelocity()+val);
+        //setLinearVelocity(getLinearVelocity()+val);
+        
+    }*/
+    
     
     cout << "FINISHING THREAD." << endl;      
     return EXIT_SUCCESS;

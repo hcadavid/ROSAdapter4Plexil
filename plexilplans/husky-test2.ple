@@ -1,0 +1,57 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+All:{
+    Concurrence{
+        XPTest:
+        {
+            Real curval;
+            Start Lookup(XPosition)>5;
+
+            curval=Lookup(XPosition);
+            pprint("xp-ok:",curval);
+	
+
+        }
+        YPTest:
+        {
+                Start Lookup(YPosition)>5;
+                pprint("yp-ok");	
+
+        }
+        YawPTest:
+        {
+                Start Lookup(Yaw)>5;
+                pprint("yaw-ok");	
+
+        }
+        LinearSTest:
+        {
+                Start Lookup(LinearVelocity)>5;
+                pprint("lv-ok");	
+
+        }
+        AngularVTest:
+        {
+                Start Lookup(AngularVelocity)>5;
+                pprint("av-ok");	
+
+        }
+
+
+
+    }
+
+}
+
