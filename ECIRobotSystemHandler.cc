@@ -30,7 +30,7 @@ using std::pair;
 //ROS elements
 ros::Publisher twist_publisher;
 ros::Subscriber odom_subscriber;	// to determine the position for turning the robot in an absolute orientation --> in the setDesiredOrientation fn
-ros::Rate loop_rate(10);
+//ros::Rate loop_rate(10);
 
 
 
@@ -95,7 +95,8 @@ defAccessors(AngularVelocity, float)
 
 
 int requestLinearVelocity(float lv){
-    cout << "[CLIENT PUBLISHER] LV Request:." << lv << endl;      
+    cout << "[CLIENT PUBLISHER] LV Request:" << lv << endl;    
+    ros::Rate loop_rate(10);
     geometry_msgs::Twist msg;
     msg.linear.x=lv;
     twist_publisher.publish(msg);
@@ -105,7 +106,8 @@ int requestLinearVelocity(float lv){
 }
 
 int requestAngularVelocity(float av){
-    cout << "[CLIENT PUBLISHER] AV Request:." << av << endl;      
+    cout << "[CLIENT PUBLISHER] AV Request:" << av << endl;      
+    ros::Rate loop_rate(10);
     geometry_msgs::Twist msg;
     msg.linear.z=av;
     twist_publisher.publish(msg);

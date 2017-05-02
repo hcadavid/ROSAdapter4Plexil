@@ -4,13 +4,13 @@
             FileName="husky-test1.ple">
    <GlobalDeclarations LineNo="12" ColNo="0">
       <CommandDeclaration LineNo="12" ColNo="0">
-         <Name>requestLinearVelocity</Name>
+         <Name>RequestLinearVelocity</Name>
          <Parameter>
             <Type>Real</Type>
          </Parameter>
       </CommandDeclaration>
       <CommandDeclaration LineNo="13" ColNo="0">
-         <Name>requestAngularVelocity</Name>
+         <Name>RequestAngularVelocity</Name>
          <Parameter>
             <Type>Real</Type>
          </Parameter>
@@ -59,7 +59,7 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>requestLinearVelocity</StringValue>
+                        <StringValue>RequestLinearVelocity</StringValue>
                      </Name>
                      <Arguments LineNo="18" ColNo="26">
                         <RealValue>10</RealValue>
@@ -80,7 +80,7 @@
                <NodeBody>
                   <Command>
                      <Name>
-                        <StringValue>requestAngularVelocity</StringValue>
+                        <StringValue>RequestAngularVelocity</StringValue>
                      </Name>
                      <Arguments LineNo="19" ColNo="27">
                         <RealValue>10</RealValue>

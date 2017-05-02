@@ -8,13 +8,13 @@
 
 //Commands
 
-Command requestLinearVelocity(Real);
-Command requestAngularVelocity(Real); 
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
 
 
 BasicTest:
 {
-    requestLinearVelocity(10);
-    requestAngularVelocity(10);  
+    RequestLinearVelocity(10);
+    RequestAngularVelocity(10);  
 }
 
