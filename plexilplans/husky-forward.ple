@@ -1,0 +1,62 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+
+
+All:{
+
+	Real startingYaw;
+	Real finalYPos;
+	Real finalXPos;
+
+	Sequence{
+
+		ForwardHor:{
+			Start Lookup(XPosition) < 6;
+			Repeat Lookup(XPosition) < 6;
+			RequestLinearVelocity(1);
+						
+		}
+
+		UpdateCoord:{
+			finalXPos=Lookup(XPosition);
+			finalYPos=Lookup(YPosition);
+			startingYaw=Lookup(Yaw);
+		}
+
+		UTurn:{			
+			Start !(Lookup(Yaw) > (startingYaw+1.5) && Lookup(Yaw) < (startingYaw+1.56));
+			Repeat !(Lookup(Yaw) > (startingYaw+1.5) && Lookup(Yaw) < (startingYaw+1.56));
+			pprint("Yaw:",Lookup(Yaw));
+			RequestAngularVelocity(0.2);	
+
+		}
+
+		ForwardVer:{
+			Start Lookup(YPosition) < finalYPos+6;
+			Repeat Lookup(YPosition) < finalYPos+6;
+			RequestLinearVelocity(1);
+		}
+
+
+		EndMessage:{
+			pprint("done!");
+			RequestLinearVelocity(0);
+		}
+
+	}
+
+
+}
+

@@ -44,7 +44,7 @@ int main(int argc, char **argv)
             geometry_msgs::Twist msg;
 
             msg.angular.z=0.2;
-            //msg.linear.x=1;
+            msg.linear.x=1;
 
             twist_pub.publish(msg);
 

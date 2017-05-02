@@ -109,7 +109,7 @@ int requestAngularVelocity(float av){
     cout << "[CLIENT PUBLISHER] AV Request:" << av << endl;      
     ros::Rate loop_rate(10);
     geometry_msgs::Twist msg;
-    msg.linear.z=av;
+    msg.angular.z=av;
     twist_publisher.publish(msg);
     loop_rate.sleep();        
     
@@ -122,6 +122,7 @@ int requestAngularVelocity(float av){
  */
 void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value, float delta){
     if (fabs((*getter)()-value) > delta){       
+        cout << "[ADAPTER ROS CLIENT] Updating." << value << endl;   
        (*setter)(value);
     }
 }
@@ -129,7 +130,7 @@ void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value
 
 void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
-    cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
+    //cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
     float delta=0.001;
     updateIfChanged(getXPosition,setXPosition,msg->pose.pose.position.x,delta);
     updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.x,delta);
