@@ -8,7 +8,7 @@
 
 // yaw in radians 
 float  getYaw ();
-void setIsForward (const float& s);
+void setYaw (const float& s);
 
 float  getXPosition ();
 void setXPosition (const float& s);

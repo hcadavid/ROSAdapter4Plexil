@@ -1,0 +1,20 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+
+//Commands
+
+Command requestLinearVelocity(Real);
+Command requestAngularVelocity(Real); 
+
+
+BasicTest:
+{
+    requestLinearVelocity(10);
+    requestAngularVelocity(10);  
+}
+

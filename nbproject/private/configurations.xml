@@ -6,6 +6,7 @@
         <in>reserved-words.txt</in>
       </df>
       <df name="plexilplans">
+        <in>husky-test1.ple</in>
       </df>
       <df name="rossamples">
         <in>1.robot_cleaner_move_rotate.cpp</in>
@@ -13,7 +14,10 @@
         <in>3.robot_cleaner_move_to_goal.cpp</in>
         <in>4.robot_cleaner_grid_clean.cpp</in>
         <in>5.robot_cleaner_spiral_clean.cpp</in>
-        <in>talker.cpp</in>
+        <in>husky_test.cpp</in>
+        <in>husky_test_2.cpp</in>
+        <in>husky_test_2_sub.cpp</in>
+        <in>talker_pose.cpp</in>
       </df>
       <df name="scripts">
       </df>

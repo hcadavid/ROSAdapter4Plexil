@@ -95,7 +95,7 @@ defAccessors(AngularVelocity, float)
 
 
 int requestLinearVelocity(float lv){
-
+    cout << "[CLIENT PUBLISHER] LV Request:." << lv << endl;      
     geometry_msgs::Twist msg;
     msg.linear.x=lv;
     twist_publisher.publish(msg);
@@ -105,7 +105,7 @@ int requestLinearVelocity(float lv){
 }
 
 int requestAngularVelocity(float av){
-
+    cout << "[CLIENT PUBLISHER] AV Request:." << av << endl;      
     geometry_msgs::Twist msg;
     msg.linear.z=av;
     twist_publisher.publish(msg);
@@ -118,6 +118,8 @@ int requestAngularVelocity(float av){
 
 void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
+    cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
+    
     setXPosition(msg->pose.pose.position.x);
     setYPosition(msg->pose.pose.position.y);
     setYaw(tf::getYaw(msg->pose.pose.orientation));
