@@ -35,7 +35,7 @@ ros::Subscriber odom_subscriber;	// to determine the position for turning the ro
 
 
 
-const float UPDATE_DELTA = 0.01;
+const float UPDATE_DELTA = 0.001;
 
 
 
@@ -48,6 +48,7 @@ static float XPosition = 0.0;
 static float YPosition = 0.0;
 static float LinearVelocity = 0.0;
 static float AngularVelocity = 0.0;
+static int Ready = 0;
 
 // Functions that provide access (read and write) for the simple parameter-less
 // states.  These functions are very similar and thus conveniently defined with
@@ -83,12 +84,16 @@ void setLinearVelocity (const float& s);
 float getAngularVelocity ();
 void setAngularVelocity (const float& s);
 
+int getReady();
+void setReady(const int& v);
+
 
 defAccessors(Yaw, float)
 defAccessors(XPosition, float )
 defAccessors(YPosition, float )
 defAccessors(LinearVelocity, float)
 defAccessors(AngularVelocity, float)
+defAccessors(Ready, int)
 
 /*--------------*/
 
@@ -121,6 +126,7 @@ int requestAngularVelocity(float av){
  * 'delta' (in absolute)
  */
 void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value, float delta){
+
     if (fabs((*getter)()-value) > delta){       
         cout << "[ADAPTER ROS CLIENT] Updating." << value << endl;   
        (*setter)(value);
@@ -131,12 +137,13 @@ void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value
 void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
     //cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
-    float delta=0.001;
-    updateIfChanged(getXPosition,setXPosition,msg->pose.pose.position.x,delta);
-    updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.x,delta);
-    updateIfChanged(getYaw,setYaw,tf::getYaw(msg->pose.pose.orientation),delta);
-    updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.linear.x,delta);
-    updateIfChanged(getLinearVelocity,setXPosition,msg->twist.twist.angular.z,delta);
+    setReady(1);
+    updateIfChanged(getXPosition,setXPosition,msg->pose.pose.position.x,UPDATE_DELTA);
+    updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.y,UPDATE_DELTA);
+    updateIfChanged(getYaw,setYaw,tf::getYaw(msg->pose.pose.orientation),UPDATE_DELTA);
+    updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.linear.x,UPDATE_DELTA);
+    updateIfChanged(getLinearVelocity,setXPosition,msg->twist.twist.angular.z,UPDATE_DELTA);
+
             
 }
 
@@ -157,19 +164,20 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
     pthread_sigmask(SIG_BLOCK, &mask, NULL);
     /*-----------*/
         
-    ros::NodeHandle n;  
+    //ros::NodeHandle n;  
 
-    odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
-    ros::spin();    
+    //odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
+    //ros::spin();    
     
     
     
     //For testing purposes - Keyboard generated events
-    /*while(true){
+    while(true){
         std::string cmd;        
         std::getline(std::cin, cmd);    
         float val=atof(cmd.c_str());
         cout << "GOT:" << val << endl;  
+        
         updateIfChanged(getXPosition,setXPosition,val,0.001);        
         //setXPosition(getXPosition()+val);
         //setYPosition(getYPosition()+val);
@@ -177,7 +185,7 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
         //setAngularVelocity(getAngul2arVelocity()+val);
         //setLinearVelocity(getLinearVelocity()+val);
         
-    }*/
+    }
     
     
     cout << "FINISHING THREAD." << endl;      

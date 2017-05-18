@@ -19,8 +19,42 @@
          <Name>pprint</Name>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Concurrence" LineNo="17" ColNo="4">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="17" ColNo="4">
       <NodeId>All</NodeId>
+      <InvariantCondition>
+         <NOT>
+            <OR>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">XPTest</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">XPTest</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">YPTest</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">YPTest</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+            </OR>
+         </NOT>
+      </InvariantCondition>
       <NodeBody>
          <NodeList>
             <Node NodeType="NodeList" epx="Sequence" LineNo="20" ColNo="12">
@@ -32,15 +66,25 @@
                   </DeclareVariable>
                </VariableDeclarations>
                <StartCondition>
-                  <GT>
+                  <LT>
                      <LookupOnChange>
                         <Name>
                            <StringValue>XPosition</StringValue>
                         </Name>
                      </LookupOnChange>
                      <IntegerValue>5</IntegerValue>
-                  </GT>
+                  </LT>
                </StartCondition>
+               <RepeatCondition>
+                  <LT>
+                     <LookupOnChange>
+                        <Name>
+                           <StringValue>XPosition</StringValue>
+                        </Name>
+                     </LookupOnChange>
+                     <IntegerValue>5</IntegerValue>
+                  </LT>
+               </RepeatCondition>
                <InvariantCondition>
                   <NOT>
                      <OR>
@@ -77,7 +121,7 @@
                </InvariantCondition>
                <NodeBody>
                   <NodeList>
-                     <Node NodeType="Assignment" LineNo="23" ColNo="12">
+                     <Node NodeType="Assignment" LineNo="25" ColNo="12">
                         <NodeId>ASSIGNMENT__1</NodeId>
                         <NodeBody>
                            <Assignment>
@@ -92,7 +136,7 @@
                            </Assignment>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="Command" LineNo="23" ColNo="12">
+                     <Node NodeType="Command" LineNo="25" ColNo="12">
                         <NodeId>COMMAND__2</NodeId>
                         <StartCondition>
                            <EQInternal>
@@ -107,7 +151,7 @@
                               <Name>
                                  <StringValue>pprint</StringValue>
                               </Name>
-                              <Arguments LineNo="24" ColNo="19">
+                              <Arguments LineNo="26" ColNo="19">
                                  <StringValue>xp-ok:</StringValue>
                                  <RealVariable>curval</RealVariable>
                               </Arguments>
@@ -117,94 +161,23 @@
                   </NodeList>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" LineNo="30" ColNo="16">
+            <Node NodeType="Command" LineNo="32" ColNo="16">
                <NodeId>YPTest</NodeId>
                <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>YPosition</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>5</IntegerValue>
-                  </GT>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">XPTest</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
                </StartCondition>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>pprint</StringValue>
                      </Name>
-                     <Arguments LineNo="31" ColNo="23">
-                        <StringValue>yp-ok</StringValue>
-                     </Arguments>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="36" ColNo="16">
-               <NodeId>YawPTest</NodeId>
-               <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>Yaw</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>5</IntegerValue>
-                  </GT>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>pprint</StringValue>
-                     </Name>
-                     <Arguments LineNo="37" ColNo="23">
-                        <StringValue>yaw-ok</StringValue>
-                     </Arguments>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="42" ColNo="16">
-               <NodeId>LinearSTest</NodeId>
-               <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>LinearVelocity</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>5</IntegerValue>
-                  </GT>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>pprint</StringValue>
-                     </Name>
-                     <Arguments LineNo="43" ColNo="23">
-                        <StringValue>lv-ok</StringValue>
-                     </Arguments>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="48" ColNo="16">
-               <NodeId>AngularVTest</NodeId>
-               <StartCondition>
-                  <GT>
-                     <LookupOnChange>
-                        <Name>
-                           <StringValue>AngularVelocity</StringValue>
-                        </Name>
-                     </LookupOnChange>
-                     <IntegerValue>5</IntegerValue>
-                  </GT>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>pprint</StringValue>
-                     </Name>
-                     <Arguments LineNo="49" ColNo="23">
-                        <StringValue>av-ok</StringValue>
+                     <Arguments LineNo="33" ColNo="23">
+                        <StringValue>Second task!!!</StringValue>
                      </Arguments>
                   </Command>
                </NodeBody>

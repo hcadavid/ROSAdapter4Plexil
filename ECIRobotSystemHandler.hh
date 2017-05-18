@@ -22,6 +22,9 @@ void setLinearVelocity (const float& s);
 float getAngularVelocity ();
 void setAngularVelocity (const float& s);
 
+int getReady();
+void setReady(const int& v);
+
 
 //Commands
 

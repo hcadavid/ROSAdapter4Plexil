@@ -66,6 +66,9 @@ static Value fetch (const string& state_name, const vector<Value>& args)
   else if (state_name == "AngularVelocity"){
     retval = getAngularVelocity();
   }
+  else if (state_name == "Ready"){
+    retval = getReady();
+  }
   else {
     cerr << error << "invalid state: [" << state_name << "]" << endl;
     retval = Unknown;

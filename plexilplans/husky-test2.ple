@@ -13,11 +13,13 @@ Command RequestAngularVelocity(Real);
 Command pprint(...);
 
 All:{
-    Concurrence{
+    Sequence{
         XPTest:
         {
             Real curval;
-            Start Lookup(XPosition)>5;
+            Start Lookup(XPosition)<5;	    
+            Repeat Lookup(XPosition)<5;
+            
 
             curval=Lookup(XPosition);
             pprint("xp-ok:",curval);
@@ -26,29 +28,10 @@ All:{
         }
         YPTest:
         {
-                Start Lookup(YPosition)>5;
-                pprint("yp-ok");	
+                
+                pprint("Second task!!!");	
 
         }
-        YawPTest:
-        {
-                Start Lookup(Yaw)>5;
-                pprint("yaw-ok");	
-
-        }
-        LinearSTest:
-        {
-                Start Lookup(LinearVelocity)>5;
-                pprint("lv-ok");	
-
-        }
-        AngularVTest:
-        {
-                Start Lookup(AngularVelocity)>5;
-                pprint("av-ok");	
-
-        }
-
 
 
     }
