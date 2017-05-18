@@ -85,7 +85,8 @@ defAccessors(SafetyWarning, int)
 
 
 int requestLinearVelocity(float lv){
-    cout << "[CLIENT PUBLISHER] LV Request:" << lv << endl;    
+    //TODO DEbug Log msg
+    //cout << "[CLIENT PUBLISHER] LV Request:" << lv << endl;    
     ros::Rate loop_rate(10);
     geometry_msgs::Twist msg;
     msg.linear.x=lv;
@@ -96,7 +97,8 @@ int requestLinearVelocity(float lv){
 }
 
 int requestAngularVelocity(float av){
-    cout << "[CLIENT PUBLISHER] AV Request:" << av << endl;      
+    //TODO DEbug Log msg    
+    //cout << "[CLIENT PUBLISHER] AV Request:" << av << endl;      
     ros::Rate loop_rate(10);
     geometry_msgs::Twist msg;
     msg.angular.z=av;
@@ -113,7 +115,8 @@ int requestAngularVelocity(float av){
 void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value, float delta){
 
     if (fabs((*getter)()-value) > delta){       
-        cout << "[ADAPTER ROS CLIENT] Updating." << value << endl;   
+        //Show as debug log message
+        //cout << "[ADAPTER ROS CLIENT] Updating." << value << endl;   
        (*setter)(value);
     }
 }

@@ -267,7 +267,8 @@ void ECIRobotAdapter::propagateValueChange (const State& state,
                                           const vector<Value>& vals) const
 {    
   if (!isStateSubscribed(state)){
-    cout << "[ERROR] Value changes propagation failed:" << state << "\n";
+    //TODO Show error in logs
+    //cout << "[ERROR] Value changes propagation failed:" << state << "\n";
       return; 
   }
   else{      

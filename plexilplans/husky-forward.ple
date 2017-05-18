@@ -5,6 +5,8 @@
 //YPosition
 //LinearVelocity
 //AngularVelocity
+//Ready
+//SafetyWarning
 
 //Commands
 
@@ -19,6 +21,9 @@ All:{
 	Real startingYaw;
 	Real finalYPos;
 	Real finalXPos;
+
+	Start Lookup(Ready) == 1;
+
 
 	Sequence{
 
@@ -53,6 +58,8 @@ All:{
 		EndMessage:{
 			pprint("done!");
 			RequestLinearVelocity(0);
+			pprint("X:",Lookup(XPosition));
+			pprint("Y:",Lookup(YPosition));
 		}
 
 	}

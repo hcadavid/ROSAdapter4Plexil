@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PlexilPlan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:tr="extended-plexil-translator"
-            FileName="plexilplans/husky-forward.ple">
-   <GlobalDeclarations LineNo="12" ColNo="0">
-      <CommandDeclaration LineNo="12" ColNo="0">
+            FileName="husky-forward.ple">
+   <GlobalDeclarations LineNo="14" ColNo="0">
+      <CommandDeclaration LineNo="14" ColNo="0">
          <Name>RequestLinearVelocity</Name>
          <Parameter>
             <Type>Real</Type>
          </Parameter>
       </CommandDeclaration>
-      <CommandDeclaration LineNo="13" ColNo="0">
+      <CommandDeclaration LineNo="15" ColNo="0">
          <Name>RequestAngularVelocity</Name>
          <Parameter>
             <Type>Real</Type>
          </Parameter>
       </CommandDeclaration>
-      <CommandDeclaration LineNo="14" ColNo="0">
+      <CommandDeclaration LineNo="16" ColNo="0">
          <Name>pprint</Name>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="Sequence" LineNo="20" ColNo="1">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="22" ColNo="1">
       <NodeId>All</NodeId>
       <VariableDeclarations>
-         <DeclareVariable LineNo="19" ColNo="1">
+         <DeclareVariable LineNo="21" ColNo="1">
             <Name>startingYaw</Name>
             <Type>Real</Type>
          </DeclareVariable>
-         <DeclareVariable LineNo="20" ColNo="1">
+         <DeclareVariable LineNo="22" ColNo="1">
             <Name>finalYPos</Name>
             <Type>Real</Type>
          </DeclareVariable>
-         <DeclareVariable LineNo="21" ColNo="1">
+         <DeclareVariable LineNo="23" ColNo="1">
             <Name>finalXPos</Name>
             <Type>Real</Type>
          </DeclareVariable>
       </VariableDeclarations>
+      <StartCondition>
+         <EQNumeric>
+            <LookupOnChange>
+               <Name>
+                  <StringValue>Ready</StringValue>
+               </Name>
+            </LookupOnChange>
+            <IntegerValue>1</IntegerValue>
+         </EQNumeric>
+      </StartCondition>
       <InvariantCondition>
          <NOT>
             <AND>
@@ -55,7 +65,7 @@
       </InvariantCondition>
       <NodeBody>
          <NodeList>
-            <Node NodeType="NodeList" epx="Sequence" LineNo="24" ColNo="1">
+            <Node NodeType="NodeList" epx="Sequence" LineNo="29" ColNo="1">
                <NodeId>Sequence__0</NodeId>
                <InvariantCondition>
                   <NOT>
@@ -135,7 +145,7 @@
                </InvariantCondition>
                <NodeBody>
                   <NodeList>
-                     <Node NodeType="Command" LineNo="28" ColNo="3">
+                     <Node NodeType="Command" LineNo="33" ColNo="3">
                         <NodeId>ForwardHor</NodeId>
                         <StartCondition>
                            <LT>
@@ -162,13 +172,13 @@
                               <Name>
                                  <StringValue>RequestLinearVelocity</StringValue>
                               </Name>
-                              <Arguments LineNo="29" ColNo="25">
+                              <Arguments LineNo="34" ColNo="25">
                                  <RealValue>1</RealValue>
                               </Arguments>
                            </Command>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="NodeList" epx="Sequence" LineNo="34" ColNo="3">
+                     <Node NodeType="NodeList" epx="Sequence" LineNo="39" ColNo="3">
                         <NodeId>UpdateCoord</NodeId>
                         <StartCondition>
                            <EQInternal>
@@ -228,7 +238,7 @@
                         </InvariantCondition>
                         <NodeBody>
                            <NodeList>
-                              <Node NodeType="Assignment" LineNo="34" ColNo="3">
+                              <Node NodeType="Assignment" LineNo="39" ColNo="3">
                                  <NodeId>ASSIGNMENT__2</NodeId>
                                  <NodeBody>
                                     <Assignment>
@@ -243,7 +253,7 @@
                                     </Assignment>
                                  </NodeBody>
                               </Node>
-                              <Node NodeType="Assignment" LineNo="35" ColNo="3">
+                              <Node NodeType="Assignment" LineNo="40" ColNo="3">
                                  <NodeId>ASSIGNMENT__3</NodeId>
                                  <StartCondition>
                                     <EQInternal>
@@ -266,7 +276,7 @@
                                     </Assignment>
                                  </NodeBody>
                               </Node>
-                              <Node NodeType="Assignment" LineNo="36" ColNo="3">
+                              <Node NodeType="Assignment" LineNo="41" ColNo="3">
                                  <NodeId>ASSIGNMENT__4</NodeId>
                                  <StartCondition>
                                     <EQInternal>
@@ -292,7 +302,7 @@
                            </NodeList>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="NodeList" epx="Sequence" LineNo="40" ColNo="3">
+                     <Node NodeType="NodeList" epx="Sequence" LineNo="45" ColNo="3">
                         <NodeId>UTurn</NodeId>
                         <StartCondition>
                            <AND>
@@ -310,7 +320,7 @@
                                              <StringValue>Yaw</StringValue>
                                           </Name>
                                        </LookupOnChange>
-                                       <ADD LineNo="40" ColNo="37">
+                                       <ADD LineNo="45" ColNo="37">
                                           <RealVariable>startingYaw</RealVariable>
                                           <RealValue>1.5</RealValue>
                                        </ADD>
@@ -321,7 +331,7 @@
                                              <StringValue>Yaw</StringValue>
                                           </Name>
                                        </LookupOnChange>
-                                       <ADD LineNo="40" ColNo="72">
+                                       <ADD LineNo="45" ColNo="72">
                                           <RealVariable>startingYaw</RealVariable>
                                           <RealValue>1.56</RealValue>
                                        </ADD>
@@ -339,7 +349,7 @@
                                           <StringValue>Yaw</StringValue>
                                        </Name>
                                     </LookupOnChange>
-                                    <ADD LineNo="41" ColNo="38">
+                                    <ADD LineNo="46" ColNo="38">
                                        <RealVariable>startingYaw</RealVariable>
                                        <RealValue>1.5</RealValue>
                                     </ADD>
@@ -350,7 +360,7 @@
                                           <StringValue>Yaw</StringValue>
                                        </Name>
                                     </LookupOnChange>
-                                    <ADD LineNo="41" ColNo="73">
+                                    <ADD LineNo="46" ColNo="73">
                                        <RealVariable>startingYaw</RealVariable>
                                        <RealValue>1.56</RealValue>
                                     </ADD>
@@ -394,14 +404,14 @@
                         </InvariantCondition>
                         <NodeBody>
                            <NodeList>
-                              <Node NodeType="Command" LineNo="41" ColNo="3">
+                              <Node NodeType="Command" LineNo="46" ColNo="3">
                                  <NodeId>COMMAND__5</NodeId>
                                  <NodeBody>
                                     <Command>
                                        <Name>
                                           <StringValue>pprint</StringValue>
                                        </Name>
-                                       <Arguments LineNo="42" ColNo="10">
+                                       <Arguments LineNo="47" ColNo="10">
                                           <StringValue>Yaw:</StringValue>
                                           <LookupNow>
                                              <Name>
@@ -412,7 +422,7 @@
                                     </Command>
                                  </NodeBody>
                               </Node>
-                              <Node NodeType="Command" LineNo="42" ColNo="3">
+                              <Node NodeType="Command" LineNo="47" ColNo="3">
                                  <NodeId>COMMAND__6</NodeId>
                                  <StartCondition>
                                     <EQInternal>
@@ -427,7 +437,7 @@
                                        <Name>
                                           <StringValue>RequestAngularVelocity</StringValue>
                                        </Name>
-                                       <Arguments LineNo="43" ColNo="26">
+                                       <Arguments LineNo="48" ColNo="26">
                                           <RealValue>0.2</RealValue>
                                        </Arguments>
                                     </Command>
@@ -436,7 +446,7 @@
                            </NodeList>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="Command" LineNo="49" ColNo="3">
+                     <Node NodeType="Command" LineNo="54" ColNo="3">
                         <NodeId>ForwardVer</NodeId>
                         <StartCondition>
                            <AND>
@@ -452,7 +462,7 @@
                                        <StringValue>YPosition</StringValue>
                                     </Name>
                                  </LookupOnChange>
-                                 <ADD LineNo="48" ColNo="38">
+                                 <ADD LineNo="53" ColNo="38">
                                     <RealVariable>finalYPos</RealVariable>
                                     <IntegerValue>6</IntegerValue>
                                  </ADD>
@@ -466,7 +476,7 @@
                                     <StringValue>YPosition</StringValue>
                                  </Name>
                               </LookupOnChange>
-                              <ADD LineNo="49" ColNo="39">
+                              <ADD LineNo="54" ColNo="39">
                                  <RealVariable>finalYPos</RealVariable>
                                  <IntegerValue>6</IntegerValue>
                               </ADD>
@@ -477,13 +487,13 @@
                               <Name>
                                  <StringValue>RequestLinearVelocity</StringValue>
                               </Name>
-                              <Arguments LineNo="50" ColNo="25">
+                              <Arguments LineNo="55" ColNo="25">
                                  <RealValue>1</RealValue>
                               </Arguments>
                            </Command>
                         </NodeBody>
                      </Node>
-                     <Node NodeType="NodeList" epx="Sequence" LineNo="55" ColNo="3">
+                     <Node NodeType="NodeList" epx="Sequence" LineNo="60" ColNo="3">
                         <NodeId>EndMessage</NodeId>
                         <StartCondition>
                            <EQInternal>
@@ -524,25 +534,53 @@
                                        <NodeStateValue>FINISHED</NodeStateValue>
                                     </EQInternal>
                                  </AND>
+                                 <AND>
+                                    <EQInternal>
+                                       <NodeOutcomeVariable>
+                                          <NodeRef dir="child">COMMAND__10</NodeRef>
+                                       </NodeOutcomeVariable>
+                                       <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                    </EQInternal>
+                                    <EQInternal>
+                                       <NodeStateVariable>
+                                          <NodeRef dir="child">COMMAND__10</NodeRef>
+                                       </NodeStateVariable>
+                                       <NodeStateValue>FINISHED</NodeStateValue>
+                                    </EQInternal>
+                                 </AND>
+                                 <AND>
+                                    <EQInternal>
+                                       <NodeOutcomeVariable>
+                                          <NodeRef dir="child">COMMAND__11</NodeRef>
+                                       </NodeOutcomeVariable>
+                                       <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                                    </EQInternal>
+                                    <EQInternal>
+                                       <NodeStateVariable>
+                                          <NodeRef dir="child">COMMAND__11</NodeRef>
+                                       </NodeStateVariable>
+                                       <NodeStateValue>FINISHED</NodeStateValue>
+                                    </EQInternal>
+                                 </AND>
                               </OR>
                            </NOT>
                         </InvariantCondition>
                         <NodeBody>
                            <NodeList>
-                              <Node NodeType="Command" LineNo="54" ColNo="3">
+                              <Node NodeType="Command" LineNo="59" ColNo="3">
                                  <NodeId>COMMAND__8</NodeId>
                                  <NodeBody>
                                     <Command>
                                        <Name>
                                           <StringValue>pprint</StringValue>
                                        </Name>
-                                       <Arguments LineNo="55" ColNo="10">
+                                       <Arguments LineNo="60" ColNo="10">
                                           <StringValue>done!</StringValue>
                                        </Arguments>
                                     </Command>
                                  </NodeBody>
                               </Node>
-                              <Node NodeType="Command" LineNo="55" ColNo="3">
+                              <Node NodeType="Command" LineNo="60" ColNo="3">
                                  <NodeId>COMMAND__9</NodeId>
                                  <StartCondition>
                                     <EQInternal>
@@ -557,8 +595,60 @@
                                        <Name>
                                           <StringValue>RequestLinearVelocity</StringValue>
                                        </Name>
-                                       <Arguments LineNo="56" ColNo="25">
+                                       <Arguments LineNo="61" ColNo="25">
                                           <RealValue>0</RealValue>
+                                       </Arguments>
+                                    </Command>
+                                 </NodeBody>
+                              </Node>
+                              <Node NodeType="Command" LineNo="61" ColNo="3">
+                                 <NodeId>COMMAND__10</NodeId>
+                                 <StartCondition>
+                                    <EQInternal>
+                                       <NodeStateVariable>
+                                          <NodeRef dir="sibling">COMMAND__9</NodeRef>
+                                       </NodeStateVariable>
+                                       <NodeStateValue>FINISHED</NodeStateValue>
+                                    </EQInternal>
+                                 </StartCondition>
+                                 <NodeBody>
+                                    <Command>
+                                       <Name>
+                                          <StringValue>pprint</StringValue>
+                                       </Name>
+                                       <Arguments LineNo="62" ColNo="10">
+                                          <StringValue>X:</StringValue>
+                                          <LookupNow>
+                                             <Name>
+                                                <StringValue>XPosition</StringValue>
+                                             </Name>
+                                          </LookupNow>
+                                       </Arguments>
+                                    </Command>
+                                 </NodeBody>
+                              </Node>
+                              <Node NodeType="Command" LineNo="62" ColNo="3">
+                                 <NodeId>COMMAND__11</NodeId>
+                                 <StartCondition>
+                                    <EQInternal>
+                                       <NodeStateVariable>
+                                          <NodeRef dir="sibling">COMMAND__10</NodeRef>
+                                       </NodeStateVariable>
+                                       <NodeStateValue>FINISHED</NodeStateValue>
+                                    </EQInternal>
+                                 </StartCondition>
+                                 <NodeBody>
+                                    <Command>
+                                       <Name>
+                                          <StringValue>pprint</StringValue>
+                                       </Name>
+                                       <Arguments LineNo="63" ColNo="10">
+                                          <StringValue>Y:</StringValue>
+                                          <LookupNow>
+                                             <Name>
+                                                <StringValue>YPosition</StringValue>
+                                             </Name>
+                                          </LookupNow>
                                        </Arguments>
                                     </Command>
                                  </NodeBody>
