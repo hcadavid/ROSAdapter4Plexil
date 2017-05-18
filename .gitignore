@@ -1,4 +1,5 @@
 *.o
 *.dylib
 *.so
+./Makedepend
 Makedepend

@@ -5,6 +5,8 @@
 //YPosition
 //LinearVelocity
 //AngularVelocity
+//Ready
+//SafetyWarning
 
 //Commands
 
@@ -12,8 +14,23 @@ Command RequestLinearVelocity(Real);
 Command RequestAngularVelocity(Real); 
 Command pprint(...);
 
-All:{
+All:{    
+    Boolean abortPlan=false;    
+
+    Start Lookup(Ready)==1;
+    End abortPlan==true;
+
+    pprint("Starting");
+    
     Concurrence{
+        
+        Stop:
+        {
+            Start Lookup(SafetyWarning)==1;
+            pprint("Aborting!");
+            abortPlan=true;
+        }
+
         XPTest:
         {
             Real curval;

@@ -25,6 +25,9 @@ void setAngularVelocity (const float& s);
 int getReady();
 void setReady(const int& v);
 
+int getSafetyWarning();
+void setSafetyWarning(const int& v);
+
 
 //Commands
 

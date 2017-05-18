@@ -49,6 +49,7 @@ static float YPosition = 0.0;
 static float LinearVelocity = 0.0;
 static float AngularVelocity = 0.0;
 static int Ready = 0;
+static int SafetyWarning = 0;
 
 // Functions that provide access (read and write) for the simple parameter-less
 // states.  These functions are very similar and thus conveniently defined with
@@ -69,23 +70,6 @@ void set##name (const type & s) \
 }
 
 
-float  getYaw ();
-void setYaw (const float& s);
-
-float  getXPosition ();
-void setXPosition (const float& s);
-
-float  getYPosition ();
-void setYPosition (const float& s);
-
-float  getLinearVelocity ();
-void setLinearVelocity (const float& s);
-
-float getAngularVelocity ();
-void setAngularVelocity (const float& s);
-
-int getReady();
-void setReady(const int& v);
 
 
 defAccessors(Yaw, float)
@@ -94,6 +78,7 @@ defAccessors(YPosition, float )
 defAccessors(LinearVelocity, float)
 defAccessors(AngularVelocity, float)
 defAccessors(Ready, int)
+defAccessors(SafetyWarning, int)
 
 /*--------------*/
 
@@ -164,19 +149,23 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
     pthread_sigmask(SIG_BLOCK, &mask, NULL);
     /*-----------*/
         
-    //ros::NodeHandle n;  
+    ros::NodeHandle n;  
 
-    //odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
-    //ros::spin();    
-    
-    
+    odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
+    ros::spin();    
     
     //For testing purposes - Keyboard generated events
-    while(true){
+    /*while(true){
         std::string cmd;        
         std::getline(std::cin, cmd);    
         float val=atof(cmd.c_str());
         cout << "GOT:" << val << endl;  
+        if (val == 47){
+            setSafetyWarning(1);
+        }
+        if (val == 18){
+            setReady(1);
+        }
         
         updateIfChanged(getXPosition,setXPosition,val,0.001);        
         //setXPosition(getXPosition()+val);
@@ -185,7 +174,7 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
         //setAngularVelocity(getAngul2arVelocity()+val);
         //setLinearVelocity(getLinearVelocity()+val);
         
-    }
+    }*/
     
     
     cout << "FINISHING THREAD." << endl;      
