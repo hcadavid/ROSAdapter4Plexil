@@ -18,41 +18,59 @@ Command pprint(...);
 
 All:{
 
-	Real startingYaw;
+	Real startingYaw=0;
+	Real startingXPos=0;
+	Real startingYPos=0;
+
 	Real finalYPos;
 	Real finalXPos;
+	Real FIELD_WIDTH=10;
+	Real FIELD_HEIGHT=8;
+	Real TURN_YAW_DELTA=0.1;
+	Boolean completeTurn=false;
+	Real PI=3.1416;
+
 
 	Start Lookup(Ready) == 1;
 
-
 	Sequence{
 
+		InitialOdometryLookup:{
+			startingYaw=Lookup(Yaw);
+			startingXPos=Lookup(XPosition);
+			startingYPos=Lookup(YPosition);
+		}
+
+		TurnToInitialPosition:{
+			Boolean completeTurn=false;
+
+			Concurrence{
+
+				StaticTurn:{		
+
+					Repeat completeTurn==false;
+
+					RequestAngularVelocity(1);     
+
+				}
+
+				CompleteTurnCheck:{
+					Start Lookup(Yaw)>((PI-TURN_YAW_DELTA)*-1) && Lookup(Yaw)>(PI-TURN_YAW_DELTA);
+					completeTurn=true;
+				}
+
+
+			}
+
+		}
+
 		ForwardHor:{
-			Start Lookup(XPosition) < 6;
-			Repeat Lookup(XPosition) < 6;
+			Start abs(startingXPos-Lookup(XPosition)) < FIELD_WIDTH;
+			Repeat abs(startingXPos-Lookup(XPosition)) < FIELD_WIDTH;
 			RequestLinearVelocity(1);
 						
 		}
 
-		UpdateCoord:{
-			finalXPos=Lookup(XPosition);
-			finalYPos=Lookup(YPosition);
-			startingYaw=Lookup(Yaw);
-		}
-
-		UTurn:{			
-			Start !(Lookup(Yaw) > (startingYaw+1.5) && Lookup(Yaw) < (startingYaw+1.56));
-			Repeat !(Lookup(Yaw) > (startingYaw+1.5) && Lookup(Yaw) < (startingYaw+1.56));
-			pprint("Yaw:",Lookup(Yaw));
-			RequestAngularVelocity(0.2);	
-
-		}
-
-		ForwardVer:{
-			Start Lookup(YPosition) < finalYPos+6;
-			Repeat Lookup(YPosition) < finalYPos+6;
-			RequestLinearVelocity(1);
-		}
 
 
 		EndMessage:{

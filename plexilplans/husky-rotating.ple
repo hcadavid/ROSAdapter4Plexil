@@ -1,0 +1,55 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+Rotate:{
+
+	Boolean completeTurn=false;
+	Real PI=3.1416;
+
+	Real initialYaw=0;
+
+	Start Lookup(Ready)==1;
+
+	initialYaw=Lookup(Yaw);
+
+	Concurrence{
+
+		StaticTurn:{		
+
+			Repeat completeTurn==false;
+
+			RequestAngularVelocity(1);     
+
+			pprint("Angle ",Lookup(Yaw));
+			pprint("Diff ",abs(initialYaw-Lookup(Yaw)));
+
+		}
+
+		CompleteTurnCheck:{
+
+
+			Start  (abs(initialYaw-Lookup(Yaw)) <= PI && abs(initialYaw-Lookup(Yaw))>=PI/2) || 
+				   (abs(initialYaw-Lookup(Yaw)) > PI && (2*PI-abs(initialYaw-Lookup(Yaw)))>=PI/2);
+			 
+			completeTurn=true;
+		}
+
+
+	}
+
+}
+
+       
