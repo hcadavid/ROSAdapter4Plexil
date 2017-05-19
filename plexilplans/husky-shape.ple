@@ -1,0 +1,58 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+
+
+All:{
+
+
+	Real FIELD_WIDTH=4;
+	Real FIELD_HEIGHT=4;
+	Real TURN_YAW_DELTA=0.1;
+	Boolean completeTurn=false;
+	Real PI=3.1415;
+
+
+	Start Lookup(Ready) == 1;
+	
+	pprint ("X:",Lookup(XPosition));
+
+	Sequence{
+
+
+		Turn:{
+			Repeat Lookup(Yaw) < PI/2;
+			RequestAngularVelocity(0.2);								
+		}
+
+		
+		ForwardHor:{		
+			Start Lookup(XPosition) < 5;
+			Repeat Lookup(XPosition) < 5;
+			RequestLinearVelocity(1);								
+			pprint ("X:",Lookup(XPosition));
+			
+		}
+
+		Stop:{
+			RequestLinearVelocity(0);
+		}
+
+
+	}
+
+}
+

@@ -24,14 +24,17 @@ All:{
 
 	Real finalYPos;
 	Real finalXPos;
-	Real FIELD_WIDTH=10;
-	Real FIELD_HEIGHT=8;
+	Real currXPos, currYPos;
+
+	Real FIELD_WIDTH=4;
+	Real FIELD_HEIGHT=4;
 	Real TURN_YAW_DELTA=0.1;
 	Boolean completeTurn=false;
 	Real PI=3.1416;
 
 
 	Start Lookup(Ready) == 1;
+	
 
 	Sequence{
 
@@ -41,8 +44,27 @@ All:{
 			startingYPos=Lookup(YPosition);
 		}
 
-		TurnToInitialPosition:{
+		ForwardHor:{		
+
+			Start sqrt((startingXPos-Lookup(XPosition))*(startingXPos-Lookup(XPosition))+
+				  (startingYPos-Lookup(YPosition))*(startingYPos-Lookup(YPosition))) < FIELD_WIDTH;
+			Repeat sqrt((startingXPos-Lookup(XPosition))*(startingXPos-Lookup(XPosition))+
+				  (startingYPos-Lookup(YPosition))*(startingYPos-Lookup(YPosition))) < FIELD_WIDTH;
+
+			RequestLinearVelocity(1);								
+			
+		}
+
+
+		TurnNinetyDegrees:{
 			Boolean completeTurn=false;
+
+			Real currentYaw;
+
+			RequestLinearVelocity(0);								
+
+			currentYaw=Lookup(Yaw);
+			pprint("Current yaw ",currentYaw);
 
 			Concurrence{
 
@@ -50,27 +72,62 @@ All:{
 
 					Repeat completeTurn==false;
 
-					RequestAngularVelocity(1);     
+					RequestAngularVelocity(0.2);     
+
+					pprint("Original yaw ",currentYaw);
+					pprint("Current yaw ",Lookup(Yaw));
+					
+					//pprint("Pos :",Lookup(XPosition),Lookup(YPosition));
+					//pprint("Angle",Lookup(Yaw));
+					//pprint("Initial",currentYaw);
+					//pprint("Diff",abs(Lookup(Yaw)-currentYaw));
 
 				}
 
-				CompleteTurnCheck:{
-					Start Lookup(Yaw)>((PI-TURN_YAW_DELTA)*-1) && Lookup(Yaw)>(PI-TURN_YAW_DELTA);
+				CompleteTurnCheck1:{					
+					Start  (abs(Lookup(Yaw)-currentYaw) <= PI && abs(Lookup(Yaw)-currentYaw)>=2*PI);					
+					pprint("Turn complete 1");
 					completeTurn=true;
 				}
+
+				CompleteTurnCheck2:{					
+					Start  (abs(Lookup(Yaw)-currentYaw) > PI && ((2*PI)-abs(Lookup(Yaw)-currentYaw))>=2*PI);
+					pprint("Turn complete 2");
+					completeTurn=true;
+				}				
 
 
 			}
 
 		}
 
-		ForwardHor:{
-			Start abs(startingXPos-Lookup(XPosition)) < FIELD_WIDTH;
-			Repeat abs(startingXPos-Lookup(XPosition)) < FIELD_WIDTH;
-			RequestLinearVelocity(1);
-						
+		UpdateOdom:{
+			currXPos=Lookup(XPosition);
+			currYPos=Lookup(YPosition);
+			pprint("Pos :",currXPos,currYPos);
+			pprint("Pos :",Lookup(XPosition),Lookup(YPosition));
+
 		}
 
+
+		ForwardVer:{					
+
+			Start sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < FIELD_HEIGHT;
+			Repeat sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < FIELD_HEIGHT;
+			
+			currXPos=Lookup(XPosition);
+			currYPos=Lookup(YPosition);
+
+			RequestLinearVelocity(1);													
+
+			//pprint("From :",currXPos,currYPos);
+			pprint("PosForward :",Lookup(XPosition),Lookup(YPosition));
+			//pprint(sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				 		//(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))));
+
+		}
 
 
 		EndMessage:{
@@ -81,7 +138,6 @@ All:{
 		}
 
 	}
-
 
 }
 

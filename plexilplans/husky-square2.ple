@@ -36,71 +36,38 @@ Rotate:{
 
 
 
+	for (Integer i = 1; i <= 4; i + 1) 
+	{
 
 		Move:{
+			Real currXPos,currYPos;
 
-			for (Integer j = 0; j <= 20; j + 1) 
-			{
-				RequestLinearVelocity(1); 
+			Sequence{
+				UpdateOdom:{
+					currXPos=Lookup(XPosition);
+					currYPos=Lookup(YPosition);
+				}
+				MoveUntilDistanceReached:{
+					Start sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < WIDTH;
+					Repeat sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < WIDTH;
+			
+					RequestLinearVelocity(1);
+				}
+
 			}
 
 			
-		}
-
-
-		Turn:{
-			Concurrence{
-
-
-				StaticTurn:{		
-
-					//Start false;
-
-					Repeat completeTurn==false;
-
-					RequestAngularVelocity(0.1);     
-
-					
-					pprint("Angle ",Lookup(Yaw),Lookup(Yaw));
-					pprint("Diff ",abs(initialYaw-Lookup(Yaw)));
-
-				}
-
-				CompleteTurnCheck:{
-
-
-					Start  (abs(initialYaw-Lookup(Yaw)) <= PI && abs(initialYaw-Lookup(Yaw))>=PI/2) || 
-						   (abs(initialYaw-Lookup(Yaw)) > PI && (2*PI-abs(initialYaw-Lookup(Yaw)))>=PI/2);
-					 
-					completeTurn=true;
-				}
-
-			}
-
-
 		}
 
 		Stop:{
 			RequestAngularVelocity(0); 
 		}
 
-		Move2:{
-
-			for (Integer j = 0; j <= 20; j + 1) 
-			{
-				RequestLinearVelocity(1); 
-			}
 
 			
-		}
-
-		Stop2:{
-			RequestAngularVelocity(0); 
-		}
-
-
-			
-		Turn2:{
+		Turn:{
 
 			initialYaw=Lookup(Yaw);
 			completeTurn=false;
@@ -135,9 +102,12 @@ Rotate:{
 
 
 		}
+
+
+	}
+
+
 	
-
-
 
 
 

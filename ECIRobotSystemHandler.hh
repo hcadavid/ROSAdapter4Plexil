@@ -35,6 +35,8 @@ int requestLinearVelocity(float lv);
 
 int requestAngularVelocity(float av);
 
+float radAnglesDiff(double theta1,double theta2);
+
 //setup routines
 
 void setupROSPublisher();

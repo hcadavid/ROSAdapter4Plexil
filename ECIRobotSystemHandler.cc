@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string>
 #include <csignal>
+#include <math.h>
 
 //ros/dependencies
 #include <tf/transform_datatypes.h>
@@ -35,7 +36,7 @@ ros::Subscriber odom_subscriber;	// to determine the position for turning the ro
 
 
 
-const float UPDATE_DELTA = 0.001;
+const float UPDATE_DELTA = 0.00001;
 
 
 
@@ -83,6 +84,16 @@ defAccessors(SafetyWarning, int)
 /*--------------*/
 
 
+float radAnglesDiff(double theta1,double theta2){
+    
+    double dif = fmod ((theta1 - theta2),(2*M_PI)); 
+    if (theta1>theta2) {dif += 2*M_PI;}
+    if (dif >= M_PI) {dif = -(dif - 2*M_PI);}
+    dif*=180.0/M_PI;
+    return dif;
+
+}
+
 
 int requestLinearVelocity(float lv){
     //TODO DEbug Log msg
@@ -125,13 +136,19 @@ void updateIfChanged(float (*getter)(),void (*setter)(const float &),float value
 void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
 
     //cout << "[ADAPTER ROS CLIENT ] GOT." << msg << endl;      
-    setReady(1);
+    
+    float yaw;
+    yaw=tf::getYaw(msg->pose.pose.orientation);
+
+
     updateIfChanged(getXPosition,setXPosition,msg->pose.pose.position.x,UPDATE_DELTA);
     updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.y,UPDATE_DELTA);
-    updateIfChanged(getYaw,setYaw,tf::getYaw(msg->pose.pose.orientation),UPDATE_DELTA);
+    //updateIfChanged(getYaw,setYaw,yaw>=0?yaw:2*M_PI+yaw,UPDATE_DELTA);
+    updateIfChanged(getYaw,setYaw,yaw,UPDATE_DELTA);
     updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.linear.x,UPDATE_DELTA);
     updateIfChanged(getLinearVelocity,setXPosition,msg->twist.twist.angular.z,UPDATE_DELTA);
-
+    
+    setReady(1);
             
 }
 
