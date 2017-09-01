@@ -1,0 +1,64 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+All:{
+
+	Real startingYaw=0;
+	Real startingXPos=0;
+	Real startingYPos=0;
+
+	Real finalYPos;
+	Real finalXPos;
+	Real currXPos, currYPos;
+
+	Real FIELD_WIDTH=4;
+	Real FIELD_HEIGHT=4;
+	Real TURN_YAW_DELTA=0.1;
+	Boolean completeTurn=false;
+	Real PI=3.1416;
+
+	Real targetYaw;
+
+	Start Lookup(Ready) == 1;
+	
+	Sequence{
+
+		InitialOdometryLookup:{
+			startingYaw=Lookup(Yaw);
+			startingXPos=Lookup(XPosition);
+			startingYPos=Lookup(YPosition);
+			targetYaw=startingYaw+(PI/2);
+		}
+
+
+		Concurrence{
+			Forward:{
+				Repeat true;
+				RequestLinearVelocity(0.5);
+			}
+
+			Steer:{
+				//Repeat Lookup(Yaw)!=
+				Repeat true;
+				RequestAngularVelocity(1);
+				pprint("Yaw: ",Lookup(Yaw));
+			}
+		}
+
+	}
+
+}
+

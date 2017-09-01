@@ -37,16 +37,7 @@ Rotate:{
 
 
 
-		Move:{
-
-			for (Integer j = 0; j <= 20; j + 1) 
-			{
-				RequestLinearVelocity(1); 
-			}
-
-			
-		}
-
+		
 
 		Turn:{
 			Concurrence{
