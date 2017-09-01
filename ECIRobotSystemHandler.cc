@@ -171,7 +171,7 @@ void *subscribeToROSEventsAndSpin(void *ptr) {
         
     ros::NodeHandle n;  
 
-    odom_subscriber = n.subscribe("/husky_velocity_controller/odom", 10, ROSEventsCallback);
+    odom_subscriber = n.subscribe("/odom", 10, ROSEventsCallback);
     ros::spin();    
     
     //For testing purposes - Keyboard generated events
@@ -220,7 +220,7 @@ void setupROSPublisher(){
     ros::init(argc, argv, "Plexil_ROS_ADAPTER");
     ros::NodeHandle n;     
 
-    twist_publisher = n.advertise<geometry_msgs::Twist>("/husky_velocity_controller/cmd_vel", 100);
+    twist_publisher = n.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
    
     ROS_INFO("\n\n\n ********ROS TWIST PUBLISHER INITIALIZED*********\n");
 }
