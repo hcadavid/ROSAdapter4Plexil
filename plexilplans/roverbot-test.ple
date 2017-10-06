@@ -17,10 +17,112 @@ Real Command distance(Real x1,Real y1,Real x2,Real y2);
 
 
 All:{
-	Real d=0;
 
-	pprint("hello");
-	d=distance(1,1,100,100);
-	pprint(d);
+	Real FOLLOW_DIST=50;
+	Real sim_xp=0;
+	Real sim_yp=0;
+	Real steer_xp=0;
+	Real steer_yp=0;
+	Real AXIS_DISPLACEMENT_DELTA=0.01;
+
+	Real lookAheadDistance=0;
+
+	Integer wayPointsX[4] = #(1 20 30 50);
+	Integer wayPointsY[4] = #(1 20 30 50);
+
+	Integer currentWayPointIndex=1;
+	Integer previousWayPointIndex=0;
+
+	InitialContext:{
+		sim_xp=Lookup(XPosition);
+		sim_yp=Lookup(YPosition);
+		pprint("xini:",sim_xp);
+		pprint("yini:",sim_yp);
+	}
+
+
+	Concurrence{
+
+		PositionUpdate:{
+
+			Real currentWayPointX=0;
+			Real currentWayPointY=0;
+
+			Real previousWayPointX=0;
+			Real previousWayPointY=0;
+
+			Real wpdist = 0;
+
+			Real cdist = 0;
+
+			Real wp_ratio = 0;
+
+
+			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
+			Repeat true;
+	
+			//update pursuit
+
+
+			sim_xp=Lookup(XPosition);
+			sim_yp=Lookup(YPosition);
+
+			currentWayPointX=wayPointsX[currentWayPointIndex];
+			currentWayPointY=wayPointsY[currentWayPointIndex];
+
+			previousWayPointX=wayPointsX[previousWayPointIndex];			
+			previousWayPointY=wayPointsY[previousWayPointIndex];			
+
+			wpdist = distance(currentWayPointX,currentWayPointY,previousWayPointX,previousWayPointY);
+
+			cdist = distance(sim_xp,sim_yp,currentWayPointX,currentWayPointY);
+
+			wp_ratio = (wpdist-cdist+FOLLOW_DIST)/wpdist;
+
+			if wp_ratio>1.0
+			  wp_ratio=1.0;
+			endif
+			
+			steer_xp = currentWayPointX + wp_ratio*(currentWayPointX - previousWayPointX);
+			steer_yp = currentWayPointY + wp_ratio*(currentWayPointY - previousWayPointY);
+			
+
+			//update waypoint
+
+
+
+		}
+
+
+		/*UpdateLookaheadDistance:{
+			Start 
+			repeat true;
+			lookAheadDistance
+
+		}*/
+
+		/*UpdatePursuit:{
+			Start (distance(sim_xp,sim_yp,steer_xp,steer_yp) < FOLLOW_DIST);
+
+
+		}*/
+
+		PositionEcho:{
+			Start abs(Lookup(XPosition)-sim_xp)>0.01 || abs(Lookup(YPosition)-sim_yp)>0.01;
+			Repeat true;
+			sim_xp=Lookup(XPosition);
+			sim_yp=Lookup(YPosition);
+			pprint("x:",sim_xp);
+			pprint("y:",sim_yp);
+		}
+
+
+	}
+
+
+
+	//Real d=0;
+	//d=distance(1,1,100,100);
+	//pprint(d);
 }
 
