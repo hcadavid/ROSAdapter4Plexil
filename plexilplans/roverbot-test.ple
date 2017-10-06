@@ -19,6 +19,7 @@ Real Command distance(Real x1,Real y1,Real x2,Real y2);
 All:{
 
 	Real FOLLOW_DIST=50;
+	Real WP_DIST=30;
 	Real sim_xp=0;
 	Real sim_yp=0;
 	Real steer_xp=0;
@@ -61,33 +62,52 @@ All:{
 			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
 			Repeat true;
 	
+			
+			Sequence{
+				UpdatePursuit:{
+					sim_xp=Lookup(XPosition);
+					sim_yp=Lookup(YPosition);
+
+					currentWayPointX=wayPointsX[currentWayPointIndex];
+					currentWayPointY=wayPointsY[currentWayPointIndex];
+
+					previousWayPointX=wayPointsX[previousWayPointIndex];			
+					previousWayPointY=wayPointsY[previousWayPointIndex];			
+
+					wpdist = distance(currentWayPointX,currentWayPointY,previousWayPointX,previousWayPointY);
+
+					cdist = distance(sim_xp,sim_yp,currentWayPointX,currentWayPointY);
+
+					wp_ratio = (wpdist-cdist+FOLLOW_DIST)/wpdist;
+
+					if wp_ratio>1.0
+					  wp_ratio=1.0;
+					endif
+					
+					steer_xp = currentWayPointX + wp_ratio*(currentWayPointX - previousWayPointX);
+					steer_yp = currentWayPointY + wp_ratio*(currentWayPointY - previousWayPointY);										
+				}
+
+				UpdateWayPoint:{
+
+					if cdist>WP_DIST
+					  currentWayPointIndex=currentWayPointIndex+1;
+					  pprint("changing waypoint")
+					endif
+					//TODO END CONDITION HERE
+
+				}
+
+				UpdateSteering:{
+					
+
+
+				}
+
+			}
 			//update pursuit
 
 
-			sim_xp=Lookup(XPosition);
-			sim_yp=Lookup(YPosition);
-
-			currentWayPointX=wayPointsX[currentWayPointIndex];
-			currentWayPointY=wayPointsY[currentWayPointIndex];
-
-			previousWayPointX=wayPointsX[previousWayPointIndex];			
-			previousWayPointY=wayPointsY[previousWayPointIndex];			
-
-			wpdist = distance(currentWayPointX,currentWayPointY,previousWayPointX,previousWayPointY);
-
-			cdist = distance(sim_xp,sim_yp,currentWayPointX,currentWayPointY);
-
-			wp_ratio = (wpdist-cdist+FOLLOW_DIST)/wpdist;
-
-			if wp_ratio>1.0
-			  wp_ratio=1.0;
-			endif
-			
-			steer_xp = currentWayPointX + wp_ratio*(currentWayPointX - previousWayPointX);
-			steer_yp = currentWayPointY + wp_ratio*(currentWayPointY - previousWayPointY);
-			
-
-			//update waypoint
 
 
 

@@ -35,6 +35,13 @@ float radAnglesDiff(double theta1,double theta2);
 
 float distance(float x1, float y1, float x2, float y2);
 
+float distance(float x1, float y1, float x2, float y2);
+
+float sinrad(float rad);
+
+float cosrad(float rad);
+
+float tanrad(float rad);
 
 //Commands
 

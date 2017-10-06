@@ -226,6 +226,18 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
     args[3].getValue(y2);
     retval=distance(x1,y1,x2,y2);
   }  
+  else if (name == "sin") {        
+    args[0].getValue(d);
+    retval=sinrad(d);
+  }  
+  else if (name == "cos") {        
+    args[0].getValue(d);
+    retval=cosrad(d);
+  }  
+  else if (name == "tan") {        
+    args[0].getValue(d);
+    retval=tanrad(d);
+  }    
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 

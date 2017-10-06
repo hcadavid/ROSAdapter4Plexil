@@ -107,6 +107,17 @@ float radAnglesDiff(double theta1,double theta2){
 
 }
 
+float sinrad(float rad){
+    return  sin(rad);
+}
+
+float cosrad(float rad){
+    return  cos(rad);
+}
+
+float tanrad(float rad){
+    return  tan(rad);
+}
 
 /*--------------*/
 
