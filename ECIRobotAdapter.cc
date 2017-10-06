@@ -218,6 +218,14 @@ void ECIRobotAdapter::executeCommand(Command *cmd)
     args[0].getValue(d);
     retval=requestAngularVelocity(d);
   }  
+  else if (name == "distance") {    
+    double x1,y1,x2,y2;
+    args[0].getValue(x1);
+    args[1].getValue(y1);
+    args[2].getValue(x2);
+    args[3].getValue(y2);
+    retval=distance(x1,y1,x2,y2);
+  }  
   else 
     cerr << error << "invalid command: [" << name << "]" << endl;
 

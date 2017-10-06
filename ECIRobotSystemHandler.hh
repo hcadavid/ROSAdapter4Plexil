@@ -29,13 +29,18 @@ int getSafetyWarning();
 void setSafetyWarning(const int& v);
 
 
+//computation functions
+
+float radAnglesDiff(double theta1,double theta2);
+
+float distance(float x1, float y1, float x2, float y2);
+
+
 //Commands
 
 int requestLinearVelocity(float lv);
 
 int requestAngularVelocity(float av);
-
-float radAnglesDiff(double theta1,double theta2);
 
 //setup routines
 

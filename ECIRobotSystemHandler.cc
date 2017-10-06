@@ -84,6 +84,19 @@ defAccessors(SafetyWarning, int)
 /*--------------*/
 
 
+/*--General purpose computation functions--*/
+
+
+
+float distance(float x1, float y1, float x2, float y2){
+  float xdif=x2-x1;
+  float ydif=y2-y1;
+  
+  double d = sqrt((float)(xdif*xdif + ydif*ydif));
+  return d;    
+}
+
+
 float radAnglesDiff(double theta1,double theta2){
     
     double dif = fmod ((theta1 - theta2),(2*M_PI)); 
@@ -93,6 +106,9 @@ float radAnglesDiff(double theta1,double theta2){
     return dif;
 
 }
+
+
+/*--------------*/
 
 
 int requestLinearVelocity(float lv){

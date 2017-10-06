@@ -1,0 +1,26 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+Real Command distance(Real x1,Real y1,Real x2,Real y2);
+
+
+All:{
+	Real d=0;
+
+	pprint("hello");
+	d=distance(1,1,100,100);
+	pprint(d);
+}
+
