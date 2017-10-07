@@ -19,6 +19,28 @@
          <Name>pprint</Name>
       </CommandDeclaration>
       <CommandDeclaration LineNo="17" ColNo="5">
+         <Name>sin</Name>
+         <Return>
+            <Name>_return_0</Name>
+            <Type>Real</Type>
+         </Return>
+         <Parameter>
+            <Name>ang</Name>
+            <Type>Real</Type>
+         </Parameter>
+      </CommandDeclaration>
+      <CommandDeclaration LineNo="18" ColNo="5">
+         <Name>cos</Name>
+         <Return>
+            <Name>_return_0</Name>
+            <Type>Real</Type>
+         </Return>
+         <Parameter>
+            <Name>ang</Name>
+            <Type>Real</Type>
+         </Parameter>
+      </CommandDeclaration>
+      <CommandDeclaration LineNo="19" ColNo="5">
          <Name>distance</Name>
          <Return>
             <Name>_return_0</Name>
@@ -42,73 +64,236 @@
          </Parameter>
       </CommandDeclaration>
    </GlobalDeclarations>
-   <Node NodeType="NodeList" epx="If" LineNo="23" ColNo="1">
+   <Node NodeType="NodeList" epx="Sequence" LineNo="24" ColNo="1">
       <NodeId>All</NodeId>
-      <NodeBody>
-         <NodeList>
-            <Node NodeType="Empty" epx="Condition">
-               <NodeId>ep2cp_IfTest</NodeId>
-               <PostCondition>
-                  <GT>
-                     <IntegerValue>1</IntegerValue>
-                     <IntegerValue>10</IntegerValue>
-                  </GT>
-               </PostCondition>
-            </Node>
-            <Node NodeType="Command" epx="Then" LineNo="23" ColNo="3">
-               <NodeId>COMMAND__1</NodeId>
-               <StartCondition>
+      <VariableDeclarations>
+         <DeclareVariable LineNo="23" ColNo="1">
+            <Name>r</Name>
+            <Type>Real</Type>
+            <InitialValue>
+               <RealValue>0</RealValue>
+            </InitialValue>
+         </DeclareVariable>
+         <DeclareVariable LineNo="24" ColNo="1">
+            <Name>d</Name>
+            <Type>Real</Type>
+            <InitialValue>
+               <RealValue>0</RealValue>
+            </InitialValue>
+         </DeclareVariable>
+      </VariableDeclarations>
+      <InvariantCondition>
+         <NOT>
+            <OR>
+               <AND>
                   <EQInternal>
                      <NodeOutcomeVariable>
-                        <NodeRef dir="sibling">ep2cp_IfTest</NodeRef>
+                        <NodeRef dir="child">ASSIGNMENT__0</NodeRef>
                      </NodeOutcomeVariable>
-                     <NodeOutcomeValue>SUCCESS</NodeOutcomeValue>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
                   </EQInternal>
-               </StartCondition>
-               <SkipCondition>
                   <EQInternal>
-                     <NodeFailureVariable>
-                        <NodeRef dir="sibling">ep2cp_IfTest</NodeRef>
-                     </NodeFailureVariable>
-                     <NodeFailureValue>POST_CONDITION_FAILED</NodeFailureValue>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">ASSIGNMENT__0</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
-               </SkipCondition>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">COMMAND__1</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">COMMAND__1</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">ASSIGNMENT__2</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">ASSIGNMENT__2</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">COMMAND__3</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">COMMAND__3</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">ASSIGNMENT__4</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">ASSIGNMENT__4</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+               <AND>
+                  <EQInternal>
+                     <NodeOutcomeVariable>
+                        <NodeRef dir="child">COMMAND__5</NodeRef>
+                     </NodeOutcomeVariable>
+                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
+                  </EQInternal>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="child">COMMAND__5</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </AND>
+            </OR>
+         </NOT>
+      </InvariantCondition>
+      <NodeBody>
+         <NodeList>
+            <Node NodeType="Command" LineNo="25" ColNo="3">
+               <NodeId>ASSIGNMENT__0</NodeId>
                <NodeBody>
                   <Command>
+                     <RealVariable>r</RealVariable>
                      <Name>
-                        <StringValue>pprint</StringValue>
+                        <StringValue>cos</StringValue>
                      </Name>
-                     <Arguments LineNo="24" ColNo="10">
-                        <StringValue>1</StringValue>
+                     <Arguments LineNo="26" ColNo="7">
+                        <RealValue>1.1416</RealValue>
                      </Arguments>
                   </Command>
                </NodeBody>
             </Node>
-            <Node NodeType="Command" epx="Else" LineNo="25" ColNo="3">
-               <NodeId>COMMAND__2</NodeId>
+            <Node NodeType="Command" LineNo="26" ColNo="1">
+               <NodeId>COMMAND__1</NodeId>
                <StartCondition>
                   <EQInternal>
-                     <NodeFailureVariable>
-                        <NodeRef dir="sibling">ep2cp_IfTest</NodeRef>
-                     </NodeFailureVariable>
-                     <NodeFailureValue>POST_CONDITION_FAILED</NodeFailureValue>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">ASSIGNMENT__0</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
                </StartCondition>
-               <SkipCondition>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="sibling">ep2cp_IfTest</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>SUCCESS</NodeOutcomeValue>
-                  </EQInternal>
-               </SkipCondition>
                <NodeBody>
                   <Command>
                      <Name>
                         <StringValue>pprint</StringValue>
                      </Name>
-                     <Arguments LineNo="26" ColNo="10">
-                        <StringValue>2</StringValue>
+                     <Arguments LineNo="27" ColNo="8">
+                        <RealVariable>r</RealVariable>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="27" ColNo="3">
+               <NodeId>ASSIGNMENT__2</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">COMMAND__1</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <RealVariable>r</RealVariable>
+                     <Name>
+                        <StringValue>sin</StringValue>
+                     </Name>
+                     <Arguments LineNo="28" ColNo="7">
+                        <RealValue>1.1416</RealValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="28" ColNo="1">
+               <NodeId>COMMAND__3</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">ASSIGNMENT__2</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>pprint</StringValue>
+                     </Name>
+                     <Arguments LineNo="29" ColNo="8">
+                        <RealVariable>r</RealVariable>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="29" ColNo="3">
+               <NodeId>ASSIGNMENT__4</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">COMMAND__3</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <RealVariable>d</RealVariable>
+                     <Name>
+                        <StringValue>distance</StringValue>
+                     </Name>
+                     <Arguments LineNo="30" ColNo="12">
+                        <RealValue>0</RealValue>
+                        <RealValue>0</RealValue>
+                        <RealValue>100</RealValue>
+                        <RealValue>100</RealValue>
+                     </Arguments>
+                  </Command>
+               </NodeBody>
+            </Node>
+            <Node NodeType="Command" LineNo="30" ColNo="1">
+               <NodeId>COMMAND__5</NodeId>
+               <StartCondition>
+                  <EQInternal>
+                     <NodeStateVariable>
+                        <NodeRef dir="sibling">ASSIGNMENT__4</NodeRef>
+                     </NodeStateVariable>
+                     <NodeStateValue>FINISHED</NodeStateValue>
+                  </EQInternal>
+               </StartCondition>
+               <NodeBody>
+                  <Command>
+                     <Name>
+                        <StringValue>pprint</StringValue>
+                     </Name>
+                     <Arguments LineNo="31" ColNo="8">
+                        <RealVariable>d</RealVariable>
                      </Arguments>
                   </Command>
                </NodeBody>

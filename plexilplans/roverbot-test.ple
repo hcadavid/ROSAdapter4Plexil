@@ -14,6 +14,8 @@ Command RequestLinearVelocity(Real);
 Command RequestAngularVelocity(Real); 
 Command pprint(...);
 Real Command distance(Real x1,Real y1,Real x2,Real y2);
+Real Command sin(Real rad);
+Real Command cos(Real rad);
 
 
 All:{
@@ -58,6 +60,9 @@ All:{
 
 			Real wp_ratio = 0;
 
+			Boolean moveToLeft=false;
+			Boolean moveToRight=false;
+
 
 			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
 			Repeat true;
@@ -91,8 +96,10 @@ All:{
 				UpdateWayPoint:{
 
 					if cdist>WP_DIST
+					{
 					  currentWayPointIndex=currentWayPointIndex+1;
-					  pprint("changing waypoint")
+					  pprint("changing waypoint");
+					}
 					endif
 					//TODO END CONDITION HERE
 
@@ -100,8 +107,32 @@ All:{
 
 				UpdateSteering:{
 					
+					Real cdir=0;
+					Real sdir=0;
+					Real xprod=0;
+					Real currentYaw=0;
+					Real yawCorrection=0;
 
 
+					currentYaw=Lookup(Yaw);
+
+					cdir = cos(currentYaw);
+					sdir = sin(currentYaw);
+
+					xprod = (sdir*(sim_xp-steer_xp) - cdir*(sim_yp-steer_yp))/wpdist;
+
+					if xprod < -0.1
+					{
+						moveToLeft=false;
+						moveToRight=true;
+
+					}
+					else
+					{
+						moveToLeft=true;
+						moveToRight=false;
+					}
+					endif
 				}
 
 			}

@@ -13,17 +13,23 @@
 Command RequestLinearVelocity(Real);
 Command RequestAngularVelocity(Real); 
 Command pprint(...);
+Real Command sin(Real ang);
+Real Command cos(Real ang);
 Real Command distance(Real x1,Real y1,Real x2,Real y2);
 
 
 All:{
 
-
-	if 1>10
-	  pprint("1");
-	else 
-	  pprint("2");
-	endif
-
+	Real r=0;
+	Real d=0;
+	r=cos(1.1416);	
+	pprint(r);
+	r=sin(1.1416);	
+	pprint(r);	
+	d=distance(0,0,100,100);
+	pprint(d);	
+	  
+	
+	
 
 }
