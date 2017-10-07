@@ -1,0 +1,60 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+Real Command distance(Real x1,Real y1,Real x2,Real y2);
+Real Command sin(Real rad);
+Real Command cos(Real rad);
+
+
+All:{
+
+	Real AXIS_DISPLACEMENT_DELTA=0.01;
+	Real sim_xp;
+	Real sim_yp;
+
+
+	InitialContext:{
+		sim_xp=Lookup(XPosition);
+		sim_yp=Lookup(YPosition);
+		pprint("xini:",sim_xp);
+		pprint("yini:",sim_yp);
+	}
+
+	Concurrence{
+
+		PositionUpdate:{
+
+			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
+			Repeat true;
+	
+			sim_xp=Lookup(XPosition);
+			sim_yp=Lookup(YPosition);
+			pprint("x:",sim_xp);
+			pprint("y:",sim_yp);
+
+
+		}
+
+
+
+	}
+
+
+
+	//Real d=0;
+	//d=distance(1,1,100,100);
+	//pprint(d);
+}
+
