@@ -172,8 +172,8 @@ void ROSEventsCallback(const nav_msgs::Odometry::ConstPtr& msg){
     updateIfChanged(getYPosition,setYPosition,msg->pose.pose.position.y,UPDATE_DELTA);
     //updateIfChanged(getYaw,setYaw,yaw>=0?yaw:2*M_PI+yaw,UPDATE_DELTA);
     updateIfChanged(getYaw,setYaw,yaw,UPDATE_DELTA);
-    updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.linear.x,UPDATE_DELTA);
-    updateIfChanged(getLinearVelocity,setXPosition,msg->twist.twist.angular.z,UPDATE_DELTA);
+    updateIfChanged(getAngularVelocity,setAngularVelocity,msg->twist.twist.angular.z,UPDATE_DELTA);
+    updateIfChanged(getLinearVelocity,setLinearVelocity,msg->twist.twist.linear.x,UPDATE_DELTA);
     
     setReady(1);
             
