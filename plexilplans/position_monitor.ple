@@ -23,7 +23,7 @@ All:{
 	Real AXIS_DISPLACEMENT_DELTA=0.01;
 	Real sim_xp;
 	Real sim_yp;
-
+	Real yaw;
 
 	InitialContext:{
 		sim_xp=Lookup(XPosition);
@@ -34,6 +34,18 @@ All:{
 
 	Concurrence{
 
+		Move:{
+			Repeat true;
+			RequestLinearVelocity(1);
+		}
+
+		Turn:{
+			Start Lookup(XPosition)>3;
+			Repeat true;
+			pprint("Turning!");
+			RequestAngularVelocity(1);	
+		}
+
 		PositionUpdate:{
 
 			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
@@ -41,8 +53,11 @@ All:{
 	
 			sim_xp=Lookup(XPosition);
 			sim_yp=Lookup(YPosition);
-			pprint("x:",sim_xp);
-			pprint("y:",sim_yp);
+			yaw=Lookup(Yaw);
+			
+			//pprint("x:",sim_xp);
+			//pprint("y:",sim_yp);
+			//pprint("yaw:",yaw);
 
 
 		}

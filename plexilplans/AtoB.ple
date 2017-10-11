@@ -1,0 +1,118 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+Real Command distance(Real x1,Real y1,Real x2,Real y2);
+Real Command sin(Real rad);
+Real Command cos(Real rad);
+
+
+All:{
+
+	Real AXIS_DISPLACEMENT_DELTA=0.01;
+	Real sim_xp;
+	Real sim_yp;
+	Real yaw;
+	Real top_speed=0.5;
+
+	Boolean goal=false;
+
+	Real goalX=-4;
+	Real goalY=4;
+
+	Real originTargetVectorsXProduct;
+
+	Real distanceToGoal;
+
+	InitialContext:{
+		sim_xp=Lookup(XPosition);
+		sim_yp=Lookup(YPosition);
+		pprint("xini:",sim_xp);
+		pprint("yini:",sim_yp);
+	}
+
+	Concurrence{
+
+		Accelerate:{			
+			Repeat !goal && Lookup(LinearVelocity) < top_speed;
+			RequestLinearVelocity(0.1);
+		}
+
+		Stop:{
+			Start goal;
+			Repeat Lookup(LinearVelocity) > 0;
+			RequestLinearVelocity(0);	
+		}
+
+		PositionUpdate:{
+
+			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
+			Repeat !goal;
+	
+			sim_xp=Lookup(XPosition);
+			sim_yp=Lookup(YPosition);
+			yaw=Lookup(Yaw);
+			
+			pprint("x:",sim_xp);
+			pprint("y:",sim_yp);
+			pprint("yaw:",yaw);
+
+		}
+
+		DirectionEvaluation:{		
+
+			Real cdir,sdir,x,y,yaw,xprod;
+
+			Repeat !goal;
+
+			x=Lookup(XPosition);
+			y=Lookup(YPosition);
+			yaw=Lookup(Yaw);
+
+			distanceToGoal = distance(x,y, goalX,goalY);
+
+			cdir=cos(yaw);
+			sdir=sin(yaw);
+
+			originTargetVectorsXProduct = (sdir*(x-goalX) - cdir*(y-goalY))/distanceToGoal;
+
+			pprint("goal dist:",distanceToGoal);
+		}
+
+		TurnLeft:{
+			Start  originTargetVectorsXProduct  <  -0.1;
+			Repeat !goal;
+			RequestAngularVelocity(-1);
+			pprint("left");
+		}
+
+		TurnRight:{
+			Start originTargetVectorsXProduct  >  0.1;
+			Repeat !goal;		
+			RequestAngularVelocity(1);
+			pprint("right");
+		}
+
+		GoalReached:{
+			Start distanceToGoal < 1;			
+			goal=true;
+			pprint("Stopping");
+
+		}
+
+
+	}
+
+}
+
