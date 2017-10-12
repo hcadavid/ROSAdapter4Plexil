@@ -22,13 +22,13 @@ All:{
 
 	Real AXIS_DISPLACEMENT_DELTA=0.01;
 	Real LOOK_AHEAD_DISTANCE=0.5;
-	Real WAYPOINT_MIN_DISTANCE=0.5;
+	Real WAYPOINT_MIN_DISTANCE=0.3;
 	Real sim_xp;
 	Real sim_yp;
 	Real yaw;
 	Real top_speed=0.5;
 
-
+	Integer WAY_POINTS_COUNT=4;
 	Real wayPointsXCoord[4] = #(-4 4 4 -4);
 	Real wayPointsYCoord[4] = #(4 4 -4 -4);
 
@@ -80,8 +80,13 @@ All:{
 			RequestLinearVelocity(0.1);
 		}
 
+		Stop:{
+			Start goal;
+			Repeat Lookup(LinearVelocity) > 0;
+			RequestLinearVelocity(0);	
+		}
 
-		Drivexx:{
+		UpdateLookAheadAndWayPoint:{
 
 			Start abs(Lookup(XPosition)-sim_xp)>AXIS_DISPLACEMENT_DELTA || abs(Lookup(YPosition)-sim_yp)>AXIS_DISPLACEMENT_DELTA;
 			Repeat !goal;
@@ -96,7 +101,7 @@ All:{
 					
 					pprint("x:",sim_xp);
 					pprint("y:",sim_yp);
-					pprint("yaw:",yaw);
+					//pprint("yaw:",yaw);
 
 				}	
 
@@ -145,11 +150,21 @@ All:{
 						pprint("UPDATING WAYPOINT");
 						wayPointIndex=wayPointIndex+1;
 
-						previousWayPointCoordX = currentWayPointCoordX;
-						previousWayPointCoordY = currentWayPointCoordY;
+						if (wayPointIndex < WAY_POINTS_COUNT)
+						{
+							previousWayPointCoordX = currentWayPointCoordX;
+							previousWayPointCoordY = currentWayPointCoordY;
 
-						currentWayPointCoordX = wayPointsXCoord[wayPointIndex];
-						currentWayPointCoordY = wayPointsYCoord[wayPointIndex];					
+							currentWayPointCoordX = wayPointsXCoord[wayPointIndex];
+							currentWayPointCoordY = wayPointsYCoord[wayPointIndex];					
+						}
+						else
+						{
+							//last waypoint was reached
+							goal=true;
+						}
+						endif
+						
 					}
 					endif
 
