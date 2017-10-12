@@ -18,7 +18,7 @@ Real Command sin(Real rad);
 Real Command cos(Real rad);
 
 
-All:{
+PurePursuit:{
 
 	Real AXIS_DISPLACEMENT_DELTA=0.01;
 	Real LOOK_AHEAD_DISTANCE=0.5;
@@ -192,12 +192,6 @@ All:{
 			pprint("right");
 		}
 
-		//GoalReached:{
-		//	Start distanceToGoal < 1;			
-		//	goal=true;
-		//	pprint("Stopping");
-		//
-		//}
 
 
 	}
