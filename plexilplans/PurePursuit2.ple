@@ -20,6 +20,7 @@ Real Command cos(Real rad);
 
 PurePursuit:{
 
+
 	Real AXIS_DISPLACEMENT_DELTA=0.01;
 	Real LOOK_AHEAD_DISTANCE=0.5;
 	Real WAYPOINT_MIN_DISTANCE=0.3;
@@ -53,6 +54,7 @@ PurePursuit:{
 
 	Boolean goal=false;
 
+	
 
 	InitialContext:{
 		sim_xp=Lookup(XPosition);
@@ -74,6 +76,7 @@ PurePursuit:{
 
 	Concurrence{
 
+		End Stop.state == FINISHED;
 
 		Accelerate:{			
 			Repeat !goal && Lookup(LinearVelocity) < top_speed;
@@ -181,14 +184,14 @@ PurePursuit:{
 		TurnLeft:{
 			Start  originTargetVectorsCrossProduct  <  -0.1;
 			Repeat !goal;
-			RequestAngularVelocity(-1);
+			RequestAngularVelocity(-0.5);
 			pprint("left");
 		}
 
 		TurnRight:{
 			Start originTargetVectorsCrossProduct  >  0.1;
 			Repeat !goal;		
-			RequestAngularVelocity(1);
+			RequestAngularVelocity(0.5);
 			pprint("right");
 		}
 
