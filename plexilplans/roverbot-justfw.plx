@@ -52,20 +52,6 @@
                      <NodeStateValue>FINISHED</NodeStateValue>
                   </EQInternal>
                </AND>
-               <AND>
-                  <EQInternal>
-                     <NodeOutcomeVariable>
-                        <NodeRef dir="child">COMMAND__2</NodeRef>
-                     </NodeOutcomeVariable>
-                     <NodeOutcomeValue>FAILURE</NodeOutcomeValue>
-                  </EQInternal>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="child">COMMAND__2</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </AND>
             </OR>
          </NOT>
       </InvariantCondition>
@@ -101,37 +87,6 @@
                      </Name>
                      <Arguments LineNo="24" ColNo="24">
                         <RealValue>0.5</RealValue>
-                     </Arguments>
-                  </Command>
-               </NodeBody>
-            </Node>
-            <Node NodeType="Command" LineNo="25" ColNo="1">
-               <NodeId>COMMAND__2</NodeId>
-               <StartCondition>
-                  <EQInternal>
-                     <NodeStateVariable>
-                        <NodeRef dir="sibling">COMMAND__1</NodeRef>
-                     </NodeStateVariable>
-                     <NodeStateValue>FINISHED</NodeStateValue>
-                  </EQInternal>
-               </StartCondition>
-               <NodeBody>
-                  <Command>
-                     <Name>
-                        <StringValue>pprint</StringValue>
-                     </Name>
-                     <Arguments LineNo="26" ColNo="8">
-                        <StringValue>PosForward :</StringValue>
-                        <LookupNow>
-                           <Name>
-                              <StringValue>XPosition</StringValue>
-                           </Name>
-                        </LookupNow>
-                        <LookupNow>
-                           <Name>
-                              <StringValue>YPosition</StringValue>
-                           </Name>
-                        </LookupNow>
                      </Arguments>
                   </Command>
                </NodeBody>

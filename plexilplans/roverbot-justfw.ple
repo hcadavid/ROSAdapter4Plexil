@@ -22,7 +22,7 @@ All:{
 													
 	RequestAngularVelocity(0.5);													
 	//pprint("From :",currXPos,currYPos);
-	pprint("PosForward :",Lookup(XPosition),Lookup(YPosition));
+	//pprint("PosForward :",Lookup(XPosition),Lookup(YPosition));
 
 
 }

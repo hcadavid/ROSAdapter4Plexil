@@ -1,0 +1,163 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+
+
+All:{
+
+	Real startingYaw=0;
+	Real startingXPos=0;
+	Real startingYPos=0;
+
+	Real finalYPos;
+	Real finalXPos;
+	Real currXPos, currYPos;
+
+	Real FIELD_WIDTH=4;
+	Real FIELD_HEIGHT=4;
+	Real TURN_YAW_DELTA=0.1;
+	Boolean completeTurn=false;
+	Real PI=3.1416;
+
+	Real targetYaw;
+
+	Start Lookup(Ready) == 1;
+	
+	Sequence{
+
+		InitialOdometryLookup:{
+			startingYaw=Lookup(Yaw);
+			startingXPos=Lookup(XPosition);
+			startingYPos=Lookup(YPosition);
+			targetYaw=startingYaw+(PI/2);
+		}
+
+
+	Concurrence{
+		Forward:{
+
+		}
+
+		Steer:{
+
+		}
+	}
+
+	Sequence{
+
+		InitialOdometryLookup:{
+			startingYaw=Lookup(Yaw);
+			startingXPos=Lookup(XPosition);
+			startingYPos=Lookup(YPosition);
+		}
+
+		ForwardHor:{		
+
+			Start sqrt((startingXPos-Lookup(XPosition))*(startingXPos-Lookup(XPosition))+
+				  (startingYPos-Lookup(YPosition))*(startingYPos-Lookup(YPosition))) < FIELD_WIDTH;
+			Repeat sqrt((startingXPos-Lookup(XPosition))*(startingXPos-Lookup(XPosition))+
+				  (startingYPos-Lookup(YPosition))*(startingYPos-Lookup(YPosition))) < FIELD_WIDTH;
+
+			RequestLinearVelocity(1);								
+			
+		}
+
+
+		TurnNinetyDegrees:{
+			Boolean completeTurn=false;
+
+			Real currentYaw;
+
+			RequestLinearVelocity(0);								
+
+			currentYaw=Lookup(Yaw);
+			pprint("Current yaw ",currentYaw);
+
+			Concurrence{
+
+				StaticTurn:{		
+
+					Repeat completeTurn==false;
+
+					RequestAngularVelocity(0.2);     
+
+					pprint("Original yaw ",currentYaw);
+					pprint("Current yaw ",Lookup(Yaw));
+					
+					//pprint("Pos :",Lookup(XPosition),Lookup(YPosition));
+					//pprint("Angle",Lookup(Yaw));
+					//pprint("Initial",currentYaw);
+					//pprint("Diff",abs(Lookup(Yaw)-currentYaw));
+
+				}
+
+				CompleteTurnCheck1:{					
+					Start  (abs(Lookup(Yaw)-currentYaw) <= PI && abs(Lookup(Yaw)-currentYaw)>=2*PI);					
+					pprint("Turn complete 1");
+					completeTurn=true;
+				}
+
+				CompleteTurnCheck2:{					
+					Start  (abs(Lookup(Yaw)-currentYaw) > PI && ((2*PI)-abs(Lookup(Yaw)-currentYaw))>=2*PI);
+					pprint("Turn complete 2");
+					completeTurn=true;
+				}				
+
+
+			}
+
+		}
+
+		UpdateOdom:{
+			currXPos=Lookup(XPosition);
+			currYPos=Lookup(YPosition);
+			pprint("Pos :",currXPos,currYPos);
+			pprint("Pos :",Lookup(XPosition),Lookup(YPosition));
+
+		}
+
+
+		ForwardVer:{					
+
+			Start sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < FIELD_HEIGHT;
+			Repeat sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				  			(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))) < FIELD_HEIGHT;
+			
+			currXPos=Lookup(XPosition);
+			currYPos=Lookup(YPosition);
+
+			RequestLinearVelocity(1);													
+
+			//pprint("From :",currXPos,currYPos);
+			pprint("PosForward :",Lookup(XPosition),Lookup(YPosition));
+			//pprint(sqrt((currXPos-Lookup(XPosition))*(currXPos-Lookup(XPosition))+
+				 		//(currYPos-Lookup(YPosition))*(currYPos-Lookup(YPosition))));
+
+		}
+
+
+		EndMessage:{
+			pprint("done!");
+			RequestLinearVelocity(0);
+			pprint("X:",Lookup(XPosition));
+			pprint("Y:",Lookup(YPosition));
+		}
+
+	}
+
+}
+
