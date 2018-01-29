@@ -1,0 +1,29 @@
+//Env variables
+//---------------
+//Yaw
+//XPosition
+//YPosition
+//LinearVelocity
+//AngularVelocity
+//Ready
+//SafetyWarning
+
+//Commands
+
+Command RequestLinearVelocity(Real);
+Command RequestAngularVelocity(Real); 
+Command pprint(...);
+
+
+
+All:{
+
+	RequestLinearVelocity(1);
+													
+	RequestAngularVelocity(0.5);													
+	//pprint("From :",currXPos,currYPos);
+	pprint("PosForward :",Lookup(XPosition),Lookup(YPosition));
+
+
+}
+
