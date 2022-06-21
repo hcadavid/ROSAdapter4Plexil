@@ -4,4 +4,6 @@ Part of the project [Reliable Control Architecture with PLEXIL and ROS for Auton
 
 This adapter allows controlling a ROS (Robot Operating System) compliant using PLEXIL, a NASA open-source language and interpreter for defining and executing plans for automation. 
 
+The following shows a ROS-compliant (simulated in Gazebo) rover executing the pure-pursuit control algorithm defined in PLEXIL.
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/f9hUsUrMjA8/0.jpg)](https://www.youtube.com/watch?v=f9hUsUrMjA8)
